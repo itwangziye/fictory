@@ -1,0 +1,46 @@
+@import './animate.min.less';
+@import './normalize.less';
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    &:after {
+        box-sizing: inherit;
+    }
+    &:before {
+        box-sizing: inherit;
+    }
+    &:not(input):not(textarea) {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+}
+.click-able {
+    position: relative;
+    &:before{
+        background-color: #000;
+        border-color: #000;
+        content: ' ';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    &:active::before{
+        opacity: 0.1;
+    }
+}
+
+.click-list:active{
+    opacity: 0.75;
+    &::before{
+        opacity: 0.75;
+    }
+}
+
+
+
