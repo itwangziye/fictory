@@ -58,7 +58,7 @@ export default class BookMenu extends Mixins(PageMixins) {
     handleBookCell(item: any, index: any) :void{
         const chapterIndex = index + 1;
         const {bookChapterId} = item;
-            this.$router.push({name: 'BookCell', query: {bookChapterId, chapterIndex}})
+        this.$router.push({name: 'BookCell', query: {bookChapterId, chapterIndex}})
     }
 
     onLoad() :void{
