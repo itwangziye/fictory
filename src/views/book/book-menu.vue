@@ -20,7 +20,7 @@
                 title-class="book__menu-title"
                 :title="item.bookChapterName" 
                 clickable
-                @click="handleBookCell(item)"
+                @click="handleBookCell(item, index)"
                 v-for="(item, index) in list" 
                 :key="index">
                     <template #right-icon v-if="!item.isUnLock">
@@ -55,9 +55,10 @@ export default class BookMenu extends Mixins(PageMixins) {
     bookId: number = 0;
 
 
-    handleBookCell(item: any) :void{
+    handleBookCell(item: any, index: any) :void{
+        const chapterIndex = index + 1;
         const {bookChapterId} = item;
-        this.$router.push({name: 'BookCell', query: {bookChapterId}})
+            this.$router.push({name: 'BookCell', query: {bookChapterId, chapterIndex}})
     }
 
     onLoad() :void{

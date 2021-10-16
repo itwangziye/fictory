@@ -7,17 +7,39 @@
             @click-left="onClickLeft"
             />
         </template>
-        <div class="book__cell" v-if="bookCellDetail">
+        <div class="book__setting" :style="{backgroundColor: cellStyles.backgroundColor}">
+            <ul class="color">
+                <li class="color__item" v-for="(item, index) in colorOptions" :key="index" :style="{backgroundColor: item.bg}" @click="handerChangeTheme(item, 'bg')"></li>
+            </ul>
+            <ul class="font">
+                <li :class="['font__item', {active: index === fontOptions.active}]" v-for="(item, index) in fontOptions.data" :key="index" @click="handerChangeTheme(item, 'font')" >
+                    {{item.name}}
+                </li>
+            </ul>
+        </div>
+        <div class="book__cell" :style="cellStyles" v-if="bookCellDetail">
+            <div class="book__cell-title">{{bookCellDetail.bookChapterName}}</div>
             <div class="book__cell-content">
                 {{bookCellDetail.bookContent}}
             </div>
+        </div>
+
+        <div class="book__footer">
+            <van-button type="default" icon="arrow-left" @click="handlerChangeMenu('pre')">上一章</van-button>
+            <van-button type="default" icon="bars">菜单</van-button>
+            <van-button type="default" @click="handlerChangeMenu('next')">
+                <div class="footer__arrow">
+                    <span>下一章</span> 
+                    <van-icon name="arrow" />
+                </div>
+            </van-button>
         </div>
     </pagecontain>
     
 </template>
 
 <script lang="ts">
-import { Component, Mixins} from 'vue-property-decorator';
+import { Component, Mixins, Watch} from 'vue-property-decorator';
 import api from '@/api/book';
 import pagecontain from '@/components/pagecontain.vue';
 import PageMixins from '@/mixins/page-mixins'
@@ -30,12 +52,62 @@ import PageMixins from '@/mixins/page-mixins'
 export default class BookCell extends Mixins(PageMixins) {
 
     bookCellDetail: any = null;
+    colorOptions: any[] = [
+        {bg: 'rgba(242, 242, 242, 1)', color: '#111334'},
+        {bg: 'rgba(221, 229, 180, 1)', color: '#111334'},
+        {bg: 'rgba(196, 179, 153, 1)', color: '#111334'},
+        {bg: 'rgba(51, 51, 51, 1)', icon: '', color: '#fff'}
+    ];
+    fontOptions: any = {
+        active: 1,
+        data: [
+            {name: '小', index: 1, size: '12px'},
+            {name: '中', index: 2, size: '14px'},
+            {name: '大', index: 3, size: '20px'}
+        ]
+    };
+    cellStyles: any = {
+        color: '#111334',
+        fontSize: '14px',
+        backgroundColor: 'rgba(242, 242, 242, 1)'
+    }
     
     init() {
         const query = this.$route.query;
         if (query && query.bookChapterId) {
-            this.bookChapterGetDetailReq({bookChapterId: query.bookChapterId})
+            const {chapterIndex, bookChapterId} = this.$route.query;
+            this.bookChapterGetDetailReq({chapterIndex, bookChapterId})
         }
+    }
+
+    handerChangeTheme(item: any, type: string) {
+        if (type === 'bg') {
+            this.cellStyles.backgroundColor = item.bg;
+            this.cellStyles.color = item.color;
+        } else if (type === 'font') {
+            this.cellStyles.fontSize = item.size;
+        }
+    }
+
+    handlerChangeMenu(type: string) {
+        const query: any = this.$route.query;
+        let {chapterIndex, bookChapterId} = query;
+        const {totalChapterCount} = this.bookCellDetail;
+        if (chapterIndex >= totalChapterCount) {
+            this.$toast('已经是最后一章');
+            return;
+        } else if (chapterIndex <= 1) {
+            this.$toast('已经是第一章');
+            return;
+        }
+
+        if (type === 'pre') {
+            --chapterIndex;
+        } else if (type === 'next') {
+            ++chapterIndex;
+        };
+        this.$router.replace({name: 'BookCell', query: {chapterIndex, bookChapterId}})
+
     }
 
     async bookChapterGetDetailReq(parmas: any) {
@@ -47,12 +119,66 @@ export default class BookCell extends Mixins(PageMixins) {
         }
     }
 
-    created() {
-        this.init();
+    @Watch('$route', {immediate: true})
+    watchRoute() {
+        this.init()
     }
 }
 </script>
 
 <style scoped lang="less">
-
+    .book__setting {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 24px;
+        height: 80px;
+        .color {
+            display: flex;
+            &__item {
+                width: 60px;
+                height: 40px;
+                border-radius: 8px;
+                margin-right: 20px;
+                border: 1px solid rgba(128, 128, 128, 1);
+            }
+        }
+        .font {
+            display: flex;
+            font-size: @text-size5;
+            color: @text-color1;
+            &__item {
+                margin-left: 20px;
+                width: 40px;
+                height: 40px;
+                text-align: center;
+                line-height: 40px;
+                background-color: rgba(223, 223, 223, 1);
+                &.active {
+                    background-color: rgba(246, 215, 217, 1);
+                }
+            }
+        }
+    }
+    .book__cell {
+        padding: 0 24px;
+        line-height: 54px;
+        &-title {
+            font-size: @text-size8 !important;
+            font-weight: bolder;
+        }
+    }
+    .book__footer{
+        display: flex;
+        justify-content: space-between;
+        padding-top: 80px;
+        .footer__arrow {
+            display: flex;
+            align-items: center;
+            &>span {
+                display: inline-block;
+                padding-right: 10px;
+            }
+        }
+    }
 </style>
