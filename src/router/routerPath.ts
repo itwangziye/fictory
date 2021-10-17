@@ -1,4 +1,4 @@
-import { RouteConfig } from 'vue-router'
+import { RouteConfig } from 'vue-router';
 
 const routes: Array<RouteConfig> = [
 	{
@@ -24,6 +24,16 @@ const routes: Array<RouteConfig> = [
 		meta: {keepAlive: true}
 	},
 	{
+		path: '/user',
+		name: 'User',
+		component: () => import('@/views/mine/user-info/index.vue'),
+	},
+	{
+		path: '/user/modify',
+		name: 'UserModify',
+		component: () => import('@/views/mine/user-info/modify-info.vue'),
+	},
+	{
 		path: '/login',
 		name: 'Login',
 		component: () => import('@/views/login/login.vue'),
@@ -33,6 +43,8 @@ const routes: Array<RouteConfig> = [
 		name: 'Register',
 		component: () => import('@/views/login/register.vue'),
 	},
+
+
 	{
 		path: '/book',
 		name: 'Book',
@@ -47,6 +59,18 @@ const routes: Array<RouteConfig> = [
 		path: '/book/cell',
 		name: 'BookCell',
 		component: () => import('@/views/book/book-cell.vue'),
+	},
+
+	{
+		path: '/movie',
+		name: 'Movie',
+		component: () => import('@/views/movie/index.vue'),
+	},
+	
+	{
+		path: '/cartoon',
+		name: 'Cartoon',
+		component: () => import('@/views/cartoon/index.vue'),
 	}
 ]
 

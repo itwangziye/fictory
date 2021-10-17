@@ -50,7 +50,7 @@
                             <div class="loginForm-tip">
                                 <div class="click-list" @click="goPage('register')">用户注册</div>
                             </div>
-                            <van-button :class="['button', {disabled: buttonDisabled}] " :disabled="buttonDisabled" loading-text="正在登录中···" :loading="loading" round block type="info" native-type="submit">登录</van-button>
+                            <van-button :class="['button', {disabled: buttonDisabled}] " :disabled="buttonDisabled" loading-text="正在登录中···" :loading="loading" round block type="warning" native-type="submit">登录</van-button>
                         </div>
                     </van-form>
                 </div>

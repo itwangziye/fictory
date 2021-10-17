@@ -1,6 +1,8 @@
 <template>
   <pagecontain>
-      我是书架
+      <template slot="header">
+            我是漫画目录
+        </template>
   </pagecontain>
 </template>
 
@@ -14,7 +16,7 @@ import PageMixins from '@/mixins/page-mixins';
         pagecontain
     }
 })
-export default class Shelf extends Mixins(PageMixins) {
+export default class Movie extends Mixins(PageMixins) {
 
 }
 </script>

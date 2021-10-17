@@ -16,9 +16,9 @@ const actions = {
     },
     async loginout({commit}: any, payload: any){
         try {
-            const toast = Toast.loading({forbidClick: true, message: '正在加载中···'});
-            await api.loginOut.exec({});
-            toast.clear();
+            // const toast = Toast.loading({forbidClick: true, message: '正在加载中···'});
+            // await api.loginOut.exec({});
+            // toast.clear();
             Toast.success('操作成功！')
             commit('LOGINOUT', payload);
         } catch (error) {

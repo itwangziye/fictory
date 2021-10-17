@@ -3,8 +3,8 @@ import MApi from './ApiInstance'
 export default {
     // 获取个人信息
 	getUserInfo: new MApi({
-		serviceUrl: '/auth/profile',
-        method: 'post',
+		serviceUrl: '/user/getDetail',
+        method: 'get',
     }),
     // 修改个人信息
 	updateUserInfo: new MApi({
@@ -13,7 +13,7 @@ export default {
     }),
     // 修改个人密码
 	updateUserPassword: new MApi({
-		serviceUrl: '/auth/password/update',
+		serviceUrl: '/user/changePwd',
         method: 'post',
     }),
     // 我的订单列表

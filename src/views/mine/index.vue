@@ -6,11 +6,17 @@
           class="img"
           width="100"
           height="100"
-          src="https://img01.yzcdn.cn/vant/cat.jpeg"
-        />
-		<template v-if="!isLogin" >
-			<div class="name">书友123456</div>
-        	<div class="id">id: 33433</div>
+          :src="userInfo.headImageUrl"
+        >
+			<template v-slot:error>
+				<div class="default__icon img">
+
+				</div>
+			</template>
+		</van-image>
+		<template v-if="isLogin" >
+			<div class="name">{{userInfo.userName}}</div>
+        	<div class="id">id: {{userInfo.userId}}</div>
 		</template>
 		<template v-else>
 			<div class="name">请登录</div>
@@ -19,11 +25,11 @@
       </div>
 
       <div class="mine__cell">
-        <van-cell v-for="(item, index) in cellOptions" :key="index" is-link>
+        <van-cell v-for="(item, index) in cellOptions" :key="index" is-link :url="item.url">
           <template #title>
             <div class="custom">
-              <van-icon class="custom-icon" :name="item.icon" />
-              <span class="custom-title">{{ item.label }}</span>
+				<van-icon class="custom-icon" :name="item.icon" />
+				<span class="custom-title">{{ item.label }}</span>
             </div>
           </template>
         </van-cell>
@@ -52,8 +58,8 @@ import PageMixins from "@/mixins/page-mixins";
 export default class Mine extends Mixins(PageMixins) {
   cellOptions: any[] = [
     { label: "购买记录", url: "", icon: "orders-o" },
-    { label: "个人资料", url: "", icon: "user-o" },
-    { label: "账户安全", url: "", icon: "setting-o" },
+    { label: "个人资料", url: "/user", icon: "user-o" },
+    { label: "账户安全", url: "/user/modify", icon: "setting-o" },
   ];
 
   async init() {
@@ -67,7 +73,7 @@ export default class Mine extends Mixins(PageMixins) {
 	  if (!isLogin) {
 		  this.$router.push({name: 'Login'})
 	  } else {
-		  this.$router.push({name: 'UserInfo'})
+		  this.$router.push({name: 'User'})
 	  }
   }
 
@@ -92,6 +98,12 @@ export default class Mine extends Mixins(PageMixins) {
       border-radius: 50%;
       overflow: hidden;
     }
+	.default__icon {
+		background-image: url('../../assets/mine/avater__bg.png');
+		background-size: 100%;
+		width: 100%;
+		height: 100%;
+	}
 	.name {
 		color: @white;
 		font-size: @text-size6;
