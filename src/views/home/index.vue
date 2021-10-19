@@ -26,7 +26,9 @@
                 <div class="pane__title">热门小说</div>
                 <div class="pane__content">
                     <ul class="hot__list">
-                        <li class="hot__list-item click-list" @click="handlerBookDetail(item)" v-for="(item, index) in hotOptions" :key="index">
+                        <li class="hot__list-item click-list" @click="handlerBookDetail(item)" 
+                        v-for="(item, index) in hotOptions" 
+                        :key="index">
                             <van-image :src="item.bookImageUrl" class="img">
                                 <template v-slot:loading>
                                     <van-loading type="spinner" size="20" />
@@ -166,12 +168,19 @@ export default class Home extends Vue {
         .hot__list {
             display: flex;
             padding-bottom: 24px;
+            overflow-x: auto;
             &-item {
+                padding-right: 30px;
+                width: 180px;
                 .img {
                     width: 150px;
+                    height: 200px;
                 }
                 .title {
                     line-height: 34px;
+                    overflow:hidden;
+                    text-overflow:ellipsis;
+                    white-space:nowrap;
                 }
                 .subTilte {
                     color: @text-color5;

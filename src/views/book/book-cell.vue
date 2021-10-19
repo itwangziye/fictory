@@ -19,9 +19,22 @@
         </div>
         <div class="book__cell" :style="cellStyles" v-if="bookCellDetail">
             <div class="book__cell-title">{{bookCellDetail.bookChapterName}}</div>
-            <div class="book__cell-content">
+            <div class="book__cell-content" v-if="bookCellDetail.bookTypeId === '1'">
                 {{bookCellDetail.bookContent}}
             </div>
+            <div class="book__cell-content" v-else-if="bookCellDetail.bookTypeId === '2'">
+                <van-image 
+                class="img"
+                :src="item" 
+                lazy-load
+                v-for="(item, index) in bookCellDetail.bookContent" 
+                :key="index">
+                    <template v-slot:loading>
+                        <van-loading type="spinner" size="20" />
+                    </template>
+                </van-image>
+            </div>
+
         </div>
 
         <div class="book__footer">
@@ -74,9 +87,9 @@ export default class BookCell extends Mixins(PageMixins) {
     
     init() {
         const query = this.$route.query;
-        if (query && query.bookChapterId) {
-            const {chapterIndex, bookChapterId} = this.$route.query;
-            this.bookChapterGetDetailReq({chapterIndex, bookChapterId})
+        if (query && query.bookId) {
+            const {chapterIndex, bookId} = this.$route.query;
+            this.bookChapterGetDetailReq({chapterIndex, bookId})
         }
     }
 
@@ -91,12 +104,12 @@ export default class BookCell extends Mixins(PageMixins) {
 
     handlerChangeMenu(type: string) {
         const query: any = this.$route.query;
-        let {chapterIndex, bookChapterId} = query;
+        let {chapterIndex, bookId} = query;
         const {totalChapterCount} = this.bookCellDetail;
-        if (chapterIndex >= totalChapterCount) {
+        if (chapterIndex >= totalChapterCount && type === 'next') {
             this.$toast('已经是最后一章');
             return;
-        } else if (chapterIndex <= 1) {
+        } else if (chapterIndex <= 1 && type === 'pre') {
             this.$toast('已经是第一章');
             return;
         }
@@ -106,7 +119,7 @@ export default class BookCell extends Mixins(PageMixins) {
         } else if (type === 'next') {
             ++chapterIndex;
         };
-        this.$router.replace({name: 'BookCell', query: {chapterIndex, bookChapterId}})
+        this.$router.replace({name: 'BookCell', query: {chapterIndex, bookId}})
 
     }
 
@@ -121,6 +134,7 @@ export default class BookCell extends Mixins(PageMixins) {
 
     @Watch('$route', {immediate: true})
     watchRoute() {
+        window.scrollTo = 0;
         this.init()
     }
 }
@@ -166,6 +180,10 @@ export default class BookCell extends Mixins(PageMixins) {
         &-title {
             font-size: @text-size8 !important;
             font-weight: bolder;
+        }
+        .img {
+            width: 100%;
+            vertical-align: top;
         }
     }
     .book__footer{

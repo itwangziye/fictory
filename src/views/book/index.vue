@@ -55,7 +55,8 @@
                         title-class="book__menu-title"
                         :title="item.bookChapterName" 
                         clickable
-                        v-for="(item, index) in bookDetail.chapterList" 
+                        v-for="(item, index) in bookDetail.chapterList"
+                        @click="handleBookDetail(index)" 
                         :key="index">
                             <template #right-icon v-if="!item.isUnLock">
                                 <van-icon name="lock" class="book__lock"/>
@@ -111,6 +112,11 @@ export default class Book extends Mixins(PageMixins) {
     handerBookMenu() :void {
         const {bookId} = this.bookDetail;
         this.$router.push({name: 'BookMenu', query: {bookId}})
+    }
+    handleBookDetail(index: any) :void {
+        const chapterIndex = index + 1;
+        const {bookId} = this.bookDetail;
+        this.$router.push({name: 'BookCell', query: {bookId, chapterIndex}})
     }
 
     init() {
