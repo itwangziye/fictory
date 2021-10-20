@@ -1,5 +1,9 @@
 <template>
-    <pagecontain>
+    <pagecontain
+    :loading="pageLoading"
+	:error="pageError"
+	@on-retry="pageInit"
+    >
         <div class="home">
             <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
                 <van-swipe-item v-for="(item, index) in bannerOptions" :key="index">
@@ -68,11 +72,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Mixins } from 'vue-property-decorator';
 import api from '@/api/home';
 import apiBook from '@/api/book'
 import pagecontain from '@/components/pagecontain.vue';
 import BookList from './bookList.vue';
+import PageMixins from '@/mixins/page-mixins'
 
 @Component({
     name: 'Home',
@@ -81,7 +86,7 @@ import BookList from './bookList.vue';
         BookList
     }
 })
-export default class Home extends Vue {
+export default class Home extends Mixins(PageMixins) {
 
     bannerOptions: any[] = []
     hotOptions: any[] = [];
@@ -124,10 +129,12 @@ export default class Home extends Vue {
         }
     }
 
-    pageInit() {
+    async pageInit() {
+        this.pageLoading = true;
         this.getListBannerReq();
         this.bookGetHotListReq();
         this.bookGetFreeListReq();
+        this.pageLoading = false;
     }
 
     created() {
