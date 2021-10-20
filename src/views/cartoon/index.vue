@@ -56,11 +56,12 @@ export default class Cartoon extends Mixins(PageMixins) {
         pageSize: 10
     }
 	list: any[] = [];
+    bookTypeId: string = '2';
 
 	onLoad() :void{
         let {pageIndex} = this.pagination;
         pageIndex = ++pageIndex;
-        this.bookGetListRequest({...this.pagination, pageIndex})
+        this.bookGetListRequest({...this.pagination, pageIndex, bookTypeId: this.bookTypeId})
     }
 
 
@@ -91,7 +92,7 @@ export default class Cartoon extends Mixins(PageMixins) {
 
     async initPage() {
         this.pageLoading = true;
-		await this.bookGetListRequest(this.pagination)
+		await this.bookGetListRequest({...this.pagination, bookTypeId: this.bookTypeId})
 		this.pageLoading = false;
     }
 
