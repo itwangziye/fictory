@@ -1,5 +1,5 @@
 <template>
-    <pagecontain>
+    <pagecontain ref="container">
         <template slot="header" v-if="bookCellDetail">
             <van-nav-bar
             :title="bookCellDetail.bookChapterName"
@@ -7,7 +7,7 @@
             @click-left="onClickLeft"
             />
         </template>
-        <div class="book__setting" :style="{backgroundColor: cellStyles.backgroundColor}">
+        <div v-if="bookCellDetail && bookCellDetail.bookTypeId === '1'" class="book__setting" :style="{backgroundColor: cellStyles.backgroundColor}">
             <ul class="color">
                 <li class="color__item" v-for="(item, index) in colorOptions" :key="index" :style="{backgroundColor: item.bg}" @click="handerChangeTheme(item, 'bg')"></li>
             </ul>
@@ -134,8 +134,7 @@ export default class BookCell extends Mixins(PageMixins) {
 
     @Watch('$route', {immediate: true})
     watchRoute() {
-        window.scrollTo = 0;
-        this.init()
+        this.init();
     }
 }
 </script>

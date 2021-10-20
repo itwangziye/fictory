@@ -18,7 +18,7 @@ export default {
         method: 'get'
     }),
     bookCollectGetList: new MApi({
-		serviceUrl: '/anon/bookCollect/getList',
+		serviceUrl: '/bookCollect/getList',
         method: 'get'
     }),
     bookCollectAdd: new MApi({

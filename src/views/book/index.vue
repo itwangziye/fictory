@@ -32,8 +32,8 @@
                     </div>
                 </div>
                 <div class="book__header-oprate">
-                    <van-button type="danger" size="mini" class="button">开始阅读</van-button>
-                    <van-button type="danger" plain size="mini" class="button" :disabled="isCollect" @click="handlerCollect">{{isCollect? '已加入书架': '加入书架'}}</van-button>
+                    <van-button type="danger" size="mini" class="button" @click="startRead">开始阅读</van-button>
+                    <van-button type="danger" plain size="mini" class="button" :disabled="isCollect" @click="handlerCollect">{{isCollect? '已收藏': '收藏'}}</van-button>
                 </div>
                 <van-divider />
                 <div class="book__header-dec">
@@ -99,6 +99,11 @@ export default class Book extends Mixins(PageMixins) {
         return false;
     }
 
+
+    startRead() {
+        const {bookId} = this.bookDetail;
+        this.$router.push({name: 'BookCell', query: {bookId, chapterIndex: '1'}})
+    }
     
 
     handlerCollect() :void {

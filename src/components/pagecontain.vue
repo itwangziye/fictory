@@ -5,7 +5,7 @@
                 
             </slot>
         </div>
-        <div class="page-container__main" @scroll="onScroll">
+        <div class="page-container__main" @scroll="onScroll" ref="containerMain">
             <div v-if="empty" class="page-container__empty">
                 <slot name="empty">
                     <div class="page-container__default-empty">
@@ -76,7 +76,7 @@
             navTitle: String,
             disabledPullRefresh: {
                 type: Boolean,
-                default: true
+                default: false
             },
             onRefresh: Function
         },
@@ -101,10 +101,13 @@
             onScroll(e) {
                 const scorllTop = e.target.scrollTop;
                 this.$emit('scroll', scorllTop)
+            },
+            scorllTop(top) {
+                this.$refs.containerMain.scorllTop = 0;
             }
         }
     }
-</script>
+</script> 
 
 <style lang="less">
     .page-container {
