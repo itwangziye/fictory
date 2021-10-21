@@ -32,8 +32,8 @@
                     </div>
                 </div>
                 <div class="book__header-oprate">
-                    <van-button type="danger" size="mini" class="button" @click="startRead">开始阅读</van-button>
-                    <van-button type="danger" plain size="mini" class="button" :disabled="isCollect" @click="handlerCollect">{{isCollect? '已收藏': '收藏'}}</van-button>
+                    <van-button type="danger"  class="button" @click="startRead">开始阅读</van-button>
+                    <van-button type="danger" plain  class="button" :disabled="isCollect" @click="handlerCollect">{{isCollect? '已收藏': '收藏'}}</van-button>
                 </div>
                 <van-divider />
                 <div class="book__header-dec">
@@ -63,7 +63,7 @@
                             </template>
                         </van-cell>
                         <div class="book__menu-operate">
-                            <van-button @click="handerBookMenu" type="warning" round plain size="mini" class="button">全部打开</van-button>
+                            <van-button @click="handerBookMenu" type="warning" round plain  class="button">全部打开</van-button>
                         </div>
                     </div>
                 </div>

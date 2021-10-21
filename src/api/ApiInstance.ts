@@ -33,7 +33,7 @@ class MApi{
 
 	exec(data = {}, options: any = {}) :any{
 		const { method} = this.options;
-		let targetData: any = {...data, client: 'h5'};
+		let targetData: any = {...data};
 		if (method === 'get') {
 			options.params = targetData;
 		} else {

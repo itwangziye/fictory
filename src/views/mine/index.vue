@@ -28,8 +28,8 @@
         <van-cell v-for="(item, index) in cellOptions" :key="index" is-link :url="item.url">
           <template #title>
             <div class="custom">
-				<van-icon class="custom-icon" :name="item.icon" />
-				<span class="custom-title">{{ item.label }}</span>
+              <van-icon class="custom-icon" :name="item.icon" />
+              <span class="custom-title">{{ item.label }}</span>
             </div>
           </template>
         </van-cell>
@@ -57,9 +57,9 @@ import PageMixins from "@/mixins/page-mixins";
 })
 export default class Mine extends Mixins(PageMixins) {
   cellOptions: any[] = [
-    { label: "购买记录", url: "", icon: "orders-o" },
-    { label: "个人资料", url: "/user", icon: "user-o" },
-    { label: "账户安全", url: "/user/modify", icon: "setting-o" },
+    { label: "购买记录", url: "", icon: "orders-o"},
+    { label: "个人资料", url: "/user", icon: "user-o"},
+    { label: "账户安全", url: "/user/modify", icon: "setting-o"},
   ];
 
   async init() {

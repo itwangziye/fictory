@@ -27,6 +27,7 @@ const routes: Array<RouteConfig> = [
 		path: '/user',
 		name: 'User',
 		component: () => import('@/views/mine/user-info/index.vue'),
+		meta: { title: '会员详情', login: true },
 	},
 	{
 		path: '/user/modify',
