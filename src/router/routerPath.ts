@@ -61,6 +61,11 @@ const routes: Array<RouteConfig> = [
 		name: 'BookCell',
 		component: () => import('@/views/book/book-cell.vue'),
 	},
+	{
+		path: '/book/search',
+		name: 'BookSearch',
+		component: () => import('@/views/book/search.vue'),
+	},
 
 	{
 		path: '/movie',

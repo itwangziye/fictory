@@ -93,7 +93,7 @@ export default class Home extends Mixins(PageMixins) {
     freeOptions: any[] = []
 
     onSearchFocus() {
-        this.$router.push({path: 'goods/searchPage'})
+        this.$router.push({path: 'book/search'})
     }
 
 

@@ -15,19 +15,43 @@
             :title="item.label"
             >
                 <template>
-                    <div class="custom">
-                        <div v-if="item.key === 'name'">
+                    <div class="custom" >
+                        <div v-if="item.key === 'id'" v-clipboard:copy="item.value"  v-clipboard:success="onCopy">
                             {{item.value}}
                         </div>
+                        <div v-else-if="item.key === 'name'">
+                            {{item.value}}
+                        </div>
+                        <div v-else>
+                            <!-- <div v-show="!userInfo">
+                                <van-uploader 
+                                    v-model="fileList" 
+                                    :max-count="1"
+                                    :max-size="2024 * 1024" 
+                                    :after-read="afterRead"
+                                    @oversize="onOversize"
+                                    ref="uploadImg"
+                                />
+                                <img
+                                    class="user__photo"
+                                    :src="item.avatar"
+                                    @click="handleUpload"
+                                >
+                            </div> -->
+
+                        </div>
                     </div>
+                </template>
+                <template #right-icon v-if="item.key === 'id' ">
+                    <span v-clipboard:copy="item.value"  v-clipboard:success="onCopy"  class="copy iconfont">复制</span>
                 </template>
             </van-cell>
         </div>
 
         <template slot="footer">
             <div class="user__foot">
-                    <van-button class="button" type="warning"  loading-text="正在退出中···" :loading="loading" round block  @click="handlerLoginOut">退出</van-button>
-                </div>
+                <van-button class="button" type="warning"  loading-text="正在退出中···" :loading="loading" round block  @click="handlerLoginOut">退出</van-button>
+            </div>
         </template>
     </pagecontain>
   
@@ -77,6 +101,23 @@ export default class UserInfo extends Mixins(PageMixins) {
         console.log('退出登录')
     }
 
+    onCopy() :void{
+        this.$toast({message: '复制成功'})
+    }
+
+    // 点击图像
+    // handleUpload (){
+    //     this.$nextTick(() => {
+    //         const uploadImg: any = (this as any).$refs.uploadImg;
+    //         uploadImg.chooseFile();
+    //     });
+    // }
+
+    // // 上传逻辑
+    // async afterRead (file: any) {
+    //     this.unloadImg('photo', file); 
+    // }
+
     async init() {
         await this.$store.dispatch("home/getUserInfo");
     }
@@ -88,8 +129,15 @@ export default class UserInfo extends Mixins(PageMixins) {
 
 <style scoped lang="less">
     .user {
+        /deep/ .van-cell__title {
+            flex: 0.5;
+        }
         .custom {
             text-align: right;
+        }
+        .iconfont.copy {
+            margin-left: 24px;
+            color: @blue;
         }
     }
 

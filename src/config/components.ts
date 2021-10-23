@@ -42,7 +42,8 @@ import {
     Tag,
     ActionSheet,
     Grid, 
-    GridItem 
+    GridItem,
+    Uploader
 } from 'vant';
 
 Vue.component(Button.name, Button);
@@ -82,6 +83,7 @@ Vue.use(Tag);
 Vue.use(ActionSheet);
 Vue.use(Grid);
 Vue.use(GridItem);
+Vue.use(Uploader);
 
 
 Vue.prototype.$dayjs = dayjs;
