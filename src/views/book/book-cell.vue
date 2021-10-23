@@ -1,11 +1,9 @@
 <template>
     <pagecontain ref="container">
         <template slot="header" v-if="bookCellDetail">
-            <van-nav-bar
+            <book-header
             :title="bookCellDetail.bookChapterName"
-            left-arrow
-            @click-left="onClickLeft"
-            />
+            ></book-header>
         </template>
         <div v-if="bookCellDetail && bookCellDetail.bookTypeId === '1'" class="book__setting" :style="{backgroundColor: cellStyles.backgroundColor}">
             <ul class="color">
@@ -36,10 +34,19 @@
             </div>
 
         </div>
+        <van-action-sheet 
+        v-model="pickerMenuVisible" 
+        :actions="pickOptions" 
+        @select="onConfirmMenu" 
+        cancel-text="取消"
+        close-on-click-action
+        @cancel="pickerMenuVisible = false"
+        />
+
 
         <div class="book__footer">
             <van-button type="default" icon="arrow-left" @click="handlerChangeMenu('pre')">上一章</van-button>
-            <van-button type="default" icon="bars">菜单</van-button>
+            <van-button type="default" icon="bars" @click="handleMenu">菜单</van-button>
             <van-button type="default" @click="handlerChangeMenu('next')">
                 <div class="footer__arrow">
                     <span>下一章</span> 
@@ -47,6 +54,8 @@
                 </div>
             </van-button>
         </div>
+
+        
     </pagecontain>
     
 </template>
@@ -55,11 +64,13 @@
 import { Component, Mixins, Watch} from 'vue-property-decorator';
 import api from '@/api/book';
 import pagecontain from '@/components/pagecontain.vue';
-import PageMixins from '@/mixins/page-mixins'
+import PageMixins from '@/mixins/page-mixins';
+import BookHeader from '@/components/business-component/book/book-header.vue';
 
 @Component({
     components: {
-        pagecontain
+        pagecontain,
+        BookHeader
     }
 })
 export default class BookCell extends Mixins(PageMixins) {
@@ -84,6 +95,21 @@ export default class BookCell extends Mixins(PageMixins) {
         fontSize: '14px',
         backgroundColor: 'rgba(242, 242, 242, 1)'
     }
+
+    pickerMenuVisible: boolean = false;
+
+
+    get pickOptions(): any[] {
+        const query: any = this.$route.query;
+        const {bookId} = query;
+        return [
+            {name: '首页', path: '/'},
+            {name: '书籍目录', path: `/book/menu?bookId=${bookId}`},
+            {name: '书籍详情', path: `/book?boodId=${bookId}`},
+            {name: '我的收藏', path: `/shelf`},
+            {name: '个人中心', path: '/mine'}
+        ]
+    }
     
     init() {
         const query = this.$route.query;
@@ -91,6 +117,14 @@ export default class BookCell extends Mixins(PageMixins) {
             const {chapterIndex, bookId} = this.$route.query;
             this.bookChapterGetDetailReq({chapterIndex, bookId})
         }
+    }
+
+    onConfirmMenu(item: any) {
+        this.$router.replace({path: item.path})
+    }
+
+    handleMenu() {
+        this.pickerMenuVisible = true;
     }
 
     handerChangeTheme(item: any, type: string) {

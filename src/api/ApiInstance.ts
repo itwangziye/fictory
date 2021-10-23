@@ -56,7 +56,7 @@ class MApi{
 					resolve(data)
 				} else {
 					const {code} = resData;
-					if (code === 203 || code === 204 || code === 206) {
+					if (code === 201 || code === 202) {
 						store.commit('home/LOGINOUT');
 					}
 					Toast.fail(resData.msg || '网络开小差，请稍后再试！');

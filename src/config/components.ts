@@ -39,7 +39,10 @@ import {
     Tabbar, 
     TabbarItem,
     Icon,
-    Tag
+    Tag,
+    ActionSheet,
+    Grid, 
+    GridItem 
 } from 'vant';
 
 Vue.component(Button.name, Button);
@@ -76,6 +79,9 @@ Vue.use(Tabbar);
 Vue.use(TabbarItem);
 Vue.use(Icon);
 Vue.use(Tag);
+Vue.use(ActionSheet);
+Vue.use(Grid);
+Vue.use(GridItem);
 
 
 Vue.prototype.$dayjs = dayjs;

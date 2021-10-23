@@ -6,16 +6,11 @@
 
 <script lang="ts">
 	import {Component, Vue, Watch} from "vue-property-decorator";
+    import {tabbarSource} from '@/utils/constant';
                                                                   
 	@Component
 	export default class FcTabbar extends Vue {
-        tabbarOptions: any[] = [
-            {url: '/home', icon: 'home-o', text: '首页'}, 
-            {url: '/cartoon', icon: 'newspaper-o', text: '漫画'},
-            {url: '/movie', icon: 'video-o', text: '视频'},  
-            {url: '/shelf', icon: 'star-o', text: '收藏'}, 
-            {url: '/mine', icon: 'user-o', text: '我的'}, 
-        ];
+        tabbarOptions: any[] = tabbarSource
         tabbarVisible: boolean = true;
 
         @Watch('$route', {immediate: true})

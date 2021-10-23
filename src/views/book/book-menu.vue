@@ -1,11 +1,9 @@
 <template>
     <pagecontain>
         <template slot="header">
-            <van-nav-bar
+            <book-header
             title="目录"
-            left-arrow
-            @click-left="onClickLeft"
-            />
+            ></book-header>
         </template>
         <van-list
         v-model="loading"
@@ -23,7 +21,7 @@
                 @click="handleBookCell(item, index)"
                 v-for="(item, index) in list" 
                 :key="index">
-                    <template #right-icon v-if="!item.isUnLock">
+                    <template #right-icon v-if="!item.isUnLock && !item.isFree">
                         <van-icon name="lock" class="book__lock"/>
                     </template>
                 </van-cell>
@@ -37,10 +35,12 @@ import { Component, Mixins } from 'vue-property-decorator';
 import pagecontain from '@/components/pagecontain.vue';
 import PageMixins from '@/mixins/page-mixins';
 import api from '@/api/book';
+import BookHeader from '@/components/business-component/book/book-header.vue';
 
 @Component({
     components: {
-        pagecontain
+        pagecontain,
+        BookHeader
     }
 })
 export default class BookMenu extends Mixins(PageMixins) {

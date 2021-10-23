@@ -1,12 +1,10 @@
 <template>
     <pagecontain>
         <template slot="header">
-            <van-nav-bar
+            <book-header
             v-if="bookDetail"
             :title="bookDetail.bookName"
-            left-arrow
-            @click-left="onClickLeft"
-            />
+            ></book-header>
         </template>
         <div class="book" v-if="bookDetail">
             <div class="book__header">
@@ -32,8 +30,8 @@
                     </div>
                 </div>
                 <div class="book__header-oprate">
-                    <van-button type="danger"  class="button" @click="startRead">开始阅读</van-button>
-                    <van-button type="danger" plain  class="button" :disabled="isCollect" @click="handlerCollect">{{isCollect? '已收藏': '收藏'}}</van-button>
+                    <van-button type="danger"  class="button" @click="startRead" size="small">立即观看</van-button>
+                    <van-button type="danger" size="small" plain  class="button" :disabled="isCollect" @click="handlerCollect">{{isCollect? '已收藏': '收藏'}}</van-button>
                 </div>
                 <van-divider />
                 <div class="book__header-dec">
@@ -58,7 +56,7 @@
                         v-for="(item, index) in bookDetail.chapterList"
                         @click="handleBookDetail(index)" 
                         :key="index">
-                            <template #right-icon v-if="!item.isUnLock">
+                            <template #right-icon v-if="!item.isUnLock && !item.isFree">
                                 <van-icon name="lock" class="book__lock"/>
                             </template>
                         </van-cell>
@@ -71,7 +69,7 @@
         </div>
 
         <template slot="footer">
-            <van-button block class="book__buy" type="danger" size="small">整书购买</van-button>
+            <van-button block class="book__buy" type="danger" @click="handlerToBuy">{{footerText}}</van-button>
         </template>
     </pagecontain>    
 </template>
@@ -81,10 +79,13 @@ import { Component, Mixins} from 'vue-property-decorator';
 import api from '@/api/book';
 import pagecontain from '@/components/pagecontain.vue'
 import PageMixins from '@/mixins/page-mixins'
+import BookHeader from '@/components/business-component/book/book-header.vue';
+
 
 @Component({
     components: {
-        pagecontain
+        pagecontain,
+        BookHeader
     }
 })
 export default class Book extends Mixins(PageMixins) {
@@ -99,10 +100,28 @@ export default class Book extends Mixins(PageMixins) {
         return false;
     }
 
+    get footerText() :string {
+        const bookDetail = this.bookDetail;
+        if (bookDetail && !bookDetail.bookPrice) {
+            return '立即观看'
+        }
+
+        return '立即购买'
+    }
+
 
     startRead() {
         const {bookId} = this.bookDetail;
         this.$router.push({name: 'BookCell', query: {bookId, chapterIndex: '1'}})
+    }
+
+    handlerToBuy() {
+        const bookDetail = this.bookDetail;
+        if (bookDetail && !bookDetail.bookPrice) {
+            this.startRead();
+        } else {
+            console.log('点击购买');
+        }
     }
     
 
