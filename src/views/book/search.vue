@@ -83,12 +83,14 @@ import PageMixins from '@/mixins/page-mixins';
 import pagecontain from '@/components/pagecontain.vue';
 import NavBar from '@/components/nav-bar.vue';
 import {Storage} from '@/utils/storage';
+import BookTemp from '@/components/book-temp.vue';
 
 @Component({
 	name: 'GoodsSearch',
 	components: {
 		pagecontain,
-        NavBar
+        NavBar,
+        BookTemp
 	}
 })
 export default class GoodsSearch extends Mixins(PageMixins) {
@@ -135,7 +137,7 @@ export default class GoodsSearch extends Mixins(PageMixins) {
         let {pageIndex} = this.pagination;
         pageIndex = ++pageIndex;
 		const keyword = this.searchKey;
-        this.goodsListRequest({...this.pagination, s: keyword})
+        this.goodsListRequest({...this.pagination, bookName: keyword})
     }
 
     onSearchFocus() :void {
@@ -162,9 +164,9 @@ export default class GoodsSearch extends Mixins(PageMixins) {
 	async goodsListRequest(parmas: any, refresh: boolean = false) {
         try {
             this.loading = true;
-            const {data, pageIndex, pageSize, totalCount, totalPage} = await api.bookCollectGetList.exec(parmas);
+            const {resultList, pageIndex, pageSize, totalCount, totalPage} = await api.bookGetList.exec(parmas);
 			if (refresh) this.list = []; 
-            this.list = this.list.concat(data);
+            this.list = this.list.concat(resultList);
             this.loading = false;
             this.pagination = {
                 pageIndex,
@@ -245,8 +247,8 @@ export default class GoodsSearch extends Mixins(PageMixins) {
         text-align: center;
         line-height: 100px;
     }
-	.goods {
-		padding: 20px 0;
+	.book__search {
+		padding: 20px;
 		min-height: 100%;
 		box-sizing: border-box;
         position: relative;
