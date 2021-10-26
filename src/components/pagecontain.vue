@@ -103,7 +103,8 @@
                 this.$emit('scroll', scorllTop)
             },
             scorllTop(top) {
-                this.$refs.containerMain.scorllTop = 0;
+                const containerMain = this.$refs.containerMain;
+                containerMain.scrollTop = top;
             }
         }
     }

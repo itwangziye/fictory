@@ -153,8 +153,12 @@ export default class BookCell extends Mixins(PageMixins) {
         } else if (type === 'next') {
             ++chapterIndex;
         };
-        this.$router.replace({name: 'BookCell', query: {chapterIndex, bookId}})
 
+        this.$nextTick(() => {
+            const container: any = this.$refs.container;
+            container.scorllTop(0);
+            this.$router.replace({name: 'BookCell', query: {chapterIndex, bookId}})
+        })
     }
 
     async bookChapterGetDetailReq(parmas: any) {
