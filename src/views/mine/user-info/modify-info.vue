@@ -17,14 +17,14 @@
         class="modify"
         >
             <van-field
-                v-model="form.mobile"
+                v-model="form.oldPassword"
                 type="text"
                 name="text"
                 placeholder="请输入旧密码"
                 :rules="[{ required: true, message: '请输旧密码'}]"
             />
             <van-field
-                v-model="form.password"
+                v-model="form.newPassword"
                 type="password"
                 name="password"
                 placeholder="请输入新密码"
@@ -58,8 +58,8 @@ import api from '@/api/user';
 export default class ModifyInfo extends Mixins(PageMixins) {
 
     form: any = {
-        mobile: '',
-        password: ''
+        oldPassword: '',
+        newPassword: ''
     }
     confirmPassword: string =  '';
     loading: boolean = false;
@@ -67,14 +67,14 @@ export default class ModifyInfo extends Mixins(PageMixins) {
 
     get buttonDisabled() :boolean{
 		const form = this.form;
-		const {mobile, password} = form;
+		const {oldPassword, newPassword} = form;
         const confirmPassword = this.confirmPassword;
-        if (!mobile || !password || !confirmPassword) return true;
+        if (!oldPassword || !newPassword || !confirmPassword) return true;
 		return false;
 	}
 
     validatorPassword() {
-        if (this.form.password === this.confirmPassword) {
+        if (this.form.newPassword === this.confirmPassword) {
             return true
         }
         return false;
