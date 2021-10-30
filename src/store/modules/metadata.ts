@@ -7,7 +7,9 @@ import utils from '@/utils/utils'
 const state = {
     homePageOptions: null,
     currencyOptions: null,
-    userNomalConfig: {},
+    userNomalConfig: {
+        lang: 'zh_cn'
+    },
     fingerprint: '',
 }
 

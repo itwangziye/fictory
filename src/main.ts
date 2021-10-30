@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import '@/config/components'
+import i18n from './i18n'
 // import metadata from '@/config/metadata'
 
 // metadata.init();
@@ -15,6 +16,7 @@ Vue.prototype.$cancel = function(){
 
 
 window.$vapp = new Vue({
+  i18n,
   router,
   store,
   render: (h: any) => h(App)

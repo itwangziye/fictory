@@ -1,0 +1,55 @@
+{
+    "common": {
+        "tabbar": {
+            "home": "首頁",
+            "cartoon": "漫畫",
+            "video": "視頻",
+            "collect": "收藏",
+            "mine": "我的"
+        }
+    },
+    "page": {
+        "home": {
+            "title": "首頁",
+            "search_input": "書名、作者名",
+            "hot": "熱門小說",
+            "free": "限時免費",
+            "recommend": "精選推薦"
+        },
+        "mine": {
+            "login": "請登錄",
+            "record": "購買記錄",
+            "user": "個人資料",
+            "account_save": "賬戶安全"
+        },
+        "book": {
+            "watch": "立即觀看",
+            "collect": "收藏",
+            "un_collect": "取消收藏",
+            "menu": "目錄",
+            "open": "全部打開",
+            "buy": "立即購買"
+        },
+        "book_menu": {
+            "title": "目錄"
+        },
+        "book_cell": {
+            "pre": "上一章",
+            "next": "下一章",
+            "menu": "菜單"
+        },
+        "login": {
+            "title": "用戶登錄",
+            "account": "請輸入賬號",
+            "password": "請輸入密碼",
+            "login": "登錄",
+            "login_info": "用戶登錄"
+        },
+        "register": {
+            "title": "用戶註冊",
+            "register": "註冊",
+            "password__confirm": "請再次輸入密碼",
+            "register_info": "返回登錄"
+        }
+    }
+}

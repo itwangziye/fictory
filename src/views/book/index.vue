@@ -1,22 +1,25 @@
 <template>
-    <pagecontain>
+    <pagecontain
+    :loading="pageLoading"
+    :error="pageError"
+    >
         <template slot="header">
             <book-header
             v-if="bookDetail"
             :title="bookDetail.bookName"
             ></book-header>
         </template>
-        <div class="book" v-if="bookDetail">
+        <div class="book">
             <div class="book__header">
-                <div class="book__session">
-                    <div class="book__session-lt">
-                        <van-image lazy-load fit="cover" v-if="bookDetail.bookImageUrl" :src="bookDetail.bookImageUrl" class="img">
+                <div class="book__sessions">
+                    <div class="book__sessions-lt">
+                        <van-image lazy-load fit="cover"   :src="bookDetail.bookImageUrl" class="img">
                             <template v-slot:loading>
                                 <van-loading type="spinner" size="20" />
                             </template>
                         </van-image>
                     </div>
-                    <div class="book__session-rt">
+                    <div class="book__sessions-rt">
                         <div class="title">{{bookDetail.bookName}}</div>
                         <div class="author">
                             <van-icon name="user-o" />
@@ -29,19 +32,20 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="book__header-oprate">
-                    <van-button type="danger"  class="button" @click="startRead" size="small">立即观看</van-button>
-                    <van-button type="danger" size="small" plain  class="button" :disabled="isCollect" @click="handlerCollect">{{isCollect? '已收藏': '收藏'}}</van-button>
+                    <van-button type="danger"  class="button" @click="startRead" size="small">{{$t('page.book.watch')}}</van-button>
+                    <van-button type="danger" size="small" plain  class="button" :disabled="isCollect" @click="handlerCollect">{{isCollect? $t('page.book.un_collect'): $t('page.book.collect')}}</van-button>
                 </div>
+
                 <van-divider />
                 <div class="book__header-dec">
                     {{bookDetail.introduction}}
                 </div>
             </div>
-
             <div class="pane">
                 <div class="pane__title">
-                    <div class="title">目录</div>
+                    <div class="title">{{$t('page.book.menu')}}</div>
                     <div class="session click-list" @click="handerBookMenu">
                         <span>共{{bookDetail.totalChapterCount}}章</span>
                         <van-icon name="arrow" />
@@ -61,11 +65,11 @@
                             </template>
                         </van-cell>
                         <div class="book__menu-operate">
-                            <van-button @click="handerBookMenu" type="warning" round plain  class="button">全部打开</van-button>
+                            <van-button @click="handerBookMenu" type="warning" round plain  class="button">{{$t('page.book.open')}}</van-button>
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>  
         </div>
 
         <template slot="footer">
@@ -90,7 +94,7 @@ import BookHeader from '@/components/business-component/book/book-header.vue';
 })
 export default class Book extends Mixins(PageMixins) {
 
-    bookDetail: any = null;
+    bookDetail: any = {};
 
     get isCollect() :boolean {
         const bookDetail = this.bookDetail;
@@ -100,13 +104,12 @@ export default class Book extends Mixins(PageMixins) {
         return false;
     }
 
-    get footerText() :string {
+    get footerText() :any {
         const bookDetail = this.bookDetail;
         if (bookDetail && !bookDetail.bookPrice) {
-            return '立即观看'
+            return this.$t('page.book.watch')
         }
-
-        return '立即购买'
+        return this.$t('page.book.buy')
     }
 
 
@@ -152,9 +155,12 @@ export default class Book extends Mixins(PageMixins) {
 
     async bookGetDetailReq(parmas: any) {
         try {
+            this.setPageStatus('loading');
            const data = await api.bookGetDetail.exec(parmas) 
            this.bookDetail = data;
+           this.setPageStatus();
         } catch (error) {
+            this.setPageStatus('error');
             console.log(error)
         }
     }
@@ -207,7 +213,29 @@ export default class Book extends Mixins(PageMixins) {
             
         }
     }
-    .book__session{
+    
+
+    .book__header {
+        background-color: @white;
+        
+        &-oprate {
+            padding: 24px;
+            padding-bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            .button {
+                width: 300px;
+            }
+        }
+        &-dec {
+            padding:24px;
+            padding-top: 0;
+            line-height: 34px;
+            color: @text-color4;
+        }
+    }
+
+    .book__sessions{
         display: flex;
         padding: 24px;
         &-lt {
@@ -243,25 +271,6 @@ export default class Book extends Mixins(PageMixins) {
                 color: @text-color1;
                 font-size: @text-size5;
             }
-        }
-    }
-
-    .book__header {
-        background-color: @white;
-        &-oprate {
-            padding: 24px;
-            padding-bottom: 0;
-            display: flex;
-            justify-content: space-between;
-            .button {
-                width: 300px;
-            }
-        }
-        &-dec {
-            padding:24px;
-            padding-top: 0;
-            line-height: 34px;
-            color: @text-color4;
         }
     }
 

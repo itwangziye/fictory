@@ -3,7 +3,10 @@
     :loading="pageLoading"
 	:error="pageError"
 	@on-retry="pageInit"
-    >
+    >   
+        <template v-slot:header>
+			<home-header></home-header>
+		</template>
         <div class="home">
             <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
                 <van-swipe-item v-for="(item, index) in bannerOptions" :key="index">
@@ -20,14 +23,14 @@
                     class="search-input"
                     shape="round"
                     background="transparent"
-                    placeholder="书名、作者名"
+                    :placeholder="$t('page.home.search_input')"
                     readonly
                     @click="onSearchFocus"
                 />
             </div>
 
             <div class="pane">
-                <div class="pane__title">热门小说</div>
+                <div class="pane__title">{{$t('page.home.hot')}}</div>
                 <div class="pane__content">
                     <ul class="hot__list">
                         <li class="hot__list-item click-list" @click="handlerBookDetail(item)" 
@@ -46,7 +49,7 @@
             </div>
 
             <div class="pane">
-                <div class="pane__title">限时免费</div>
+                <div class="pane__title">{{$t('page.home.free')}}</div>
                 <div class="pane__content">
                     <ul class="hot__list">
                         <li class="hot__list-item click-list" @click="handlerBookDetail(item)" v-for="(item, index) in freeOptions" :key="index">
@@ -78,12 +81,14 @@ import apiBook from '@/api/book'
 import pagecontain from '@/components/pagecontain.vue';
 import BookList from './bookList.vue';
 import PageMixins from '@/mixins/page-mixins'
+import HomeHeader from './home-header.vue';
 
 @Component({
     name: 'Home',
     components: {
         pagecontain,
-        BookList
+        BookList,
+        HomeHeader
     }
 })
 export default class Home extends Mixins(PageMixins) {
@@ -131,9 +136,9 @@ export default class Home extends Mixins(PageMixins) {
 
     async pageInit() {
         this.pageLoading = true;
-        this.getListBannerReq();
-        this.bookGetHotListReq();
-        this.bookGetFreeListReq();
+        await this.getListBannerReq();
+        await this.bookGetHotListReq();
+        await this.bookGetFreeListReq();
         this.pageLoading = false;
     }
 

@@ -45,11 +45,11 @@
 
 
         <div class="book__footer">
-            <van-button type="default" icon="arrow-left" @click="handlerChangeMenu('pre')">上一章</van-button>
-            <van-button type="default" icon="bars" @click="handleMenu">菜单</van-button>
+            <van-button type="default" icon="arrow-left" @click="handlerChangeMenu('pre')">{{$t('page.book_cell.pre')}}</van-button>
+            <van-button type="default" icon="bars" @click="handleMenu">{{$t('page.book_cell.menu')}}</van-button>
             <van-button type="default" @click="handlerChangeMenu('next')">
                 <div class="footer__arrow">
-                    <span>下一章</span> 
+                    <span>{{$t('page.book_cell.next')}}</span> 
                     <van-icon name="arrow" />
                 </div>
             </van-button>
@@ -103,11 +103,11 @@ export default class BookCell extends Mixins(PageMixins) {
         const query: any = this.$route.query;
         const {bookId} = query;
         return [
-            {name: '首页', path: '/'},
-            {name: '书籍目录', path: `/book/menu?bookId=${bookId}`},
-            {name: '书籍详情', path: `/book?boodId=${bookId}`},
-            {name: '我的收藏', path: `/shelf`},
-            {name: '个人中心', path: '/mine'}
+            {name: this.$t('common.tabbar.home'), path: '/'},
+            {name: this.$t("page.book_menu.title"), path: `/book/menu?bookId=${bookId}`},
+            // {name: '书籍详情', path: `/book?boodId=${bookId}`},
+            {name: this.$t('common.tabbar.collect'), path: `/shelf`},
+            {name: this.$t('common.tabbar.mine'), path: '/mine'}
         ]
     }
     

@@ -2,8 +2,7 @@
     <pagecontain>
         <template slot="header">
             <van-nav-bar
-            title="用户注册"
-            left-text="返回"
+            :title="$t('page.register.title')"
             left-arrow
             @click-left="onClickLeft"
             />
@@ -12,7 +11,7 @@
         <div class="login">
             <div class="login__tip">
                 <div class="login__text">
-                    <div class="tp">注册</div>
+                    <div class="tp">{{$t('page.register.register')}}</div>
                     <div class="dn">Welcome</div>
                 </div>
             </div>
@@ -36,28 +35,28 @@
                             v-model="form.mobile"
                             type="tel"
                             name="tel"
-                            placeholder="请输入账号"
-                            :rules="[{ required: true, message: '请输入账号'}]"
+                            :placeholder="$t('page.login.account')"
+                            :rules="[{ required: true, message: $t('page.login.account')}]"
                         />
                         <van-field
                             v-model="form.password"
                             type="password"
                             name="password"
-                            placeholder="请输入密码"
-                            :rules="[{ required: true, message: '请输入密码'}]"
+                            :placeholder="$t('page.login.password')"
+                            :rules="[{ required: true, message: $t('page.login.password')}]"
                         />
                         <van-field
                             v-model="form.repassword"
                             type="password"
                             name="password"
-                            placeholder="请再次输入密码"
-                            :rules="[{ required: true, message: '请再次输入密码'}]"
+                            :placeholder="$t('page.register.password__confirm')"
+                            :rules="[{ required: true, message: $t('page.register.password__confirm')}]"
                         />
                         <div class="loginForm-button">
                             <div class="loginForm-tip">
-                                <div class="click-list" @click="goPage('login')">返回登录</div>
+                                <div class="click-list" @click="goPage('login')">{{$t('page.register.register_info')}}</div>
                             </div>
-                            <van-button :class="['button', {disabled: buttonDisabled}] " :disabled="buttonDisabled" loading-text="正在注册中···" :loading="loading" round block type="info" native-type="submit">注册</van-button>
+                            <van-button :class="['button', {disabled: buttonDisabled}] " :disabled="buttonDisabled"  :loading="loading" round block type="warning" native-type="submit">{{$t('page.register.register')}}</van-button>
                         </div>
                     </van-form>
                 </div>

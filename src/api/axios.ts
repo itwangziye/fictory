@@ -18,6 +18,8 @@ AxiosInstance.interceptors.request.use( (config: any) => {
         const token = Storage.getLocalStorage("fc_token")
         token ? config.headers['token'] = token : null;
     }
+    const fc_lang = Storage.getLocalStorage("fc_lang");
+    if (fc_lang) config.headers['lang'] = fc_lang;
     config.cancelToken = new axios.CancelToken(cancel => {
         store.commit("http/addHttpRequestList", cancel);
     })

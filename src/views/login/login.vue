@@ -2,8 +2,7 @@
     <pagecontain>
         <template slot="header">
             <van-nav-bar
-            title="用户登录"
-            left-text="返回"
+            :title="$t('page.login.title')"
             left-arrow
             @click-left="onClickLeft"
             />
@@ -12,7 +11,7 @@
         <div class="login">
             <div class="login__tip">
                 <div class="login__text">
-                    <div class="tp">登录</div>
+                    <div class="tp">{{$t('page.login.login')}}</div>
                     <div class="dn">Welcome</div>
                 </div>
             </div>
@@ -36,21 +35,21 @@
                             v-model="form.mobile"
                             type="text"
                             name="text"
-                            placeholder="请输入账号"
-                            :rules="[{ required: true, message: '请输入账号'}]"
+                            :placeholder="$t('page.login.account')"
+                            :rules="[{ required: true, message: $t('page.login.account')}]"
                         />
                         <van-field
                             v-model="form.password"
                             type="password"
                             name="password"
-                            placeholder="请输入密码"
-                            :rules="[{ required: true, message: '请输入密码'}]"
+                            :placeholder="$t('page.login.password')"
+                            :rules="[{ required: true, message: $t('page.login.password')}]"
                         />
                         <div class="loginForm-button">
                             <div class="loginForm-tip">
-                                <div class="click-list" @click="goPage('register')">用户注册</div>
+                                <div class="click-list" @click="goPage('register')">{{$t('page.login.login_info')}}</div>
                             </div>
-                            <van-button :class="['button', {disabled: buttonDisabled}] " :disabled="buttonDisabled" loading-text="正在登录中···" :loading="loading" round block type="warning" native-type="submit">登录</van-button>
+                            <van-button :class="['button', {disabled: buttonDisabled}] " :disabled="buttonDisabled"  :loading="loading" round block type="warning" native-type="submit">{{$t('page.login.login')}}</van-button>
                         </div>
                     </van-form>
                 </div>

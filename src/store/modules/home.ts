@@ -58,7 +58,7 @@ const mutations = {
         state.token = null;
         state.email = null;
         Storage.removeStorage("fc_token");
-        router.push({path: '/'});
+        router.replace({path: '/login'});
     },
     UPUSERINFO: (state: any, payload: any)=>{
         state.userInfo = {...state.userInfo, ...payload};

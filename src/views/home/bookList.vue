@@ -1,6 +1,6 @@
 <template>
     <div class="pane">
-        <div class="pane__title">精选推荐</div>
+        <div class="pane__title">{{$t('page.home.recommend')}}</div>
         <div class="pane__content">
             <van-list
             v-model="loading"

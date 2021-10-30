@@ -2,7 +2,7 @@
     <pagecontain>
         <template slot="header">
             <book-header
-            title="目录"
+            :title="$t('page.book_menu.title')"
             ></book-header>
         </template>
         <van-list

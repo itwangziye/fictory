@@ -1,0 +1,55 @@
+{
+    "common": {
+        "tabbar": {
+            "home": "página",
+            "cartoon": "Comic",
+            "video": "Video",
+            "collect": "Coleção",
+            "mine": "minha"
+        }
+    },
+    "page": {
+        "home": {
+            "title": "Home",
+            "search_input": "Título do livro, nome do autor",
+            "hot": "Novela Quente",
+            "free": "Grátis por tempo limitado",
+            "recommend": "Recomendação em destaque"
+        },
+        "mine": {
+            "login": "Por favor, inscreva-se",
+            "record": "Registro de Compra",
+            "user": "Informações pessoais",
+            "account_save": "Segurança da conta"
+        },
+        "book": {
+            "watch": "Assistir agora",
+            "collect": "Coleção",
+            "un_collect": "Uncollect",
+            "menu": "Diretório",
+            "open": "Abrir tudo",
+            "buy": "Compre agora"
+        },
+        "book_menu": {
+            "title": "Catálogo"
+        },
+        "book_cell": {
+            "pre": "Capítulo anterior",
+            "next": "Próximo Capítulo",
+            "menu": "Menu"
+        },
+        "login": {
+            "title": "Login de usuário",
+            "account": "Insira o nome de usuário",
+            "password": "Por favor insira a senha",
+            "login": "Conecte-se",
+            "login_info": "Login de usuário"
+        },
+        "register": {
+            "title": "Registro de usuário",
+            "register": "registro",
+            "password__confirm": "Por favor digite a senha novamente",
+            "register_info": "Volte ao login"
+        }
+    }
+}

@@ -1,0 +1,55 @@
+{
+    "common": {
+        "tabbar": {
+            "home": "首页",
+            "cartoon": "漫画",
+            "video": "视频",
+            "collect": "收藏",
+            "mine": "我的"
+        }
+    },
+    "page": {
+        "home": {
+            "title": "首页",
+            "search_input": "书名、作者名",
+            "hot": "热门小说",
+            "free": "限时免费",
+            "recommend": "精选推荐"
+        },
+        "mine": {
+            "login": "请登录",
+            "record": "购买记录",
+            "user": "个人资料",
+            "account_save": "账户安全"
+        },
+        "book": {
+            "watch": "立即观看",
+            "collect": "收藏",
+            "un_collect": "取消收藏",
+            "menu": "目录",
+            "open": "全部打开",
+            "buy": "立即购买"
+        },
+        "book_menu": {
+            "title": "目录"
+        },
+        "book_cell": {
+            "pre": "上一章",
+            "next": "下一章",
+            "menu": "菜单"
+        },
+        "login": {
+            "title": "用户登录",
+            "account": "请输入账号",
+            "password": "请输入密码",
+            "login": "登录",
+            "login_info": "用户登录"
+        },
+        "register": {
+            "title": "用户注册",
+            "register": "注册",
+            "password__confirm": "请再次输入密码",
+            "register_info": "返回登录"
+        }
+    }
+}

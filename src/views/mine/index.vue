@@ -19,7 +19,7 @@
         	<div class="id">id: {{userInfo.userId}}</div>
 		</template>
 		<template v-else>
-			<div class="name">请登录</div>
+			<div class="name">{{$t('page.mine.login')}}</div>
 		</template>
         
       </div>
@@ -57,9 +57,9 @@ import PageMixins from "@/mixins/page-mixins";
 })
 export default class Mine extends Mixins(PageMixins) {
   cellOptions: any[] = [
-    { label: "购买记录", url: "", icon: "orders-o"},
-    { label: "个人资料", url: "/user", icon: "user-o"},
-    { label: "账户安全", url: "/user/modify", icon: "setting-o"},
+    { label: this.$t('page.mine.record'), url: "", icon: "orders-o"},
+    { label: this.$t('page.mine.user'), url: "/user", icon: "user-o"},
+    { label: this.$t('page.mine.account_save'), url: "/user/modify", icon: "setting-o"},
   ];
 
   async init() {

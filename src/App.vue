@@ -30,8 +30,14 @@ export default class App extends Vue {
 
 	pageInit() {
 		const fc_token = Storage.getLocalStorage("fc_token");
+		const fc_lang = Storage.getLocalStorage("fc_lang");
 		if (fc_token) {
 			this.$store.commit('home/LOGIN', {token: fc_token});
+		}
+		if (fc_lang) {
+			this.$store.commit('metadata/UPDATEUSERNOMALCONFIG', {lang: fc_lang});
+		} else {
+			Storage.setLocalStorage('fc_lang', 'zh_cn', 0)
 		}
 	}
 	created() {
