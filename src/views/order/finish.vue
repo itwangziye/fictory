@@ -34,7 +34,6 @@ import PageMixins from "@/mixins/page-mixins";
 import pagecontain from '@/components/pagecontain.vue';
 import orderApi from '@/api/order';
 import NavBar from '@/components/nav-bar.vue';
-import { mapGetters } from 'vuex';
 
 @Component({
     name: 'GoodsPay',
@@ -43,7 +42,7 @@ import { mapGetters } from 'vuex';
         NavBar
     }
 })
-export default class GoodsPay extends Mixins(PageMixins, StatisticsMixins) {
+export default class OrderFinish extends Mixins(PageMixins) {
 
     billData: any = null;
     couponData: any[] = [];
@@ -146,11 +145,11 @@ export default class GoodsPay extends Mixins(PageMixins, StatisticsMixins) {
                     display: inline-block;
                     width: 61px;
                     height: 61px;
-                    background-image: url('../assets/goods/pay_success.png');
+                    background-image: url('../../assets/goods/pay_success.png');
                     background-size: 100%;
                     margin-right: 20px;
                     &.error {
-                        background-image: url('../assets/goods/pay_info.png');
+                        background-image: url('../../assets/goods/pay_error.png');
                     }
                 }
                 .text {

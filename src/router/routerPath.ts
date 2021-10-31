@@ -36,8 +36,13 @@ const routes: Array<RouteConfig> = [
 	},
 	{
 		path: '/order',
-		name: 'order',
+		name: 'Order',
 		component: () => import('@/views/order/index.vue'),
+	},
+	{
+		path: '/order/finish',
+		name: 'OrderFinish',
+		component: () => import('@/views/order/finish.vue'),
 	},
 	{
 		path: '/login',

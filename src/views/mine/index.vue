@@ -60,7 +60,7 @@ import PageMixins from "@/mixins/page-mixins";
 })
 export default class Mine extends Mixins(PageMixins) {
   cellOptions: any[] = [
-    { label: this.$t('page.mine.record'), url: "", icon: "orders-o"},
+    { label: this.$t('page.mine.record'), url: "/order", icon: "orders-o"},
     { label: this.$t('page.mine.user'), url: "/user", icon: "user-o"},
     { label: this.$t('page.mine.account_save'), url: "/user/modify", icon: "setting-o"},
   ];
