@@ -1,7 +1,7 @@
 {
     "common": {
         "tabbar": {
-            "home": "home",
+            "home": "Home",
             "cartoon": "Comic",
             "video": "Video",
             "collect": "Collection",
@@ -37,6 +37,15 @@
             "pre": "Previous Chapter",
             "next": "Next Chapter",
             "menu": "Menu"
+        },
+        "book_order": {
+            "title": "Buy",
+            "tip": "Support author creation, continue reading after unlocking",
+            "buy_label": "Payment Details",
+            "buy_value": "All directories",
+            "price_label": "Payment amount",
+            "buy_text": "Go to pay",
+            "buy_dec": "Virtual products cannot be returned after purchase, young people please pay with their parents"
         },
         "login": {
             "title": "User Login",

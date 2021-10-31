@@ -1,5 +1,8 @@
 <template>
-  <pagecontain>
+  <pagecontain
+  :loading="pageLoading"
+  :error="pageError"
+  >
     <div class="mine">
       <div class="mine__main" @click="handerUserInfo">
         <van-image
@@ -65,7 +68,9 @@ export default class Mine extends Mixins(PageMixins) {
   async init() {
     const token = Storage.getLocalStorage("fc_token");
     if (!token) return;
+    this.pageLoading = true;
     await this.$store.dispatch("home/getUserInfo");
+    this.pageLoading = false;
   }
 
   handerUserInfo() :void{

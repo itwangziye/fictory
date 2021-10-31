@@ -38,6 +38,15 @@
             "next": "Próximo Capítulo",
             "menu": "Menu"
         },
+        "book_order": {
+            "title": "Comprar",
+            "tip": "Apoie a criação do autor, continue lendo após desbloquear",
+            "buy_label": "Conteúdo de pagamento",
+            "buy_value": "Todos os catálogos",
+            "price_label": "Valor do pagamento",
+            "buy_text": "Vá para pagar",
+            "buy_dec": "Os produtos virtuais não podem ser devolvidos após a compra, jovens, por favor, paguem com seus pais"
+        },
         "login": {
             "title": "Login de usuário",
             "account": "Insira o nome de usuário",
@@ -50,6 +59,9 @@
             "register": "registro",
             "password__confirm": "Por favor digite a senha novamente",
             "register_info": "Volte ao login"
+        },
+        "order": {
+            "title": "Histórico de compras"
         }
     }
 }

@@ -2,6 +2,7 @@
     <pagecontain
     :loading="pageLoading"
     :error="pageError"
+    @on-retry="init"
     >
         <template slot="header">
             <book-header
@@ -34,7 +35,7 @@
                 </div>
 
                 <div class="book__header-oprate">
-                    <van-button type="danger"  class="button" @click="startRead" size="small">{{$t('page.book.watch')}}</van-button>
+                    <van-button type="danger"  class="button" @click="handlerToBuy" size="small">{{footerText}}</van-button>
                     <van-button type="danger" size="small" plain  class="button" :disabled="isCollect" @click="handlerCollect">{{isCollect? $t('page.book.un_collect'): $t('page.book.collect')}}</van-button>
                 </div>
 
@@ -58,7 +59,7 @@
                         :title="item.bookChapterName" 
                         clickable
                         v-for="(item, index) in bookDetail.chapterList"
-                        @click="handleBookDetail(index)" 
+                        @click="handleBookDetail(item, index)" 
                         :key="index">
                             <template #right-icon v-if="!item.isUnLock && !item.isFree">
                                 <van-icon name="lock" class="book__lock"/>
@@ -123,7 +124,8 @@ export default class Book extends Mixins(PageMixins) {
         if (bookDetail && !bookDetail.bookPrice) {
             this.startRead();
         } else {
-            console.log('点击购买');
+            const {bookId} = bookDetail;
+            this.$router.push({name: 'BookOrder', query: {bookId}})
         }
     }
     
@@ -140,10 +142,16 @@ export default class Book extends Mixins(PageMixins) {
         const {bookId} = this.bookDetail;
         this.$router.push({name: 'BookMenu', query: {bookId}})
     }
-    handleBookDetail(index: any) :void {
+    handleBookDetail(item: any, index: any) :void {
         const chapterIndex = index + 1;
-        const {bookId} = this.bookDetail;
-        this.$router.push({name: 'BookCell', query: {bookId, chapterIndex}})
+        const {bookChapterId, isFree, isUnLock} = item;
+        if (!isUnLock && !isFree) {
+            const {bookId} = this.bookDetail;
+            this.$router.push({name: 'BookOrder', query: {bookId, bookChapterId}})
+        } else {
+            const {bookId} = this.bookDetail;
+            this.$router.push({name: 'BookCell', query: {bookId, chapterIndex}})
+        }
     }
 
     init() {

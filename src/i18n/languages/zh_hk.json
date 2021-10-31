@@ -38,6 +38,15 @@
             "next": "下一章",
             "menu": "菜單"
         },
+        "book_order": {
+            "title": "購買",
+            "tip": "支持作者創作，解鎖後繼續閱讀",
+            "buy_label": "支付內容",
+            "buy_value": "所有目錄",
+            "price_label": "支付金額",
+            "buy_text": "前往支付",
+            "buy_dec": "虛擬產品購買後不可退換，青少年請在家長陪同下支付"
+        },
         "login": {
             "title": "用戶登錄",
             "account": "請輸入賬號",

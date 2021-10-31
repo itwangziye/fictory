@@ -35,6 +35,11 @@ const routes: Array<RouteConfig> = [
 		component: () => import('@/views/mine/user-info/modify-info.vue'),
 	},
 	{
+		path: '/order',
+		name: 'order',
+		component: () => import('@/views/order/index.vue'),
+	},
+	{
 		path: '/login',
 		name: 'Login',
 		component: () => import('@/views/login/login.vue'),
@@ -65,6 +70,11 @@ const routes: Array<RouteConfig> = [
 		path: '/book/search',
 		name: 'BookSearch',
 		component: () => import('@/views/book/search.vue'),
+	},
+	{
+		path: '/book/order',
+		name: 'BookOrder',
+		component: () => import('@/views/book/book-order.vue'),
 	},
 
 	{
