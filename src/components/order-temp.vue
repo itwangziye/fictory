@@ -41,9 +41,8 @@ export default class BookTemp extends Vue {
 
 
     handlerBookDetail() :void{
-        const {bookId} = this.opt;
-        console.log(bookId)
-        this.$router.push({name: 'Book', query: {bookId}})
+        const {goodsId} = this.opt;
+        this.$router.push({name: 'Book', query: {bookId: goodsId}})
     }
 }
 </script>
