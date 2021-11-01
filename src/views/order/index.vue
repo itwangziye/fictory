@@ -14,7 +14,9 @@
         @load="onLoad"
         >
             <div class="order">
-                
+                <order-temp :opt="item" v-for="(item, index) in list" :key="index">
+
+                </order-temp>
             </div>
         </van-list>
     </pagecontain>
@@ -26,11 +28,13 @@ import pagecontain from '@/components/pagecontain.vue';
 import PageMixins from '@/mixins/page-mixins';
 import api from '@/api/order';
 import BookHeader from '@/components/business-component/book/book-header.vue';
+import OrderTemp from '@/components/order-temp.vue';
 
 @Component({
     components: {
         pagecontain,
-        BookHeader
+        BookHeader,
+        OrderTemp
     }
 })
 export default class BookMenu extends Mixins(PageMixins) {
