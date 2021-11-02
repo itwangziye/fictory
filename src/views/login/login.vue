@@ -99,9 +99,9 @@ export default class Login extends Mixins(PageMixins) {
     setLoginInfo(data: any) {
         const {token} = data;
         this.$store.commit('home/LOGIN', {token}); 
-        const redirect = this.$route.query.redirect;
+        const redirect: any = this.$route.query.redirect;
         if (redirect) {
-            this.$router.back()
+            this.$router.replace({path: redirect})
         } else {
             this.$router.replace('/home');
         }

@@ -36,7 +36,7 @@
 
                 <div class="book__header-oprate">
                     <van-button type="danger"  class="button" @click="handlerToBuy" size="small">{{footerText}}</van-button>
-                    <van-button type="danger" size="small" plain  class="button" :disabled="isCollect" @click="handlerCollect">{{isCollect? $t('page.book.un_collect'): $t('page.book.collect')}}</van-button>
+                    <van-button type="danger" size="small" plain  class="button"  @click="handlerCollect">{{isCollect? $t('page.book.un_collect'): $t('page.book.collect')}}</van-button>
                 </div>
 
                 <van-divider />
@@ -107,7 +107,7 @@ export default class Book extends Mixins(PageMixins) {
 
     get footerText() :any {
         const bookDetail = this.bookDetail;
-        if (bookDetail && !bookDetail.bookPrice) {
+        if (bookDetail && bookDetail.isUnLock) {
             return this.$t('page.book.watch')
         }
         return this.$t('page.book.buy')
@@ -121,7 +121,7 @@ export default class Book extends Mixins(PageMixins) {
 
     handlerToBuy() {
         const bookDetail = this.bookDetail;
-        if (bookDetail && !bookDetail.bookPrice) {
+        if (bookDetail && bookDetail.isUnLock) {
             this.startRead();
         } else {
             const {bookId} = bookDetail;
@@ -135,6 +135,8 @@ export default class Book extends Mixins(PageMixins) {
         const {bookId} = this.bookDetail;
         if (!isCollect) {
             this.bookCollectAddReq({bookId})
+        } else {
+            this.bookCollectRemoveReq({bookId})
         }
     }
 
@@ -176,12 +178,23 @@ export default class Book extends Mixins(PageMixins) {
     async bookCollectAddReq(parmas: any) {
         try {
            await api.bookCollectAdd.exec(parmas);
-           this.$toast('加入书架成功');
+           this.$toast('收藏成功');
            this.bookDetail.isCollect = 1;
         } catch (error) {
             console.log(error)
         }
     }
+
+    async bookCollectRemoveReq(parmas: any) {
+        try {
+           await api.bookCollectRemove.exec(parmas);
+           this.$toast('取消收藏');
+           this.bookDetail.isCollect = 0;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
 
 
     created() {

@@ -52,7 +52,7 @@
             "account": "Please enter the account number",
             "password": "Please enter a password",
             "login": "Login",
-            "login_info": "User login"
+            "login_info": "User Registration"
         },
         "register": {
             "title": "User Registration",

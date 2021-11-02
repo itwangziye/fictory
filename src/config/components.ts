@@ -43,7 +43,9 @@ import {
     ActionSheet,
     Grid, 
     GridItem,
-    Uploader
+    Uploader,
+    Checkbox, 
+    CheckboxGroup 
 } from 'vant';
 
 Vue.component(Button.name, Button);
@@ -84,6 +86,8 @@ Vue.use(ActionSheet);
 Vue.use(Grid);
 Vue.use(GridItem);
 Vue.use(Uploader);
+Vue.use(Checkbox);
+Vue.use(CheckboxGroup);
 
 
 Vue.prototype.$dayjs = dayjs;

@@ -1,5 +1,5 @@
 <template>
-    <van-tabbar route v-if="tabbarVisible">
+    <van-tabbar :fixed="false" route v-if="tabbarVisible">
         <van-tabbar-item v-for="(item, index) in tabbarOptions" :key="index" :to="item.url" :icon="item.icon">{{item.text}}</van-tabbar-item>
     </van-tabbar>
 </template>

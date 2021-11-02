@@ -52,7 +52,7 @@
             "account": "请输入账号",
             "password": "请输入密码",
             "login": "登录",
-            "login_info": "用户登录"
+            "login_info": "用户注册"
         },
         "register": {
             "title": "用户注册",
@@ -62,6 +62,11 @@
         },
         "order": {
             "title": "购买记录"
+        },
+        "shelf": {
+            "tip": "我的收藏",
+            "manage": "管理",
+            "finish": "完成"
         }
     }
 }

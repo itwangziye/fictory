@@ -1,13 +1,15 @@
 <template>
-	<div id="app">
-		<transition :name="transitionName">
-            <keep-alive :exclude='exclude'>
-                <component class="keepAlive page" ref='keepAliveComponent' v-if="$route.meta.keepAlive" v-bind:is="currentView"></component>
-            </keep-alive>
-        </transition>
-        <transition :name="transitionName">
-            <component v-if="!$route.meta.keepAlive" v-bind:is="currentView"></component>
-        </transition>
+	<div id="app" class="app">
+		<div class="app-main">
+			<transition :name="transitionName">
+				<keep-alive :exclude='exclude'>
+					<component class="keepAlive page" ref='keepAliveComponent' v-if="$route.meta.keepAlive" v-bind:is="currentView"></component>
+				</keep-alive>
+			</transition>
+			<transition :name="transitionName">
+				<component v-if="!$route.meta.keepAlive" v-bind:is="currentView"></component>
+			</transition>
+		</div>
 		<fc-tabbar></fc-tabbar>
 	</div>
 </template>
@@ -48,4 +50,18 @@ export default class App extends Vue {
 
 <style lang="less">
 @import './style/base.less';
+.app {
+		position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        display: flex;
+        flex-flow: column;
+		&-main{
+			flex: 1 1 100%;
+			position: relative;
+		}
+	}
 </style>

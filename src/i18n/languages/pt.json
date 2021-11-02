@@ -52,7 +52,7 @@
             "account": "Insira o nome de usuário",
             "password": "Por favor insira a senha",
             "login": "Conecte-se",
-            "login_info": "Login de usuário"
+            "login_info": "Registro de usuário"
         },
         "register": {
             "title": "Registro de usuário",

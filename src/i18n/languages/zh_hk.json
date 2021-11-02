@@ -52,7 +52,7 @@
             "account": "請輸入賬號",
             "password": "請輸入密碼",
             "login": "登錄",
-            "login_info": "用戶登錄"
+            "login_info": "用戶註冊"
         },
         "register": {
             "title": "用戶註冊",

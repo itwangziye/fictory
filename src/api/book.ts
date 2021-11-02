@@ -26,7 +26,7 @@ export default {
         method: 'post'
     }),
     bookCollectRemove: new MApi({
-		serviceUrl: '/anon/bookCollect/remove',
+		serviceUrl: '/bookCollect/remove',
         method: 'post'
     })
 }
