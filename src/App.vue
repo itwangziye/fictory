@@ -38,8 +38,6 @@ export default class App extends Vue {
 		}
 		if (fc_lang) {
 			this.$store.commit('metadata/UPDATEUSERNOMALCONFIG', {lang: fc_lang});
-		} else {
-			Storage.setLocalStorage('fc_lang', 'zh_cn', 0)
 		}
 	}
 	created() {

@@ -7,7 +7,7 @@
             "collect": "Coleção",
             "mine": "minha"
         },
-        "componentes": {
+        "components": {
             "loading": "Carregando ···",
             "errorTip": "A solicitação de dados falhou, tente novamente",
             "retry": "Tentar novamente",
@@ -23,7 +23,7 @@
             "hot": "Novela Quente",
             "free": "Grátis por tempo limitado",
             "recommend": "Recomendação em destaque",
-            "tagFree": "免费"
+            "tagFree": "gratuitamente"
         },
         "mine": {
             "login": "Por favor, inscreva-se",
