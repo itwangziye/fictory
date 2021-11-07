@@ -3,6 +3,7 @@
 	:loading="pageLoading"
 	:error="pageError"
 	@on-retry="initPage"
+	:empty="isEmpty"
 	>
 		<div class="recommend">
 			<div class="recommend__falls margin__top">
@@ -10,8 +11,9 @@
 				v-model="loading"
 				:error.sync="error"
 				:finished="finished"
-				finished-text="没有更多了"
-				error-text="请求失败，点击重新加载"
+				:loading-text="$t('common.components.loading')"
+				:finished-text="$t('common.components.noMore')"
+				:error-text="$t('common.components.moreErrorTip')"
 				@load="onLoad"
 				>
 					<div class="recommend__falls-list">
@@ -63,6 +65,14 @@ export default class Movie extends Mixins(PageMixins) {
         pageIndex = ++pageIndex;
         this.bookGetListRequest({...this.pagination, pageIndex, bookTypeId: this.bookTypeId})
     }
+
+	get isEmpty() :boolean {
+		const list = this.list;
+		if (!list || !list.length) {
+			return true;
+		}
+		return false;
+	}
 
 
 	async bookGetListRequest(parmas: any) {

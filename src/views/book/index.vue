@@ -48,7 +48,7 @@
                 <div class="pane__title">
                     <div class="title">{{$t('page.book.menu')}}</div>
                     <div class="session click-list" @click="handerBookMenu">
-                        <span>共{{bookDetail.totalChapterCount}}章</span>
+                        <span>{{$t('page.book.more')}}</span>
                         <van-icon name="arrow" />
                     </div>
                 </div>

@@ -1,5 +1,10 @@
 <template>
-    <pagecontain>
+    <pagecontain
+    :loading="pageLoading"
+	:error="pageError"
+	@on-retry="initPage"
+	:empty="isEmpty"
+    >
         <div class="shelf">
             <div class="shelf__title">
                 <div class="title">{{$t('page.shelf.tip')}}</div>
@@ -9,13 +14,14 @@
             v-model="loading"
             :error.sync="error"
             :finished="finished"
-            finished-text="没有更多了"
-            error-text="请求失败，点击重新加载"
+            :loading-text="$t('common.components.loading')"
+            :finished-text="$t('common.components.noMore')"
+            :error-text="$t('common.components.moreErrorTip')"
             @load="onLoad"
             >   
             <van-checkbox-group v-model="bookId" ref="checkboxGroup">
                 <div class="shelf__list">
-                   <div class="shelf__list-item" v-for="(item, index) in list" :key="index">
+                   <div class="shelf__list-item click-list" @click="handleBookDetail(item)" v-for="(item, index) in list" :key="index">
                        <van-image lazy-load fit="cover" v-if="item.bookImageUrl" :src="item.bookImageUrl" class="img">
                             <template v-slot:loading>
                                 <van-loading type="spinner" size="20" />
@@ -32,8 +38,8 @@
         </div>
         <template v-slot:footer v-if="isManage">
             <div class="shelf__footer">
-                <van-checkbox @change="handlerSelectAll" v-model="isAll" checked-color="rgba(245, 156, 1, 1)">全选</van-checkbox>
-                <span class="del" @click="handerDel">删除</span>
+                <van-checkbox @change="handlerSelectAll" v-model="isAll" checked-color="rgba(245, 156, 1, 1)">{{$t('page.shelf.all')}}</van-checkbox>
+                <span class="del" @click="handerDel">{{$t('page.shelf.del')}}</span>
             </div>
         </template>
 
@@ -41,10 +47,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Mixins } from 'vue-property-decorator';
 import BookTemp from '@/components/book-temp.vue';
 import api from '@/api/book';
-import pagecontain from '@/components/pagecontain.vue'
+import pagecontain from '@/components/pagecontain.vue';
+import PageMixins from "@/mixins/page-mixins"
 
 @Component({
     components: {
@@ -52,7 +59,7 @@ import pagecontain from '@/components/pagecontain.vue'
         pagecontain
     }
 })
-export default class BookList extends Vue {
+export default class BookList extends Mixins(PageMixins) {
     
     loading: boolean = true;
     finished: boolean = false;
@@ -73,8 +80,18 @@ export default class BookList extends Vue {
         this.bookGetListRequest({...this.pagination, pageIndex})
     }
 
-    init() :void {
-        this.bookGetListRequest(this.pagination, true);
+    get isEmpty() :boolean {
+		const list = this.list;
+		if (!list || !list.length) {
+			return true;
+		}
+		return false;
+	}
+
+    async initPage() {
+        this.pageLoading = true;
+        await this.bookGetListRequest(this.pagination, true);
+        this.pageLoading = false;
     }
 
     handleManage() {
@@ -84,6 +101,11 @@ export default class BookList extends Vue {
         const checkboxGroup: any = this.$refs.checkboxGroup;
         checkboxGroup.toggleAll(flage);
 
+    }
+
+    handleBookDetail(item: any) :void{
+        const {bookId} = item;
+        this.$router.push({name: 'Book', query: {bookId}})
     }
 
     handerDel() {
@@ -133,7 +155,7 @@ export default class BookList extends Vue {
         try {
            await api.bookCollectRemove.exec(parmas);
            this.$toast('操作成功');
-           this.init();
+           this.initPage();
            this.isManage = false;
         } catch (error) {
             console.log(error)
@@ -142,7 +164,7 @@ export default class BookList extends Vue {
 
 
     created() {
-        this.init();
+        this.initPage();
     }
 }
 </script>

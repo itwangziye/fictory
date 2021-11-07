@@ -17,8 +17,7 @@
         </div>
         <div class="book__cell" :style="cellStyles" v-if="bookCellDetail">
             <div class="book__cell-title">{{bookCellDetail.bookChapterName}}</div>
-            <div class="book__cell-content" v-if="bookCellDetail.bookTypeId === '1'">
-                {{bookCellDetail.bookContent}}
+            <div class="book__cell-content" v-html="bookCellDetail.bookContent" v-if="bookCellDetail.bookTypeId === '1'">
             </div>
             <div class="book__cell-content" v-else-if="bookCellDetail.bookTypeId === '2'">
                 <van-image 
@@ -85,9 +84,9 @@ export default class BookCell extends Mixins(PageMixins) {
     fontOptions: any = {
         active: 1,
         data: [
-            {name: '小', index: 1, size: '12px'},
-            {name: '中', index: 2, size: '14px'},
-            {name: '大', index: 3, size: '20px'}
+            {name: this.$t('page.book_cell.small'), index: 0, size: '12px'},
+            {name: this.$t('page.book_cell.mid'), index: 1, size: '14px'},
+            {name: this.$t('page.book_cell.large'), index: 2, size: '20px'}
         ]
     };
     cellStyles: any = {
@@ -132,6 +131,8 @@ export default class BookCell extends Mixins(PageMixins) {
             this.cellStyles.backgroundColor = item.bg;
             this.cellStyles.color = item.color;
         } else if (type === 'font') {
+            const {index} = item;
+            this.fontOptions.active = index;
             this.cellStyles.fontSize = item.size;
         }
     }

@@ -6,6 +6,14 @@
             "video": "Video",
             "collect": "Collection",
             "mine": "mine"
+        },
+        "components": {
+            "loading": "Loading···",
+            "errorTip": "Data request failed, please try again",
+            "retry": "Retry",
+            "empty": "No data temporarily",
+            "noMore": "No More",
+            "moreErrorTip": "The request failed, click to reload"
         }
     },
     "page": {
@@ -14,7 +22,8 @@
             "search_input": "Book Title, Author Name",
             "hot": "Hot Novel",
             "free": "Free for a limited time",
-            "recommend": "Featured Recommendation"
+            "recommend": "Featured Recommendation",
+            "tagFree": "Free"
         },
         "mine": {
             "login": "Please log in",
@@ -28,7 +37,8 @@
             "un_collect": "Uncollect",
             "menu": "Directory",
             "open": "Open All",
-            "buy": "Buy Now"
+            "buy": "Buy Now",
+            "more": "More chapters"
         },
         "book_menu": {
             "title": "Catalogue"
@@ -36,7 +46,10 @@
         "book_cell": {
             "pre": "Previous Chapter",
             "next": "Next Chapter",
-            "menu": "Menu"
+            "menu": "Menu",
+            "large": "大",
+            "mid": "中",
+            "small": "small"
         },
         "book_order": {
             "title": "Buy",
@@ -59,6 +72,16 @@
             "register": "Register",
             "password__confirm": "Please enter your password again",
             "register_info": "Return to login"
+        },
+        "order": {
+            "title": "Purchase History"
+        },
+        "shelf": {
+            "tip": "My Collection",
+            "manage": "Management",
+            "finish": "Finish",
+            "del": "Delete",
+            "all": "Select all"
         }
     }
 }

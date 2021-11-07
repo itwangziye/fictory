@@ -2,6 +2,7 @@
 	<pagecontain
 	:loading="pageLoading"
 	:error="pageError"
+	:empty="isEmpty"
 	@on-retry="initPage"
 	>
 		<div class="recommend">
@@ -10,8 +11,9 @@
 				v-model="loading"
 				:error.sync="error"
 				:finished="finished"
-				finished-text="没有更多了"
-				error-text="请求失败，点击重新加载"
+				:loading-text="$t('common.components.loading')"
+				:finished-text="$t('common.components.noMore')"
+				:error-text="$t('common.components.moreErrorTip')"
 				@load="onLoad"
 				>
 					<div class="recommend__falls-list">
@@ -57,6 +59,14 @@ export default class Cartoon extends Mixins(PageMixins) {
     }
 	list: any[] = [];
     bookTypeId: string = '2';
+
+	get isEmpty() :boolean {
+		const list = this.list;
+		if (!list || !list.length) {
+			return true;
+		}
+		return false;
+	}
 
 	onLoad() :void{
         let {pageIndex} = this.pagination;

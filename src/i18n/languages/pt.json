@@ -6,6 +6,14 @@
             "video": "Video",
             "collect": "Coleção",
             "mine": "minha"
+        },
+        "componentes": {
+            "loading": "Carregando ···",
+            "errorTip": "A solicitação de dados falhou, tente novamente",
+            "retry": "Tentar novamente",
+            "empty": "Sem dados temporariamente",
+            "noMore": "No More",
+            "moreErrorTip": "A solicitação falhou, clique para recarregar"
         }
     },
     "page": {
@@ -14,7 +22,8 @@
             "search_input": "Título do livro, nome do autor",
             "hot": "Novela Quente",
             "free": "Grátis por tempo limitado",
-            "recommend": "Recomendação em destaque"
+            "recommend": "Recomendação em destaque",
+            "tagFree": "免费"
         },
         "mine": {
             "login": "Por favor, inscreva-se",
@@ -28,7 +37,8 @@
             "un_collect": "Uncollect",
             "menu": "Diretório",
             "open": "Abrir tudo",
-            "buy": "Compre agora"
+            "buy": "Compre agora",
+            "more": "Mais capítulos"
         },
         "book_menu": {
             "title": "Catálogo"
@@ -36,7 +46,10 @@
         "book_cell": {
             "pre": "Capítulo anterior",
             "next": "Próximo Capítulo",
-            "menu": "Menu"
+            "menu": "Menu",
+            "large": "Grande",
+            "mid": "Grande",
+            "small": "pequena"
         },
         "book_order": {
             "title": "Comprar",
@@ -62,6 +75,13 @@
         },
         "order": {
             "title": "Histórico de compras"
+        },
+        "shelf": {
+            "tip": "Minha coleção",
+            "manage": "Management",
+            "finish": "Terminar",
+            "del": "Excluir",
+            "all": "Selecionar tudo"
         }
     }
 }

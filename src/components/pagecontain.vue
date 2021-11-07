@@ -6,30 +6,30 @@
             </slot>
         </div>
         <div class="page-container__main" @scroll="onScroll" ref="containerMain">
-            <div v-if="empty" class="page-container__empty">
+            <div v-if="loading" class="page-container__loading">
+                <slot name="loading">
+                    <div class="page-container_default-loading">
+                        <van-loading class="container-loading__icon" type="spinner" />
+                        <p class="container-loading__title">{{$t('common.components.loading')}}</p>
+                    </div>
+                </slot>
+            </div>
+            <div v-else-if="empty" class="page-container__empty">
                 <slot name="empty">
                     <div class="page-container__default-empty">
-                        <div class="container-empty__icon iconfont icon-wushuju1"></div>
-                        <p class="container-empty__title">暂无数据</p>
+                        <van-empty :description="$t('common.components.empty')" />
                     </div>
                 </slot>
             </div>
             <div v-else-if="error" class="page-container__error">
                 <slot name="error">
                     <div class="page-container__default-error">
-                        <p class="container-error__title">数据请求失败，请重试</p>
-                        <span class="container-error__button" @click="onRetry">重试</span>
+                        <p class="container-error__title">{{$t('common.components.errorTip')}}</p>
+                        <van-button size="mini" class="container-error__button" round type="warning" @click="onRetry">{{$t('common.components.retry')}}</van-button>
                     </div>
                 </slot>
             </div>
-            <div v-else-if="loading" class="page-container__loading">
-                <slot name="loading">
-                    <div class="page-container_default-loading">
-                        <van-loading class="container-loading__icon" type="spinner" />
-                        <p class="container-loading__title">加载中...</p>
-                    </div>
-                </slot>
-            </div>
+            
             <van-pull-refresh 
             :disabled="disabledPullRefresh"
             v-model="isLoading" 
@@ -181,6 +181,7 @@
         }
     }
     .page-container__default-error {
+        text-align: center;
         .container-error__title {
             line-height: 20px;
             font-size: 15px;
@@ -188,14 +189,8 @@
             color: #AAA;
         }
         .container-error__button {
-            background: #2dbd84;
-            color: #fff;
-            width: 100px;
-            line-height: 35px;
-            font-size: 14px;
-            display: block;
-            margin: 20px auto 0;
-            text-align: center;
+            width: 150px;
+            margin-top: 20px;
         }
     }
 </style>

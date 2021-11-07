@@ -6,8 +6,9 @@
             v-model="loading"
             :error.sync="error"
             :finished="finished"
-            finished-text="没有更多了"
-            error-text="请求失败，点击重新加载"
+            :loading-text="$t('common.components.loading')"
+            :finished-text="$t('common.components.noMore')"
+            :error-text="$t('common.components.moreErrorTip')"
             @load="onLoad"
             >
                 <div class="falls-list">

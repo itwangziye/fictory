@@ -60,13 +60,12 @@
                             </van-image>
                             <div class="title">{{item.bookName}}</div>
                             <div class="tag">
-                                <van-tag plain type="warning">免费</van-tag>
+                                <van-tag plain type="warning">{{$t('page.home.tagFree')}}</van-tag>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
-
             <div class="home__fall">
                 <book-list></book-list>
             </div>

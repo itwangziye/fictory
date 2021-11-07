@@ -45,7 +45,8 @@ import {
     GridItem,
     Uploader,
     Checkbox, 
-    CheckboxGroup 
+    CheckboxGroup,
+    Empty
 } from 'vant';
 
 Vue.component(Button.name, Button);
@@ -88,6 +89,7 @@ Vue.use(GridItem);
 Vue.use(Uploader);
 Vue.use(Checkbox);
 Vue.use(CheckboxGroup);
+Vue.use(Empty);
 
 
 Vue.prototype.$dayjs = dayjs;
