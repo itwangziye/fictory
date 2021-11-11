@@ -11,6 +11,8 @@ declare global {
       _hmt: any,
       fbq: any,
       gdt: any,
-      ttq: any
+      ttq: any,
+      external: any,
+      sidebar: any
     }
 }

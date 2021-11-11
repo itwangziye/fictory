@@ -11,7 +11,7 @@ const fc_lang = Storage.getLocalStorage("fc_lang");
 let locale = fc_lang || 'en_us';
 
 if (!fc_lang) {
-  let lang = (navigator.language || navigator.browserLanguage);
+  let lang = navigator.language;
   if (lang) lang = lang.toLowerCase().replace('-', '_');
   const suportLangs = ['ar', 'en_us', 'pt', 'zh_cn', 'zh_hk'];
   if (suportLangs.includes(lang)) {

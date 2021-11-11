@@ -1,5 +1,7 @@
 <template>
-    <pagecontain ref="container">
+    <pagecontain 
+    ref="container"
+    >
         <template slot="header" v-if="bookCellDetail">
             <book-header
             :title="bookCellDetail.bookChapterName"
@@ -30,6 +32,12 @@
                         <van-loading type="spinner" size="20" />
                     </template>
                 </van-image>
+            </div>
+            <div class="book__cell-content" v-else-if="bookCellDetail.bookTypeId === '3'">
+                <fc-video
+                v-if="bookCellDetail.bookContent"
+                :url="bookCellDetail.bookContent"
+                ></fc-video>
             </div>
 
         </div>
@@ -65,11 +73,13 @@ import api from '@/api/book';
 import pagecontain from '@/components/pagecontain.vue';
 import PageMixins from '@/mixins/page-mixins';
 import BookHeader from '@/components/business-component/book/book-header.vue';
+import FcVideo from '@/components/fc-video.vue';
 
 @Component({
     components: {
         pagecontain,
-        BookHeader
+        BookHeader,
+        FcVideo
     }
 })
 export default class BookCell extends Mixins(PageMixins) {
@@ -96,6 +106,7 @@ export default class BookCell extends Mixins(PageMixins) {
     }
 
     pickerMenuVisible: boolean = false;
+    
 
 
     get pickOptions(): any[] {

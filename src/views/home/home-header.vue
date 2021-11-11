@@ -8,7 +8,9 @@
             <div class="topbar__md">
                 {{$t('page.home.title')}}
             </div>
-            <div class="topbar__rt"> </div>
+            <div class="topbar__rt click-able" @click="handleCollect">
+                <!-- <span>添加收藏夹</span> -->
+            </div>
         </div>
 
          <van-popup v-model="showPicker" round position="bottom">
@@ -79,6 +81,11 @@ export default class TopBar extends Mixins(PageMixins) {
     handlerChangeLang() {
         this.showPicker = true;
     }
+
+    handleCollect() :void {
+
+    }
+    
 
 
     onConfirm(value: string, index: number) :void{
