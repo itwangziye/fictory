@@ -29,7 +29,7 @@
                 />
             </div>
 
-            <div class="pane">
+            <div class="pane" v-if="hotOptions && hotOptions.length">
                 <div class="pane__title">{{$t('page.home.hot')}}</div>
                 <div class="pane__content">
                     <ul class="hot__list">
@@ -48,7 +48,7 @@
                 </div>
             </div>
 
-            <div class="pane">
+            <div class="pane" v-if="freeOptions && freeOptions.length">
                 <div class="pane__title">{{$t('page.home.free')}}</div>
                 <div class="pane__content">
                     <ul class="hot__list">

@@ -4,3 +4,4 @@ declare module '*.vue' {
 }
 
 declare module 'nprogress'
+declare module 'vue-video-player'
