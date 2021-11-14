@@ -54,12 +54,16 @@ export default class BookMenu extends Mixins(PageMixins) {
     list: any[] = [];
     bookId: number = 0;
 
-
-    handleBookCell(item: any, index: any) :void{
+    handleBookCell(item: any, index: any) :void {
         const chapterIndex = index + 1;
+        const {bookChapterId, isFree, isUnLock} = item;
         const query: any = this.$route.query;
         const {bookId} = query;
-        this.$router.push({name: 'BookCell', query: {bookId, chapterIndex}})
+        if (!isUnLock && !isFree) {
+            this.$router.push({name: 'BookOrder', query: {bookId, bookChapterId}})
+        } else {
+            this.$router.push({name: 'BookCell', query: {bookId, chapterIndex}})
+        }
     }
 
     onLoad() :void{

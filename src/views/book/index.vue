@@ -86,7 +86,6 @@ import pagecontain from '@/components/pagecontain.vue'
 import PageMixins from '@/mixins/page-mixins'
 import BookHeader from '@/components/business-component/book/book-header.vue';
 
-
 @Component({
     components: {
         pagecontain,

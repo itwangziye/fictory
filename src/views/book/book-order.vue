@@ -77,6 +77,11 @@ export default class BookOrder extends Mixins(PageMixins) {
     }
 
     handerToBuy() :void {
+        if (!this.isLogin) {
+            const redirect = this.$route.fullPath;
+            this.$router.push({name: 'Login', query: {redirect}});
+            return;
+        };
         const query = this.$route.query;
         const {bookId, bookChapterId} = query;
         const parmas = {
@@ -103,7 +108,7 @@ export default class BookOrder extends Mixins(PageMixins) {
            const data = await apiOrder.orderAdd.exec(parmas);
            const {payParams} = data;
            const {payUrl} =payParams;
-           window.open(payUrl);
+           window.location.href = payUrl;
            this.payLoading = false;
         } catch (error) {
             console.log(error)
