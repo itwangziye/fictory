@@ -72,13 +72,16 @@ import { Component, Mixins} from 'vue-property-decorator';
 import pagecontain from '@/components/pagecontain.vue';
 import PageMixins from '@/mixins/page-mixins';
 import api from '@/api/common';
+import LoginMixins from '@/mixins/login-mixins'
+import {Storage} from '@/utils/storage'
+
 
 @Component({
     components: {
         pagecontain
     }
 })
-export default class Login extends Mixins(PageMixins) {
+export default class Login extends Mixins(PageMixins, LoginMixins) {
     form: any = {
         mobile: '',
         password: '',
@@ -93,6 +96,15 @@ export default class Login extends Mixins(PageMixins) {
 		return false;
 	}
 
+    getRegisterParms() :any{
+        const form = this.form;
+        const fc_channelOpt = Storage.getLocalStorage("fc_channelOpt");
+        if (fc_channelOpt) {
+            return {...form, ...fc_channelOpt}
+        }
+        return form;
+    }
+
     // 失败统一toast 提示
     onFailed({values, errors}: any) {
         const [first, ...rest] = errors;
@@ -101,7 +113,8 @@ export default class Login extends Mixins(PageMixins) {
     }
 
     onSubmit() :void {
-    	this.registerRequest(this.form);
+        const parms = this.getRegisterParms();
+    	this.registerRequest(parms);
     }
 
     async registerRequest (parmas: any) {
@@ -109,7 +122,7 @@ export default class Login extends Mixins(PageMixins) {
             this.loading = true;
             const res = await api.register.exec(parmas);
             this.loading = false;
-            this.$router.replace('/home');
+            this.setLoginInfo(res);
 			this.$toast.success('注册成功！');
         } catch (error) {
             console.log(error);

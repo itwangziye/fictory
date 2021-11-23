@@ -65,13 +65,14 @@ import { Component, Mixins} from 'vue-property-decorator';
 import pagecontain from '@/components/pagecontain.vue';
 import PageMixins from '@/mixins/page-mixins';
 import api from '@/api/common'
+import LoginMixins from '@/mixins/login-mixins'
 
 @Component({
     components: {
         pagecontain
     }
 })
-export default class Login extends Mixins(PageMixins) {
+export default class Login extends Mixins(PageMixins, LoginMixins) {
     form: any = {
         mobile: '',
         password: ''
@@ -94,17 +95,6 @@ export default class Login extends Mixins(PageMixins) {
 
     onSubmit() :void {
     	this.loginInRequest(this.form);
-    }
-
-    setLoginInfo(data: any) {
-        const {token} = data;
-        this.$store.commit('home/LOGIN', {token}); 
-        const redirect: any = this.$route.query.redirect;
-        if (redirect) {
-            this.$router.replace({path: redirect})
-        } else {
-            this.$router.replace('/home');
-        }
     }
 
     async loginInRequest (parmas: any) {

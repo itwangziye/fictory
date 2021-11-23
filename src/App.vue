@@ -18,6 +18,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import {Storage} from '@/utils/storage'
 import FcTabbar from '@/components/fc-tabbar.vue';
+import qs from 'qs';
 
 @Component({
 	components: {
@@ -40,8 +41,24 @@ export default class App extends Vue {
 			this.$store.commit('metadata/UPDATEUSERNOMALCONFIG', {lang: fc_lang});
 		}
 	}
+	cashChannId() {
+		const {search} = window.location;
+		if (search) {
+			const query = qs.parse(search.replace('?', ''));
+				if (query) {
+				const {cid} = query;
+				if (cid) {
+					let channelOpt: any = {cid};
+					Storage.setLocalStorage("fc_channelOpt", channelOpt, 3600 * 24 * 30);
+				}
+			}
+		}
+	}
 	created() {
 		this.pageInit();
+	}
+	mounted() {
+		this.cashChannId();
 	}
 }
 </script>
