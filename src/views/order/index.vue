@@ -1,5 +1,8 @@
 <template>
-    <pagecontain>
+    <pagecontain
+    @on-retry="init"
+	:empty="isEmpty"
+    >
         <template slot="header">
             <book-header
             :title="$t('page.order.title')"
@@ -9,8 +12,9 @@
         v-model="loading"
         :error.sync="error"
         :finished="finished"
-        finished-text="没有更多了"
-        error-text="请求失败，点击重新加载"
+        :loading-text="$t('common.components.loading')"
+        :finished-text="$t('common.components.noMore')"
+        :error-text="$t('common.components.moreErrorTip')"
         @load="onLoad"
         >
             <div class="order">
@@ -47,7 +51,13 @@ export default class BookMenu extends Mixins(PageMixins) {
     }
     list: any[] = [];
 
-
+    get isEmpty() :boolean {
+		const list = this.list;
+		if (!list || !list.length) {
+			return true;
+		}
+		return false;
+	}
 
 
     onLoad() :void{

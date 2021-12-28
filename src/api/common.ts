@@ -15,5 +15,10 @@ export default {
 		serviceUrl: '/anon/user/regist',
         method: 'post',
         config: {not_token: 1}
+    }),
+    menuGetLis: new MApi({
+		serviceUrl: '/anon/menu/getLis',
+        method: 'get',
+        config: {not_token: 1}
     })
 }

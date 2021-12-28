@@ -1,5 +1,6 @@
 {
     "common": {
+        "title": "小说内容",
         "tabbar": {
             "home": "首页",
             "cartoon": "漫画",
@@ -49,7 +50,9 @@
             "menu": "菜单",
             "large": "大",
             "mid": "中",
-            "small": "小"
+            "small": "小",
+            "no_pre": "已经是第一章",
+            "no_next": "已经是最后一章"
         },
         "book_order": {
             "title": "购买",

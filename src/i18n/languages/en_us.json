@@ -1,5 +1,6 @@
 {
     "common": {
+        "title": "Novel content",
         "tabbar": {
             "home": "Home",
             "cartoon": "Comic",

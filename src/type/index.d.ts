@@ -13,6 +13,7 @@ declare global {
       gdt: any,
       ttq: any,
       external: any,
-      sidebar: any
+      sidebar: any,
+      document: any
     }
 }

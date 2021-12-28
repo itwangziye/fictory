@@ -32,11 +32,13 @@ const routes: Array<RouteConfig> = [
 	{
 		path: '/user/modify',
 		name: 'UserModify',
+		meta: {login: true},
 		component: () => import('@/views/mine/user-info/modify-info.vue'),
 	},
 	{
 		path: '/order',
 		name: 'Order',
+		meta: {login: true},
 		component: () => import('@/views/order/index.vue'),
 	},
 	{

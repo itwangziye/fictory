@@ -5,7 +5,7 @@ import { Toast, Dialog } from 'vant';
 import utils from '@/utils/utils'
 
 const state = {
-    homePageOptions: null,
+    tabbarOptions: null,
     currencyOptions: null,
     userNomalConfig: {
         lang: 'zh_cn'
@@ -14,12 +14,20 @@ const state = {
 }
 
 const actions = {
-   
+    async menuGetLis({commit}: any, payload: any){
+        try {
+			const res = await api.menuGetLis.exec({}) 
+            commit('UPDATEHOMEPAGECONFIG', res);
+        } catch (error) {
+            console.log(error);
+        }
+        
+    },
 }
 
 const mutations = {
     UPDATEHOMEPAGECONFIG: (state: any, payload: any)=>{
-        state.homePageOptions = payload;
+        state.tabbarOptions = payload;
     },
     UPDATECURRENCYCONFIG: (state: any, payload: any)=>{
         state.currencyOptions = payload;
@@ -33,7 +41,7 @@ const mutations = {
 }
 
 const getters ={
-    homePageOptions: (state: any) => state.homePageOptions,
+    tabbarOptions: (state: any) => state.tabbarOptions,
     currencyOptions: (state: any) => state.currencyOptions,
     userNomalConfig: (state: any) => state.userNomalConfig,
     fingerprint: (state: any) => state.fingerprint

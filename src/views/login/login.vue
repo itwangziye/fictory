@@ -19,7 +19,7 @@
             <div class="login__content">
                 <div class="login__content-logo">
                     <div class="logo">
-                        <div>内容</div><div>支付</div>
+                        <!-- <div>内容</div><div>支付</div> -->
                     </div>
                 </div>
 
@@ -152,6 +152,8 @@ export default class Login extends Mixins(PageMixins, LoginMixins) {
                     align-items: center;
                     font-size: 50px;
                     color: @white;
+                    background-image: url('http://img-cdn.filefactory.com/embed/xl/1e24rlcgyfz6.png');
+                    background-size: 100%;
                 }
             }
         }

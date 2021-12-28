@@ -4,9 +4,9 @@ import router from './router'
 import store from './store'
 import '@/config/components'
 import i18n from './i18n'
-// import metadata from '@/config/metadata'
+import metadata from '@/config/metadata'
 
-// metadata.init();
+metadata.init();
 
 Vue.config.productionTip = false
 

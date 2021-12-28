@@ -153,10 +153,10 @@ export default class BookCell extends Mixins(PageMixins) {
         let {chapterIndex, bookId} = query;
         const {totalChapterCount} = this.bookCellDetail;
         if (chapterIndex >= totalChapterCount && type === 'next') {
-            this.$toast('已经是最后一章');
+            this.$toast(this.$t('page.book_cell.no_next'));
             return;
         } else if (chapterIndex <= 1 && type === 'pre') {
-            this.$toast('已经是第一章');
+            this.$toast(this.$t('page.book_cell.no_pre'));
             return;
         }
 

@@ -30,6 +30,7 @@ export default class App extends Vue {
 	transitionName: string = 'slide-left';
 	currentView: string = 'router-view';
 	exclude: string = '';
+	tabbarOptions: any[] = []
 
 	pageInit() {
 		const fc_token = Storage.getLocalStorage("fc_token");
@@ -54,11 +55,16 @@ export default class App extends Vue {
 			}
 		}
 	}
+
+	initPageOpt() {
+		(document as any).title = this.$t('common.title');
+	}
 	created() {
 		this.pageInit();
 	}
 	mounted() {
 		this.cashChannId();
+		this.initPageOpt();
 	}
 }
 </script>

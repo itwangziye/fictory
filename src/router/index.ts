@@ -4,7 +4,6 @@ import routes from './routerPath';
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { Storage } from '@/utils/storage'
-import qs from 'qs';
 
 Vue.use(VueRouter)
 
@@ -20,7 +19,9 @@ router.beforeEach((to, from, next) => {
 	if (login) {
 		const token = Storage.getLocalStorage('fc_token');
 		if (!token) {
-			console.log('登录操作');
+			const {fullPath} = to;
+			const path = fullPath;
+			router.replace({path: '/login', query: {redirect: path}});
 		}
 	}
 	next();

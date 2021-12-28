@@ -6,7 +6,7 @@
 
 <script lang="ts">
 	import {Component, Vue, Watch} from "vue-property-decorator";
-                                                                      
+                                                                       
 	@Component
 	export default class FcTabbar extends Vue {
         tabbarOptions: any[] = [
@@ -18,6 +18,7 @@
         ];
         tabbarVisible: boolean = true;
 
+        
         @Watch('$route', {immediate: true})
         watchRoute(route: any) {
             console.log(route)
