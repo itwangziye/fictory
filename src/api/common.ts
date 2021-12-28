@@ -20,5 +20,10 @@ export default {
 		serviceUrl: '/anon/menu/getList',
         method: 'get',
         config: {not_token: 1}
+    }),
+    langGetList: new MApi({
+		serviceUrl: '/anon/lang/getList',
+        method: 'get',
+        config: {not_token: 1}
     })
 }

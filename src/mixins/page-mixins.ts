@@ -5,7 +5,6 @@ import { Component, Vue} from "vue-property-decorator";
 @Component({
     computed: {
         ...mapGetters({
-            'homePageOptions': 'metadata/homePageOptions',
             'token': 'home/token'
         })
     }

@@ -14,7 +14,9 @@
             "retry": "重试",
             "empty": "暂无数据",
             "noMore": "没有更多",
-            "moreErrorTip": "请求失败，点击重新加载"
+            "moreErrorTip": "请求失败，点击重新加载",
+            "cancel_text": "取消",
+            "confirm_text": "确定"
         }
     },
     "page": {

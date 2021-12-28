@@ -1,6 +1,6 @@
 {
     "common": {
-        "title": "Novel content",
+        "title": "Fiction Content",
         "tabbar": {
             "home": "Home",
             "cartoon": "Comic",
@@ -14,7 +14,9 @@
             "retry": "Retry",
             "empty": "No data temporarily",
             "noMore": "No More",
-            "moreErrorTip": "The request failed, click to reload"
+            "moreErrorTip": "Request failed, click to reload",
+            "cancel_text": "Cancel",
+            "confirm_text": "Confirm"
         }
     },
     "page": {
@@ -42,15 +44,17 @@
             "more": "More chapters"
         },
         "book_menu": {
-            "title": "Catalogue"
+            "title": "Catalog"
         },
         "book_cell": {
             "pre": "Previous Chapter",
             "next": "Next Chapter",
             "menu": "Menu",
-            "large": "大",
-            "mid": "中",
-            "small": "small"
+            "large": "large",
+            "mid": "middle",
+            "small": "small",
+            "no_pre": "It is already the first chapter",
+            "no_next": "It is the last chapter"
         },
         "book_order": {
             "title": "Buy",
@@ -59,7 +63,7 @@
             "buy_value": "All directories",
             "price_label": "Payment amount",
             "buy_text": "Go to pay",
-            "buy_dec": "Virtual products cannot be returned after purchase, young people please pay with their parents"
+            "buy_dec": "Virtual products cannot be returned after purchase, teenagers please pay with their parents"
         },
         "login": {
             "title": "User Login",

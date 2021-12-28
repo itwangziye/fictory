@@ -16,9 +16,11 @@
          <van-popup v-model="showPicker" round position="bottom">
             <van-picker
                 ref="currencyPicker"
+                :confirm-button-text="$t('common.components.confirm_text')"
+                :cancel-button-text="$t('common.components.cancel_text')"
                 show-toolbar
                 :default-index="langIndex"
-                :columns="langOptions"
+                :columns="flagLangOptions"
                 @cancel="showPicker = false"
                 @confirm="onConfirm"
             />
@@ -38,7 +40,8 @@ import PageMixins from '@/mixins/page-mixins';
     computed: {
         ...mapGetters({
             'userNomalConfig': 'metadata/userNomalConfig',
-            'token': 'home/token'
+            'token': 'home/token',
+            'langOptions': 'metadata/langOptions',
         })
     },
 })
@@ -46,31 +49,37 @@ export default class TopBar extends Mixins(PageMixins) {
     showPicker: boolean = false;
 
 
-    get langOptions() {
-        return [
-            {text: '中文（简体）', en: 'zh_cn'},
-            {text: '中文（繁体）', en: 'zh_hk'},
-            {text: 'English', en: 'en_us'},
-            {text: 'português', en: 'pt'},
-            {text: 'عربي', en: 'ar'}
-        ]
+    get flagLangOptions() {
+        const {langOptions} = this as any;
+        if (!langOptions || !langOptions.length) return [];
+        return langOptions.map((item: any) => {
+            const {name: text, value: en} = item;
+            return {text, en};
+        })
+        // return [
+        //     {text: '中文（简体）', en: 'zh_cn'},
+        //     {text: '中文（繁体）', en: 'zh_hk'},
+        //     {text: 'English', en: 'en_us'},
+        //     {text: 'português', en: 'pt'},
+        //     {text: 'عربي', en: 'ar'}
+        // ]
     }
 
     get langText() :string{
         const userNomalConfig = (this as any).userNomalConfig;
-        const langOptions = (this as any).langOptions;
-        if (!userNomalConfig || !langOptions) return '中文';
+        const langOptions = (this as any).flagLangOptions;
+        if (!userNomalConfig || !langOptions) return '';
         const {lang} = userNomalConfig;
         const cuurencyItem = langOptions.find((item: any) => item.en === lang);
         if (cuurencyItem) {
             return cuurencyItem.text;
         }
-        return '中文'
+        return ''
     }
 
     get langIndex() :number{
         const userNomalConfig = (this as any).userNomalConfig;
-        const langOptions = (this as any).langOptions;
+        const langOptions = (this as any).flagLangOptions;
         if (!userNomalConfig || !langOptions) return 0;
         const {fc_lang} = userNomalConfig;
         const langIndex = langOptions.findIndex((item: any) => item.en === fc_lang);
@@ -90,7 +99,7 @@ export default class TopBar extends Mixins(PageMixins) {
 
     onConfirm(value: string, index: number) :void{
         this.showPicker = false;
-        const langOptions = (this as any).langOptions;
+        const langOptions = (this as any).flagLangOptions;
         const item: any = langOptions[index];
         Storage.setLocalStorage('fc_lang',  item.en, 0);
         location.reload();

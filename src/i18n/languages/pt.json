@@ -1,5 +1,6 @@
 {
     "common": {
+        "title": "Conteúdo novo",
         "tabbar": {
             "home": "página",
             "cartoon": "Comic",
@@ -13,7 +14,9 @@
             "retry": "Tentar novamente",
             "empty": "Sem dados temporariamente",
             "noMore": "No More",
-            "moreErrorTip": "A solicitação falhou, clique para recarregar"
+            "moreErrorTip": "A solicitação falhou, clique para recarregar",
+            "cancel_text": "Cancelar",
+            "confirm_text": "Certo"
         }
     },
     "page": {
@@ -49,7 +52,9 @@
             "menu": "Menu",
             "large": "Grande",
             "mid": "Grande",
-            "small": "pequena"
+            "small": "pequena",
+            "no_pre": "Já o primeiro capítulo",
+            "no_next": "É o último capítulo"
         },
         "book_order": {
             "title": "Comprar",

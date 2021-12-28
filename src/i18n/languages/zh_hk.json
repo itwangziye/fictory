@@ -1,5 +1,6 @@
 {
     "common": {
+        "title": "小說內容",
         "tabbar": {
             "home": "首頁",
             "cartoon": "漫畫",
@@ -13,7 +14,9 @@
             "retry": "重試",
             "empty": "暫無數據",
             "noMore": "沒有更多",
-            "moreErrorTip": "請求失敗，點擊重新加載"
+            "moreErrorTip": "請求失敗，點擊重新加載",
+            "cancel_text": "取消",
+            "confirm_text": "確定"
         }
     },
     "page": {
@@ -49,7 +52,9 @@
             "menu": "菜單",
             "large": "大",
             "mid": "中",
-            "small": "小"
+            "small": "小",
+            "no_pre": "已經是第一章",
+            "no_next": "已經是最後一章"
         },
         "book_order": {
             "title": "購買",

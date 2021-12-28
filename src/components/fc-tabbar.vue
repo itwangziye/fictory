@@ -31,7 +31,9 @@
         watchRoute(route: any) {
             console.log(route)
             let flag: boolean = true;
-            flag = this.tabbarOptions.some((item: any) => {
+            const tabbarOptions = (this as any).tabbarOptions;
+            if (!tabbarOptions || !tabbarOptions.length) return;
+            flag = tabbarOptions.some((item: any) => {
                 if (item.pageUrl === route.path) return true;
                 return false;
             })
