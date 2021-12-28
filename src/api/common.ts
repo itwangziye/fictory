@@ -17,7 +17,7 @@ export default {
         config: {not_token: 1}
     }),
     menuGetLis: new MApi({
-		serviceUrl: '/anon/menu/getLis',
+		serviceUrl: '/anon/menu/getList',
         method: 'get',
         config: {not_token: 1}
     })
