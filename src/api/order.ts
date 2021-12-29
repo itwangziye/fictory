@@ -15,6 +15,7 @@ export default {
     }),
     payTypeGetList: new MApi({
 		serviceUrl: '/anon/payType/getList',
-        method: 'get'
+        method: 'get',
+        config: {not_token: 1, needCurrency: 1}
     })
 }

@@ -32,8 +32,12 @@ class MApi{
 	}
 
 	exec(data = {}, options: any = {}) :any{
-		const { method} = this.options;
+		const { method, needCurrency} = this.options;
 		let targetData: any = {...data};
+		if (needCurrency) {
+			const currencyType = Storage.getLocalStorage('fc_currency');
+			if (currencyType) targetData = {...targetData, currencyType};
+		}
 		if (method === 'get') {
 			options.params = targetData;
 		} else {

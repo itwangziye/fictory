@@ -15,7 +15,6 @@
 
          <van-popup v-model="showPicker" round position="bottom">
             <van-picker
-                ref="currencyPicker"
                 :confirm-button-text="$t('common.components.confirm_text')"
                 :cancel-button-text="$t('common.components.cancel_text')"
                 show-toolbar

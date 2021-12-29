@@ -7,7 +7,8 @@ export default {
     }),
     bookGetDetail: new MApi({
 		serviceUrl: '/anon/book/getDetail',
-        method: 'get'
+        method: 'get',
+        config: {needCurrency: 1}
     }),
     bookChapterGetList: new MApi({
 		serviceUrl: '/anon/bookChapter/getList',

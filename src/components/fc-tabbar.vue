@@ -24,7 +24,7 @@
         //     {url: '/shelf', icon: 'star-o', text: this.$t('common.tabbar.collect')}, 
         //     {url: '/mine', icon: 'user-o', text: this.$t('common.tabbar.mine')}, 
         // ];
-        tabbarVisible: boolean = true;
+        tabbarVisible: boolean = false;
 
         
         @Watch('$route', {immediate: true})

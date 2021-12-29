@@ -25,5 +25,10 @@ export default {
 		serviceUrl: '/anon/lang/getList',
         method: 'get',
         config: {not_token: 1}
+    }),
+    getExchangeRate: new MApi({
+		serviceUrl: '/anon/order/getExchangeRate',
+        method: 'get',
+        config: {not_token: 1}
     })
 }

@@ -31,6 +31,22 @@ const actions = {
             console.log(error);
         }
     },
+    async getExchangeRate({commit}: any, payload: any){
+        try {
+			const res = await api.getExchangeRate.exec({}) 
+            commit('UPDATECURRENCYCONFIG', res);
+            const fc_currency = Storage.getLocalStorage('fc_currency');
+            if (fc_currency) {
+                commit('UPDATEUSERNOMALCONFIG', {fc_currency});
+            } else {
+                const val = res[0].targetCurrency;
+                commit('UPDATEUSERNOMALCONFIG', {fc_currency: val});
+                Storage.setLocalStorage('fc_currency', val, 0);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    },
 }
 
 const mutations = {
