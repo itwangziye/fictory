@@ -17,27 +17,29 @@
     }
     })
 	export default class FcTabbar extends Vue {
-        // tabbarOptions: any[] = [
-        //     {url: '/home', icon: 'home-o', text: this.$t('common.tabbar.home')}, 
-        //     {url: '/cartoon', icon: 'newspaper-o', text: this.$t('common.tabbar.cartoon')},
-        //     {url: '/movie', icon: 'video-o', text: this.$t('common.tabbar.video')},  
-        //     {url: '/shelf', icon: 'star-o', text: this.$t('common.tabbar.collect')}, 
-        //     {url: '/mine', icon: 'user-o', text: this.$t('common.tabbar.mine')}, 
-        // ];
-        tabbarVisible: boolean = false;
+        tabbarBaseOptions: any[] = [
+            {url: '/home', icon: 'home-o', text: this.$t('common.tabbar.home')}, 
+            {url: '/cartoon', icon: 'newspaper-o', text: this.$t('common.tabbar.cartoon')},
+            {url: '/movie', icon: 'video-o', text: this.$t('common.tabbar.video')},  
+            {url: '/shelf', icon: 'star-o', text: this.$t('common.tabbar.collect')}, 
+            {url: '/mine', icon: 'user-o', text: this.$t('common.tabbar.mine')}, 
+        ];
+        tabbarVisible: boolean = true;
 
-        
-        @Watch('$route', {immediate: true})
-        watchRoute(route: any) {
-            console.log(route)
+        init(route: any) {
             let flag: boolean = true;
-            const tabbarOptions = (this as any).tabbarOptions;
-            if (!tabbarOptions || !tabbarOptions.length) return;
-            flag = tabbarOptions.some((item: any) => {
-                if (item.pageUrl === route.path) return true;
+            const tabbarBaseOptions = (this as any).tabbarBaseOptions;
+            if (!tabbarBaseOptions || !tabbarBaseOptions.length) return;
+            flag = tabbarBaseOptions.some((item: any) => {
+                if (item.url === route.path) return true;
                 return false;
             })
             this.tabbarVisible = flag;
+        }
+        
+        @Watch('$route', {immediate: true})
+        watchRoute(route: any) {
+            this.init(route)
         }
 	}
 </script>

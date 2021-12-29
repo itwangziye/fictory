@@ -7,7 +7,7 @@
         </van-image>
         <div class="goods__main">
             <div class="goods__title">
-                {{opt.authorName}}
+                {{opt.bookName}}
             </div>
             <div class="goods__tag"> 
                 <van-tag class="tag__item" plain type="warning">{{opt.bookTypeName}}</van-tag>
