@@ -11,14 +11,22 @@
             :error-text="$t('common.components.moreErrorTip')"
             @load="onLoad"
             >
-                <div class="falls-list">
-                    <book-temp 
+                <ul class="fall__list">
+                    <!-- <book-temp 
                     :opt="item"
                     v-for="(item, index) in list" 
                     :key="index"
                     >
-                    </book-temp>
-                </div>
+                    </book-temp> -->
+                    <li class="fall__list-item click-list" @click="handlerBookDetail(item)" v-for="(item, index) in list" :key="index">
+                        <van-image :src="item.bookImageUrl" class="img">
+                            <template v-slot:loading>
+                                <van-loading type="spinner" size="20" />
+                            </template>
+                        </van-image>
+                        <div class="title">{{item.bookName}}</div>
+                    </li>
+                </ul>
             </van-list>
         </div>
     </div>
@@ -104,6 +112,30 @@ export default class BookList extends Vue {
                 position: absolute;
                 left: 0;
                 background-color: rgba(249, 94, 9, 1);
+            }
+        }
+    }
+    .fall__list {
+        display: flex;
+        padding-bottom: 24px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        &-item {
+            width: 230px;
+            .img {
+                width: 100%;
+            }
+            .title {
+                line-height: 34px;
+                overflow:hidden;
+                text-overflow:ellipsis;
+                white-space:nowrap;
+            }
+            .subTilte {
+                color: @text-color5;
+            }
+            .tag {
+                text-align: center;
             }
         }
     }

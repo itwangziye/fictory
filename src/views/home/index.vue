@@ -5,7 +5,10 @@
 	@on-retry="pageInit"
     >   
         <template v-slot:header>
-			<home-header></home-header>
+			<!-- <home-header></home-header> -->
+            <van-nav-bar
+            title="首页"
+            ></van-nav-bar>
 		</template>
         <div class="home">
             <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
@@ -29,8 +32,23 @@
                 />
             </div>
 
+            <div class="home__cell">
+                <div class="home__cell-item click-able" v-for="(item, index) in homeCellOptions" :key="index">
+                    <div :class="['icon', item.key]">
+                        <img  class="img" :src="item.icon" :alt="item.label" srcset="">
+                    </div>
+                    <div class="lable">{{item.lable}}</div>
+                </div>
+            </div>
+
             <div class="pane" v-if="hotOptions && hotOptions.length">
-                <div class="pane__title">{{$t('page.home.hot')}}</div>
+                <div class="pane__title">
+                    <span>{{$t('page.home.hot')}}</span>
+                    <span class="pane__title-rt click-list">
+                        <span class="pane__title-text">查看更多</span>
+                        <van-icon class="pane__title-icon" name="arrow" />
+                    </span>
+                </div>
                 <div class="pane__content">
                     <ul class="hot__list">
                         <li class="hot__list-item click-list" @click="handlerBookDetail(item)" 
@@ -42,14 +60,20 @@
                                 </template>
                             </van-image>
                             <div class="title">{{item.bookName}}</div>
-                            <div class="subTilte">{{item.authorName}}</div>
+                            <!-- <div class="subTilte">{{item.authorName}}</div> -->
                         </li>
                     </ul>
                 </div>
             </div>
 
             <div class="pane" v-if="freeOptions && freeOptions.length">
-                <div class="pane__title">{{$t('page.home.free')}}</div>
+                <div class="pane__title">
+                    <span>{{$t('page.home.free')}}</span> 
+                    <span class="pane__title-rt click-list">
+                        <span class="pane__title-text">查看更多</span>
+                        <van-icon class="pane__title-icon" name="arrow" />
+                    </span>
+                </div>
                 <div class="pane__content">
                     <ul class="hot__list">
                         <li class="hot__list-item click-list" @click="handlerBookDetail(item)" v-for="(item, index) in freeOptions" :key="index">
@@ -59,9 +83,9 @@
                                 </template>
                             </van-image>
                             <div class="title">{{item.bookName}}</div>
-                            <div class="tag">
+                            <!-- <div class="tag">
                                 <van-tag plain type="warning">{{$t('page.home.tagFree')}}</van-tag>
-                            </div>
+                            </div> -->
                         </li>
                     </ul>
                 </div>
@@ -94,7 +118,13 @@ export default class Home extends Mixins(PageMixins) {
 
     bannerOptions: any[] = []
     hotOptions: any[] = [];
-    freeOptions: any[] = []
+    freeOptions: any[] = [];
+    homeCellOptions: any[] = [
+        {icon: require('@/assets/home/home_cell1.png'), lable: '分类', key: 'cell1'},
+        {icon: require('@/assets/home/home_cell2.png'), lable: '畅销榜', key: 'cell2'},
+        {icon: require('@/assets/home/home_cell3.png'), lable: 'VIP人气榜', key: 'cell3'},
+        {icon: require('@/assets/home/home_cell4.png'), lable: '连载', key: 'cell4'}
+    ]
 
     onSearchFocus() {
         this.$router.push({path: 'book/search'})
@@ -156,8 +186,49 @@ export default class Home extends Mixins(PageMixins) {
             }
         }
 
+        &__cell {
+            display: flex;
+            background-color: @white;
+            &-item {
+                flex: 1;
+                flex-direction: column;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px 0;
+                .icon {
+                    width: 88px;
+                    height: 88px;
+                    border-radius: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    &.cell1 {
+                        background-color: #1690FE;
+                    }
+                    &.cell2 {
+                        background-color: #FF4C4D;
+                    }
+                    &.cell3 {
+                        background-color: #F95E09;
+                    }
+                    &.cell4 {
+                        background-color: #13C5A5;
+                    }
+                }
+                .img {
+                    width: 50px;
+                }
+                .lable {
+                    padding-top: 10px;
+                    color: @text-color1;
+                    font-size: @text-size3;
+                }
+            }
+        }
+
         .pane {
-            margin-top: 24px;
+            margin-top: 2px;
             background-color: @white;
             padding: 0 24px;
             &__title {
@@ -165,6 +236,17 @@ export default class Home extends Mixins(PageMixins) {
                 position: relative;
                 font-size: @text-size5;
                 color: @text-color1;
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                &-text {
+                    color: @text-color3;
+                    font-size: @text-size3;
+                }
+                &-icon {
+                    vertical-align: text-bottom;
+                    color: @text-color3;
+                }
                 &::after {
                     content: '';
                     width: 2px;
@@ -179,13 +261,12 @@ export default class Home extends Mixins(PageMixins) {
         .hot__list {
             display: flex;
             padding-bottom: 24px;
-            overflow-x: auto;
+            flex-wrap: wrap;
+            justify-content: space-between;
             &-item {
-                padding-right: 30px;
-                width: 180px;
+                width: 230px;
                 .img {
-                    width: 150px;
-                    height: 200px;
+                    width: 100%;
                 }
                 .title {
                     line-height: 34px;
