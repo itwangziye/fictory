@@ -24,6 +24,11 @@ const routes: Array<RouteConfig> = [
 		meta: {keepAlive: true}
 	},
 	{
+		path: '/mine/recharge',
+		name: 'Recharge',
+		component: () => import('@/views/mine/recharge/index.vue'),
+	},
+	{
 		path: '/user',
 		name: 'User',
 		component: () => import('@/views/mine/user-info/index.vue'),

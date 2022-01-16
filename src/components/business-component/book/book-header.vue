@@ -46,7 +46,7 @@ export default class BookHeader extends Mixins(PageMixins) {
     tabbarOptions: any[] = [
         {url: '/home', icon: 'home-o', text: this.$t('common.tabbar.home')}, 
         {url: '/cartoon', icon: 'newspaper-o', text: this.$t('common.tabbar.cartoon')},
-        {url: '/movie', icon: 'video-o', text: this.$t('common.tabbar.video')},  
+        // {url: '/movie', icon: 'video-o', text: this.$t('common.tabbar.video')},  
         {url: '/shelf', icon: 'star-o', text: this.$t('common.tabbar.collect')}, 
         {url: '/mine', icon: 'user-o', text: this.$t('common.tabbar.mine')}, 
     ];

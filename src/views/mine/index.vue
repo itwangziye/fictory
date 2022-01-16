@@ -60,6 +60,7 @@ import PageMixins from "@/mixins/page-mixins";
 })
 export default class Mine extends Mixins(PageMixins) {
   cellOptions: any[] = [
+    { label: '书币充值', url: "/mine/recharge", icon: "points"},
     { label: this.$t('page.mine.record'), url: "/order", icon: "orders-o"},
     { label: this.$t('page.mine.user'), url: "/user", icon: "user-o"},
     { label: this.$t('page.mine.account_save'), url: "/user/modify", icon: "setting-o"},
@@ -126,11 +127,13 @@ export default class Mine extends Mixins(PageMixins) {
       font-size: @text-size5;
     }
     .custom-icon {
-      font-size: @text-size5;
+      font-size: @text-size8;
+      color: @primary-color;
     }
     .custom-title {
       display: inline-block;
       padding-left: 12px;
+      color: @text-color2;
     }
   }
 }
