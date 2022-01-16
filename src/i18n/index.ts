@@ -9,30 +9,30 @@ import qs from 'qs';
 Vue.use(VueI18n)
 
 const fc_lang = Storage.getLocalStorage("fc_lang");
-let locale = fc_lang || 'en_us';
+let locale =  'zh_cn';
 
 
-const suportLangs: string[] = ['ar', 'en_us', 'pt', 'zh_cn', 'zh_hk'];
-const {search} = window.location;
-if (search) {
-  const query: any = qs.parse(search.replace('?', ''));
-    if (query) {
-      const {lang} = query;
-      if (suportLangs.includes(lang)) {
-        locale = lang;
-        Storage.setLocalStorage('fc_lang', lang, 0);
-      }
-  }
-} else {
-  if (!fc_lang) {
-    let lang = navigator.language;
-    if (lang) lang = lang.toLowerCase().replace('-', '_');
-    if (suportLangs.includes(lang)) {
-      locale = lang;
-      Storage.setLocalStorage('fc_lang', lang, 0);
-    }
-  }
-}
+// const suportLangs: string[] = ['ar', 'en_us', 'pt', 'zh_cn', 'zh_hk'];
+// const {search} = window.location;
+// if (search) {
+//   const query: any = qs.parse(search.replace('?', ''));
+//     if (query) {
+//       const {lang} = query;
+//       if (suportLangs.includes(lang)) {
+//         locale = lang;
+//         Storage.setLocalStorage('fc_lang', lang, 0);
+//       }
+//   }
+// } else {
+//   if (!fc_lang) {
+//     let lang = navigator.language;
+//     if (lang) lang = lang.toLowerCase().replace('-', '_');
+//     if (suportLangs.includes(lang)) {
+//       locale = lang;
+//       Storage.setLocalStorage('fc_lang', lang, 0);
+//     }
+//   }
+// }
 
 export default new VueI18n({
     locale, // 将要切换的语言，可以通过url拼的参数获取，用户行为select选择获取，本地manifest配置获取等，根据场景动态获取
