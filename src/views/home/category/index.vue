@@ -110,7 +110,7 @@ export default class HomeCategory extends Mixins(PageMixins) {
         return {...target, ...this.pagination};
     }
 
-    handlerSessionClass(index: number, type: string) :void{
+    handlerSessionClass(index: number, type?: string) :void{
         if (type === 'category') {
             const {classIndex} = this.categoryOption;
             if (classIndex === index) return;
