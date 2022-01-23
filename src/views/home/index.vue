@@ -273,6 +273,7 @@ export default class Home extends Mixins(PageMixins) {
                 }
                 .img {
                     width: 100%;
+                    height: 320px;
                 }
                 .title {
                     line-height: 34px;

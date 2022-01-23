@@ -21,5 +21,9 @@ export default {
     rechargeRecordAdd: new MApi({
 		serviceUrl: '/rechargeRecord/add',
         method: 'post'
+    }),
+    rechargeRecordGetList: new MApi({
+		serviceUrl: '/rechargeRecord/getList',
+        method: 'get'
     })
 }

@@ -10,7 +10,7 @@
         <div class="book-rt">
             <div class="title">
                 <span>{{opt.goodsName}}</span> 
-                <span class="price">￥{{opt.orderPrice}}</span>
+                <span class="price">{{opt.bookCoins}}书币</span>
             </div>
             <div class="book-session">
                 <div class="author">

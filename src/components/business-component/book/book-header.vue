@@ -16,7 +16,7 @@
         position="top" 
         >
             <van-grid
-            column-num="5"
+            column-num="4"
             clickable
             replace
             >

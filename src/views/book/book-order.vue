@@ -9,12 +9,7 @@
             :title="$t('page.book_order.title')"
             left-arrow
             @click-left="onClickLeft"
-            @click-right="onClickRight"
             >
-            <template #right>
-                <span>{{currencyText}}</span>
-                <van-icon name="arrow-down" size="18"/>
-            </template>
             </van-nav-bar>
         </template>
         <div class="order">
@@ -41,53 +36,15 @@
                 <div class="order__content">
                     <div class="label">{{$t("page.book_order.price_label")}}：</div>
                     <div class="price">
-                        {{bookDetail.targetCurrencyTag}} {{bookDetail.targetPrice}}
+                        {{bookDetail.bookPrice}}书币
                     </div>
                 </div>
             </div>
             
              <van-button :loading="payLoading" type="danger" round block  class="order__button" @click="handerToBuy" >{{$t('page.book_order.buy_text')}}</van-button>
-
-
              <div class="order__footer">
                  {{$t("page.book_order.buy_dec")}}
              </div>
-
-             <currency-picker :visible.sync="currencyVisible"></currency-picker>
-             <!-- 支付方式选择 -->
-            <van-popup 
-                v-model="payTypeOption.visible" 
-                position="bottom"
-                class="pay__mode"
-            >
-                <div class="pay__mode-warp">
-                    <div class="pay__mode-title">选择支付方式</div>
-                    <div class="pay__mode-close" @click="payTypeOption.visible = false"></div>
-                    <ul class="pay__mode-main">
-                        <van-radio-group v-model="payTypeId" @change="onPayTypePickConfirm">
-                            <li class="pay__mode-item" v-for="(item) in payTypeOption.data" :key="item.payTypeId">
-                                <van-radio 
-                                :name="item.payTypeId" 
-                                checked-color="#3276ff"
-                                >
-                                    <div class="pay__mode-list">
-                                        <van-image lazy-load fit="cover" :src="item.bigImageUrl" class="img">
-                                            <template v-slot:loading>
-                                                <van-loading type="spinner" size="20" />
-                                            </template>
-                                        </van-image>
-                                        <div>
-                                            <span class="title">{{item.payTypeName}}</span> 
-                                            <div class="dec">{{item.payTypeText}}</div>
-                                        </div>
-                                    </div>
-                                    
-                                </van-radio>
-                            </li>
-                        </van-radio-group>
-                    </ul>
-                </div>
-            </van-popup>
         </div>
     </pagecontain>
 </template>
@@ -98,13 +55,11 @@ import pagecontain from '@/components/pagecontain.vue'
 import api from '@/api/book';
 import PageMixins from '@/mixins/page-mixins';
 import apiOrder from '@/api/order';
-import CurrencyPicker from '@/components/currency-picker.vue';
 import { mapGetters } from 'vuex';
 
 @Component({
     components: {
-        pagecontain,
-        CurrencyPicker
+        pagecontain
     },
     computed: {
         ...mapGetters({
@@ -122,15 +77,6 @@ export default class BookOrder extends Mixins(PageMixins) {
         visible: false,
         data: []
     }
-    payTypeId: string = ''
-
-    get currencyText() :string{
-        const {userNomalConfig, currencyOptions} = this as any;
-        if (!userNomalConfig || !currencyOptions) return '';
-        const {fc_currency} = userNomalConfig;
-        const item = currencyOptions.find((item: any) => item.targetCurrency === fc_currency);
-        return `${item.targetCurrencyText}(${item.targetCurrencyTag})`
-    }
 
     get isAllMenu() :boolean {
         const query = this.query;
@@ -146,11 +92,7 @@ export default class BookOrder extends Mixins(PageMixins) {
             this.$router.push({name: 'Login', query: {redirect}});
             return;
         };
-        if (this.payTypeOption.data.length > 1) {
-            this.payTypeOption.visible = true;
-        } else {
-            this.createOrder();
-        }
+        this.createOrder();
     }
 
     createOrder() {
@@ -158,19 +100,12 @@ export default class BookOrder extends Mixins(PageMixins) {
         const {bookId, bookChapterId} = query;
         const parmas = {
             goodsId: bookChapterId || bookId,
-            payTypeId: this.payTypeId
         }
         this.orderAddReq(parmas)
     }
 
     onClickRight() {
         this.currencyVisible = true;
-    }
-
-    // 选择支付方式
-    onPayTypePickConfirm(id: String) :void {
-        this.payTypeOption.visible = false;
-        this.createOrder();
     }
 
 
@@ -181,35 +116,21 @@ export default class BookOrder extends Mixins(PageMixins) {
         if (query && query.bookId) {
             this.bookGetDetailReq({bookId: query.bookId})
         }
-        this.payTypeGetListReq();
     }
 
 
     async orderAddReq(parmas: any) {
         try {
             this.payLoading = true;
-           const data = await apiOrder.orderAdd.exec(parmas);
-           const {payParams} = data;
-           const {payUrl} =payParams;
-           window.location.href = payUrl;
+           const {data} = await apiOrder.orderAdd.exec(parmas);
+            this.$toast('购买成功！')
+            this.$router.push({name: 'OrderFinish', query: {status: '1'}})
            this.payLoading = false;
         } catch (error) {
             console.log(error)
             this.payLoading = false;
         }
     }
-
-
-    async payTypeGetListReq() {
-        try {
-            const res = await apiOrder.payTypeGetList.exec({});
-            this.payTypeOption.data = res;
-            this.payTypeId = res[0].payTypeId;
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
 
     async bookGetDetailReq(parmas: any) {
         try {

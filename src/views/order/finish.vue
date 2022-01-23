@@ -117,6 +117,10 @@ export default class OrderFinish extends Mixins(PageMixins) {
 
     init() :void{
         const query = this.$route.query;
+        if (query && query.status === '1') {
+            this.billData = {orderState: 10}
+            return;
+        }
         if (query.orderId) {
             this.getUserOrderDetailRequest({orderId: query.orderId});
         }

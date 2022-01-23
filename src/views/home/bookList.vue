@@ -1,6 +1,12 @@
 <template>
     <div class="pane">
-        <div class="pane__title">{{$t('page.home.recommend')}}</div>
+        <div class="pane__title">
+            <span>{{$t('page.home.recommend')}}</span>
+            <span class="pane__title-rt click-list" @click="goPage('/home/category', {isGood: 1, title: '精品推荐'})">
+                <span class="pane__title-text">查看更多</span>
+                <van-icon class="pane__title-icon" name="arrow" />
+            </span>
+        </div>
         <div class="pane__content">
             <van-list
             v-model="loading"
@@ -33,23 +39,25 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Mixins } from 'vue-property-decorator';
 import BookTemp from '@/components/book-temp.vue';
 import api from '@/api/book';
+import PageMixins from "@/mixins/page-mixins";
 
 @Component({
     components: {
         BookTemp
     }
 })
-export default class BookList extends Vue {
+export default class BookList extends Mixins(PageMixins) {
     
     loading: boolean = true;
     finished: boolean = false;
     error: boolean = false;
     pagination: any = {
         pageIndex: 1,
-        pageSize: 10
+        pageSize: 10,
+        isGood: 1
     }
     list: any[] = []
 
@@ -78,7 +86,8 @@ export default class BookList extends Vue {
                 pageIndex,
                 pageSize,
                 totalCount,
-                totalPage
+                totalPage,
+                isGood: 1
             }
             if (pageIndex >= totalPage) {
                 this.finished = true;
@@ -109,6 +118,17 @@ export default class BookList extends Vue {
             position: relative;
             font-size: @text-size5;
             color: @text-color1;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            &-text {
+                color: @text-color3;
+                font-size: @text-size3;
+            }
+            &-icon {
+                vertical-align: text-bottom;
+                color: @text-color3;
+            }
             &::after {
                 content: '';
                 width: 2px;
@@ -128,6 +148,7 @@ export default class BookList extends Vue {
             width: 230px;
             .img {
                 width: 100%;
+                height: 320px;
             }
             .title {
                 line-height: 34px;
