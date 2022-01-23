@@ -124,7 +124,7 @@ export default class HomeCategory extends Mixins(PageMixins) {
         this.bookGetListRequest(parmas, 'reflash')
     }
 
-    async bookGetListRequest(parmas: any, reflash: string) {
+    async bookGetListRequest(parmas: any, reflash?: string) {
         try {
             this.loading = true;
             const {resultList, pageIndex, pageSize, totalCount, totalPage} = await api.bookGetList.exec(parmas);
