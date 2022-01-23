@@ -5,10 +5,12 @@
 	@on-retry="initPage"
 	:empty="isEmpty"
     >
-        <van-tabs @change="onTabChange" v-model="tabActive" swipeable sticky color="rgba(245, 156, 1, 1">
-            <van-tab title="书架"></van-tab>
-            <van-tab title="浏览历史"></van-tab>
-        </van-tabs>
+        <template slot="header">
+            <van-tabs @change="onTabChange" v-model="tabActive" swipeable sticky color="rgba(245, 156, 1, 1">
+                <van-tab title="书架"></van-tab>
+                <van-tab title="浏览历史"></van-tab>
+            </van-tabs>
+        </template>
         <!-- 书架管理 -->
         <div class="shelf" v-if="tabActive === 0">
             <div class="shelf__title">
