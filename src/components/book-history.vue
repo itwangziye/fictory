@@ -17,15 +17,7 @@
             </p>
 
             <div class="book-session">
-                <div class="tag">
-                    <van-tag class="tag__item" plain type="warning">{{opt.bookTypeName}}</van-tag>
-                    <van-tag class="tag__item" plain type="primary">{{opt.bookStateText}}</van-tag>
-                    <!-- <van-tag color="#7232dd" plain>标签</van-tag> -->
-                </div>
-                <div class="author">
-                    <van-icon name="user-o" />
-                    <span class="author__text">{{opt.authorName}}</span>
-                </div>
+                浏览时间：{{opt.timeRead}}
             </div>
         </div>
     </div>
@@ -36,7 +28,7 @@
 import { Component, Vue, Prop} from 'vue-property-decorator';
 
 @Component
-export default class BookTemp extends Vue {
+export default class BookHistory extends Vue {
 
     @Prop() opt?: any;
 
@@ -76,20 +68,8 @@ export default class BookTemp extends Vue {
             padding-left: 20px;
             .book-session {
                 padding-top: 20px;
-                .author {
-                    color: @text-color3;
-                    font-size: @text-size5;
-                    display: flex;
-                    align-items: center;
-                    padding-top: 20px;
-                    &__text {
-                        display: inline-block;
-                        padding-left: 8px;
-                    }
-                }
-                .tag__item {
-                    margin-right: 20px;
-                }
+                color: @text-color4;
+                font-size: @text-size5;
             }
             .title {
                 color: @text-color1;

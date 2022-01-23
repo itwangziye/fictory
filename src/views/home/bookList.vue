@@ -59,6 +59,10 @@ export default class BookList extends Vue {
         console.log(pageIndex)
         this.bookGetListRequest({...this.pagination, pageIndex})
     }
+    handlerBookDetail(item: any) :void{
+        const {bookId} = item;
+        this.$router.push({name: 'Book', query: {bookId}})
+    }
 
     init() :void {
         this.bookGetListRequest(this.pagination);

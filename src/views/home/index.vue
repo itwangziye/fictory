@@ -33,7 +33,11 @@
             </div>
 
             <div class="home__cell">
-                <div class="home__cell-item click-able" v-for="(item, index) in homeCellOptions" :key="index">
+                <div class="home__cell-item click-able" 
+                v-for="(item, index) in homeCellOptions" 
+                :key="index"
+                @click="goPage(item.path)"
+                >
                     <div :class="['icon', item.key]">
                         <img  class="img" :src="item.icon" :alt="item.label" srcset="">
                     </div>
@@ -44,7 +48,7 @@
             <div class="pane" v-if="hotOptions && hotOptions.length">
                 <div class="pane__title">
                     <span>{{$t('page.home.hot')}}</span>
-                    <span class="pane__title-rt click-list">
+                    <span class="pane__title-rt click-list" @click="goPage('/home/category', {isHot: 1, title: '热门小说'})">
                         <span class="pane__title-text">查看更多</span>
                         <van-icon class="pane__title-icon" name="arrow" />
                     </span>
@@ -54,7 +58,7 @@
                         <li class="hot__list-item click-list" @click="handlerBookDetail(item)" 
                         v-for="(item, index) in hotOptions" 
                         :key="index">
-                            <van-image :src="item.bookImageUrl" class="img">
+                            <van-image fit="cover" :src="item.bookImageUrl" class="img">
                                 <template v-slot:loading>
                                     <van-loading type="spinner" size="20" />
                                 </template>
@@ -69,7 +73,7 @@
             <div class="pane" v-if="freeOptions && freeOptions.length">
                 <div class="pane__title">
                     <span>{{$t('page.home.free')}}</span> 
-                    <span class="pane__title-rt click-list">
+                    <span class="pane__title-rt click-list" @click="goPage('/home/category', {isFree: 1, title: '限时免费'})">
                         <span class="pane__title-text">查看更多</span>
                         <van-icon class="pane__title-icon" name="arrow" />
                     </span>
@@ -77,7 +81,7 @@
                 <div class="pane__content">
                     <ul class="hot__list">
                         <li class="hot__list-item click-list" @click="handlerBookDetail(item)" v-for="(item, index) in freeOptions" :key="index">
-                            <van-image :src="item.bookImageUrl" class="img">
+                            <van-image fit="cover" :src="item.bookImageUrl" class="img">
                                 <template v-slot:loading>
                                     <van-loading type="spinner" size="20" />
                                 </template>
@@ -120,10 +124,10 @@ export default class Home extends Mixins(PageMixins) {
     hotOptions: any[] = [];
     freeOptions: any[] = [];
     homeCellOptions: any[] = [
-        {icon: require('@/assets/home/home_cell1.png'), lable: '分类', key: 'cell1'},
-        {icon: require('@/assets/home/home_cell2.png'), lable: '畅销榜', key: 'cell2'},
-        {icon: require('@/assets/home/home_cell3.png'), lable: 'VIP人气榜', key: 'cell3'},
-        {icon: require('@/assets/home/home_cell4.png'), lable: '连载', key: 'cell4'}
+        {icon: require('@/assets/home/home_cell1.png'), lable: '分类', key: 'cell1', path: '/home/category?type=category'},
+        {icon: require('@/assets/home/home_cell2.png'), lable: '畅销榜', key: 'cell2', path: '/home/category?isSale=1&title=畅销榜'},
+        {icon: require('@/assets/home/home_cell3.png'), lable: 'VIP人气榜', key: 'cell3', path: '/home/category?isVip=1&title=VIP畅销榜'},
+        {icon: require('@/assets/home/home_cell4.png'), lable: '连载', key: 'cell4', path: '/home/category?isisContinueVip=1&title=连载'}
     ]
 
     onSearchFocus() {
@@ -262,9 +266,11 @@ export default class Home extends Mixins(PageMixins) {
             display: flex;
             padding-bottom: 24px;
             flex-wrap: wrap;
-            justify-content: space-between;
             &-item {
                 width: 230px;
+                &:nth-child(3n + 2) {
+                    margin: 0 5px;
+                }
                 .img {
                     width: 100%;
                 }

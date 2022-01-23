@@ -5,7 +5,12 @@
 	@on-retry="initPage"
 	:empty="isEmpty"
     >
-        <div class="shelf">
+        <van-tabs @change="onTabChange" v-model="tabActive" swipeable sticky color="rgba(245, 156, 1, 1">
+            <van-tab title="书架"></van-tab>
+            <van-tab title="浏览历史"></van-tab>
+        </van-tabs>
+        <!-- 书架管理 -->
+        <div class="shelf" v-if="tabActive === 0">
             <div class="shelf__title">
                 <div class="title">{{$t('page.shelf.tip')}}</div>
                 <div class="operate click-list" @click="handleManage">{{isManage?$t('page.shelf.finish') : $t('page.shelf.manage')}}</div>
@@ -36,6 +41,29 @@
             </van-checkbox-group>
             </van-list>
         </div>
+        <!-- 浏览记录 -->
+        <div class="record" v-else>
+            <div class="record__content">
+                <van-list
+                v-model="loading"
+                :error.sync="error"
+                :finished="finished"
+                :loading-text="$t('common.components.loading')"
+                :finished-text="$t('common.components.noMore')"
+                :error-text="$t('common.components.moreErrorTip')"
+                @load="onLoad"
+                >
+                    <ul class="record__list">
+                        <book-temp 
+                        :opt="item"
+                        v-for="(item, index) in list" 
+                        :key="index"
+                        >
+                        </book-temp>
+                    </ul>
+                </van-list>
+            </div>
+        </div>
         <template v-slot:footer v-if="isManage">
             <div class="shelf__footer">
                 <van-checkbox @change="handlerSelectAll" v-model="isAll" checked-color="rgba(245, 156, 1, 1)">{{$t('page.shelf.all')}}</van-checkbox>
@@ -48,7 +76,7 @@
 
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator';
-import BookTemp from '@/components/book-temp.vue';
+import BookTemp from '@/components/book-history.vue';
 import api from '@/api/book';
 import pagecontain from '@/components/pagecontain.vue';
 import PageMixins from "@/mixins/page-mixins"
@@ -72,12 +100,24 @@ export default class BookList extends Mixins(PageMixins) {
     bookId: any[] = [];
     isManage: boolean = false;
     isAll: boolean = false;
+    tabActive: number = 0;
 
     onLoad() :void{
         let {pageIndex} = this.pagination;
         pageIndex = ++pageIndex;
         console.log(pageIndex)
         this.bookGetListRequest({...this.pagination, pageIndex})
+    }
+
+    onTabChange() {
+        this.list = [];
+        this.isManage = false;
+        this.isAll = false;
+        this.pagination = {
+            pageIndex: 1,
+            pageSize: 10
+        }
+        this.initPage();
     }
 
     get isEmpty() :boolean {
@@ -125,7 +165,12 @@ export default class BookList extends Mixins(PageMixins) {
     async bookGetListRequest(parmas: any, reflash?: boolean) {
         try {
             this.loading = true;
-            const {resultList, pageIndex, pageSize, totalCount, totalPage} = await api.bookCollectGetList.exec(parmas)
+            const {tabActive} = this;
+            let apiIns = api.bookCollectGetList;
+            if (tabActive === 1) {
+                apiIns = api.readRecordGetList;
+            }
+            const {resultList, pageIndex, pageSize, totalCount, totalPage} = await apiIns.exec(parmas)
             if (reflash) {
                 this.list = resultList;
             } else {
@@ -170,6 +215,9 @@ export default class BookList extends Mixins(PageMixins) {
 </script>
 
 <style lang="less" scoped>
+    .record {
+        margin-top: 24px;
+    }
     .shelf {
         padding: 0 24px;
         &__title {

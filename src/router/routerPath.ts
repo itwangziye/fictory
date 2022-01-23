@@ -12,6 +12,11 @@ const routes: Array<RouteConfig> = [
 		meta: {keepAlive: true}
 	},
 	{
+		path: '/home/category',
+		name: 'HomeCategory',
+		component: () => import('@/views/home/category/index.vue'),
+	},
+	{
 		path: '/shelf',
 		name: 'Shelf',
 		component: () => import('@/views/shelf/index.vue'),

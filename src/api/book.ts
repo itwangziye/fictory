@@ -29,5 +29,10 @@ export default {
     bookCollectRemove: new MApi({
 		serviceUrl: '/bookCollect/remove',
         method: 'post'
-    })
+    }),
+    // 阅读记录
+    readRecordGetList: new MApi({
+		serviceUrl: '/readRecord/getList',
+        method: 'get'
+    }),
 }
