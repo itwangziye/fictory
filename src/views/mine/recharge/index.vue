@@ -42,7 +42,7 @@
              </ul>
 
             <div class="recharge__button">
-                <van-button :class="['button']"  round block type="warning">确定购买</van-button>
+                <van-button :class="['button']" :loading="loading" loading-text="正在提交···" round block type="warning" @click="handerToBuy">确定购买</van-button>
              </div>
 
             <div class="recharge__content-title">充值说明</div>
@@ -55,6 +55,41 @@
 
 
          </div>
+
+         <!-- 支付方式选择 -->
+        <van-popup 
+            v-model="payTypeOption.visible" 
+            position="bottom"
+            class="pay__mode"
+        >
+            <div class="pay__mode-warp">
+                <div class="pay__mode-title">选择支付方式</div>
+                <div class="pay__mode-close" @click="payTypeOption.visible = false"></div>
+                <ul class="pay__mode-main">
+                    <van-radio-group v-model="payTypeId" @change="onPayTypePickConfirm">
+                        <li class="pay__mode-item" v-for="(item) in payTypeOption.data" :key="item.payTypeId">
+                            <van-radio 
+                            :name="item.payTypeId" 
+                            checked-color="#3276ff"
+                            >
+                                <div class="pay__mode-list">
+                                    <van-image lazy-load fit="cover" :src="item.bigImageUrl" class="img">
+                                        <template v-slot:loading>
+                                            <van-loading type="spinner" size="20" />
+                                        </template>
+                                    </van-image>
+                                    <div>
+                                        <span class="title">{{item.payTypeName}}</span> 
+                                        <div class="dec">{{item.payTypeText}}</div>
+                                    </div>
+                                </div>
+                                
+                            </van-radio>
+                        </li>
+                    </van-radio-group>
+                </ul>
+            </div>
+        </van-popup>
     </div>
   </pagecontain>
 </template>
@@ -62,10 +97,9 @@
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
 import pagecontain from "@/components/pagecontain.vue";
-import { Storage } from "@/utils/storage";
-import { mapGetters } from "vuex";
 import PageMixins from "@/mixins/page-mixins";
 import api from '@/api/mine';
+import orderApi from '@/api/order'
 
 @Component({
   components: {
@@ -73,10 +107,15 @@ import api from '@/api/mine';
   }
 })
 export default class Recharge extends Mixins(PageMixins) {
-
     rechargeTemplate: any = [];
     rechargeDetail: any = {};
     activeId: number = 0;
+    loading: boolean = false;
+    payTypeOption: any = {
+        visible: false,
+        data: []
+    }
+    payTypeId: string = ''
 
     get listMap() :any {
         const {rechargeTemplate} = this;
@@ -106,9 +145,64 @@ export default class Recharge extends Mixins(PageMixins) {
         this.rechargeDetail = data;
     }
 
+    async rechargeRecordAddReq(parmas: any) {
+        try {
+            this.loading = true;
+            const data = await orderApi.rechargeRecordAdd.exec(parmas);
+            const {payUrl} = data;
+            window.location.href = payUrl;
+            this.loading = false;
+        } catch (error) {
+            this.loading = false;
+            console.log(error)
+        }
+    }
+    async payTypeGetListReq() {
+        try {
+            const res = await orderApi.payTypeGetList.exec({});
+            this.payTypeOption.data = res;
+            this.payTypeId = res[0].payTypeId;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     handleChargeItem(item: any) {
         this.activeId = item.rechargeTemplateId;
     }
+
+    // 选择支付方式
+    onPayTypePickConfirm(id: String) :void {
+        this.payTypeOption.visible = false;
+        this.createOrder();
+    }
+    
+    handerToBuy() :void {
+        if (!this.isLogin) {
+            const redirect = this.$route.fullPath;
+            this.$router.push({name: 'Login', query: {redirect}});
+            return;
+        };
+        if (!this.activeId) {
+            this.$toast('请选择充值类型！')
+            return;
+        }
+        if (this.payTypeOption.data.length > 1) {
+            this.payTypeOption.visible = true;
+        } else {
+            this.createOrder();
+        }
+    }
+
+    createOrder() {
+        const {payTypeId, activeId: rechargeTemplateId} = this;
+        const parmas = {
+            rechargeTemplateId,
+            payTypeId
+        }
+        this.rechargeRecordAddReq(parmas)
+    }
+
 
     
 
@@ -126,6 +220,7 @@ export default class Recharge extends Mixins(PageMixins) {
 
     created() {
         this.init();
+        this.payTypeGetListReq();
     }
 }
 </script>
