@@ -85,7 +85,7 @@ export default class OrderFinish extends Mixins(PageMixins) {
     async getUserOrderDetailRequest(parmas: any, polling: boolean = false) {
         if(!polling) this.setPageStatus('loading');
         try {
-            const res = await orderApi.orderQueryState.exec(parmas);
+            const res = await orderApi.rechargeRecordQueryState.exec(parmas);
             this.setPageStatus();
             this.billData = res;
             if (this.isSuccess) {

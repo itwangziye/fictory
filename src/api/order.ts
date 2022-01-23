@@ -13,6 +13,10 @@ export default {
 		serviceUrl: '/order/queryState',
         method: 'get'
     }),
+    rechargeRecordQueryState: new MApi({
+		serviceUrl: '/anon/rechargeRecord/queryState',
+        method: 'get'
+    }),
     payTypeGetList: new MApi({
 		serviceUrl: '/anon/payType/getList',
         method: 'get',
