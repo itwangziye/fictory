@@ -36,7 +36,7 @@
                          <span>元</span>
                      </div>
                      <div class="corn__item-info">
-                         {{item.templateName}}
+                        {{item.bookCoins}}<span v-if="item.giftBookCoins">{{`+${item.giftBookCoins}`}}</span>书币
                      </div>
                  </li>
              </ul>
@@ -49,7 +49,7 @@
 
             <div class="recharge__content-ruler">
                 <div class="ruler__text">
-                    这是后台配置的规则
+                    {{rulerText}}
                 </div>
             </div>
 
@@ -99,7 +99,8 @@ import { Component, Mixins } from "vue-property-decorator";
 import pagecontain from "@/components/pagecontain.vue";
 import PageMixins from "@/mixins/page-mixins";
 import api from '@/api/mine';
-import orderApi from '@/api/order'
+import orderApi from '@/api/order';
+import comApi from '@/api/common'
 
 @Component({
   components: {
@@ -111,11 +112,12 @@ export default class Recharge extends Mixins(PageMixins) {
     rechargeDetail: any = {};
     activeId: number = 0;
     loading: boolean = false;
+    rulerText: string = '';
     payTypeOption: any = {
         visible: false,
         data: []
     }
-    payTypeId: string = ''
+    payTypeId: string = '';
 
     get listMap() :any {
         const {rechargeTemplate} = this;
@@ -143,6 +145,11 @@ export default class Recharge extends Mixins(PageMixins) {
     async accountGetDetailReq(parmas: any) {
         const data = await api.accountGetDetail.exec(parmas) 
         this.rechargeDetail = data;
+    }
+
+    async settingGetValueReq(parmas: any) {
+        const data = await comApi.settingGetValue.exec(parmas) 
+        this.rulerText = data;
     }
 
     async rechargeRecordAddReq(parmas: any) {
@@ -211,6 +218,7 @@ export default class Recharge extends Mixins(PageMixins) {
             this.setPageStatus('loading');
             await this.bookGetDetailReq({});
             await this.accountGetDetailReq({})
+            await this.settingGetValueReq({settingCode: 'recharge_description'})
             this.setPageStatus();
         } catch (error) {
             this.setPageStatus('error');
