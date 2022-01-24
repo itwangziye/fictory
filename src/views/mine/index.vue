@@ -141,7 +141,7 @@ export default class Mine extends Mixins(PageMixins) {
 		justify-content: center;
 		align-items: center;
 		height: 500px;
-		background-image: url("../../assets/mine/mine__bg.png");
+		background-image: url("http://lckb1.oss-cn-hongkong.aliyuncs.com/20220124/1485602992102182912.png");
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
 		.img {

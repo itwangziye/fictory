@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="goods__status-operate">
-                    <van-button @click="handlerCheckBill" class="button" round  type="info" >{{isSuccess ? '查看订单': '重新支付'}}</van-button>
+                    <!-- <van-button @click="handlerCheckBill" class="button" round  type="info" >{{isSuccess ? '查看订单': '重新支付'}}</van-button> -->
                     <van-button @click="onClickLeft" class="button" round  plain type="info" >{{isSuccess? '返回首页': '已完成支付'}}</van-button>
                 </div>                
             </div>          
