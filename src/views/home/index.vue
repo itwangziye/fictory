@@ -11,8 +11,8 @@
             ></van-nav-bar>
 		</template>
         <div class="home">
-            <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-                <van-swipe-item v-for="(item, index) in bannerOptions" :key="index">
+            <van-swipe class="my-swipe" :autoplay="bannerIntervals" indicator-color="white">
+                <van-swipe-item @click="handerItem(item)" v-for="(item, index) in bannerOptions" :key="index">
                     <van-image :src="item.imageUrl" class="img">
                         <template v-slot:loading>
                             <van-loading type="spinner" size="20" />
@@ -130,6 +130,15 @@ export default class Home extends Mixins(PageMixins) {
         {icon: require('@/assets/home/home_cell4.png'), lable: '连载', key: 'cell4', path: '/home/category?isisContinueVip=1&title=连载'}
     ]
 
+    get bannerIntervals() :number {
+        const {bannerOptions} = this;
+        if (!bannerOptions || !bannerOptions.length) return 3000
+        const [first, ...rest] = bannerOptions;
+        const {intervals} = first;
+        if (intervals) return intervals * 1000
+        return 3000;
+    }
+
     onSearchFocus() {
         this.$router.push({path: 'book/search'})
     }
@@ -138,6 +147,11 @@ export default class Home extends Mixins(PageMixins) {
     handlerBookDetail(item: any) :void{
         const {bookId} = item;
         this.$router.push({name: 'Book', query: {bookId}})
+    }
+
+    handerItem(item: any) :void{
+        const {pageUrl} = item;
+        if (pageUrl) window.location.href = pageUrl;
     }
 
     async getListBannerReq() {

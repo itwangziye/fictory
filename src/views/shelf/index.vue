@@ -66,8 +66,9 @@
                 </van-list>
             </div>
         </div>
-        <template v-slot:footer v-if="isManage">
-            <div class="shelf__footer">
+        <template v-slot:footer >
+            <shelf-recommend v-if="tabActive === 0"></shelf-recommend>
+            <div class="shelf__footer" v-if="isManage">
                 <van-checkbox @change="handlerSelectAll" v-model="isAll" checked-color="rgba(245, 156, 1, 1)">{{$t('page.shelf.all')}}</van-checkbox>
                 <span class="del" @click="handerDel">{{$t('page.shelf.del')}}</span>
             </div>
@@ -79,6 +80,7 @@
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator';
 import BookTemp from '@/components/book-history.vue';
+import ShelfRecommend from './shelf-recommend.vue';
 import api from '@/api/book';
 import pagecontain from '@/components/pagecontain.vue';
 import PageMixins from "@/mixins/page-mixins"
@@ -86,6 +88,7 @@ import PageMixins from "@/mixins/page-mixins"
 @Component({
     components: {
         BookTemp,
+        ShelfRecommend,
         pagecontain
     }
 })
@@ -274,6 +277,8 @@ export default class BookList extends Mixins(PageMixins) {
             }
         }
     }
+
+  
     .shelf__footer {
         display: flex;
         justify-content: space-between;

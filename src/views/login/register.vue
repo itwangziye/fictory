@@ -14,7 +14,7 @@
                     <div class="tp">{{$t('page.register.register')}}</div>
                     <div class="dn">Welcome</div>
                 </div>
-            </div>
+            </div> 
 
             <div class="login__content">
                 <div class="login__content-logo">
