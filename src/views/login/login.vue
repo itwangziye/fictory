@@ -152,7 +152,7 @@ export default class Login extends Mixins(PageMixins, LoginMixins) {
                     align-items: center;
                     font-size: 50px;
                     color: @white;
-                    background-image: url('http://img-cdn.filefactory.com/embed/xl/1e24rlcgyfz6.png');
+                    background-image: url('http://lckb1.oss-cn-hongkong.aliyuncs.com/20220125/1485647509668892672.png');
                     background-size: 100%;
                 }
             }

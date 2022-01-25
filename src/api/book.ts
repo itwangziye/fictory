@@ -35,4 +35,9 @@ export default {
 		serviceUrl: '/readRecord/getList',
         method: 'get'
     }),
+    // 获取价格
+    bookGetPrice: new MApi({
+		serviceUrl: '/anon/book/getPrice',
+        method: 'get'
+    }),
 }

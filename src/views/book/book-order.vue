@@ -27,7 +27,7 @@
                         <div class="title">{{bookDetail.bookName}}</div>
                         <div class="content">
                             <div class="lebel">{{$t("page.book_order.buy_label")}}</div>
-                            <div>{{$t('page.book_order.buy_value')}}</div>
+                            <div>{{bookDetail.payContent}}</div>
                         </div>
                     </div>
                 </div>
@@ -113,8 +113,11 @@ export default class BookOrder extends Mixins(PageMixins) {
     init() {
         const query = this.$route.query;
         this.query = query;
-        if (query && query.bookId) {
-            this.bookGetDetailReq({bookId: query.bookId})
+        const {bookId, bookChapterId} = query;
+        if (bookId && bookChapterId) {
+            this.bookGetDetailReq({bookChapterId})
+        } else if (bookId) {
+            this.bookGetDetailReq({bookId})
         }
     }
 
@@ -135,7 +138,7 @@ export default class BookOrder extends Mixins(PageMixins) {
     async bookGetDetailReq(parmas: any) {
         try {
             this.setPageStatus('loading');
-           const data = await api.bookGetDetail.exec(parmas) 
+           const data = await api.bookGetPrice.exec(parmas) 
            this.bookDetail = data;
            this.setPageStatus();
         } catch (error) {
