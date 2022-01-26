@@ -127,7 +127,7 @@ export default class Home extends Mixins(PageMixins) {
         {icon: require('@/assets/home/home_cell1.png'), lable: '分类', key: 'cell1', path: '/home/category?type=category'},
         {icon: require('@/assets/home/home_cell2.png'), lable: '畅销榜', key: 'cell2', path: '/home/category?isSale=1&title=畅销榜'},
         {icon: require('@/assets/home/home_cell3.png'), lable: 'VIP人气榜', key: 'cell3', path: '/home/category?isVip=1&title=VIP畅销榜'},
-        {icon: require('@/assets/home/home_cell4.png'), lable: '连载', key: 'cell4', path: '/home/category?isisContinueVip=1&title=连载'}
+        {icon: require('@/assets/home/home_cell4.png'), lable: '连载', key: 'cell4', path: '/home/category?isisContinue=1&title=连载'}
     ]
 
     get bannerIntervals() :number {
