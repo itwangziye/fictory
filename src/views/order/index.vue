@@ -7,22 +7,30 @@
             <book-header
             :title="$t('page.order.title')"
             ></book-header>
+            <van-tabs @change="onTabChange" v-model="tabActive" color="rgba(245, 156, 1, 1">
+                <van-tab title="消费记录"></van-tab>
+                <van-tab title="充值记录"></van-tab>
+            </van-tabs>
         </template>
-        <van-list
-        v-model="loading"
-        :error.sync="error"
-        :finished="finished"
-        :loading-text="$t('common.components.loading')"
-        :finished-text="$t('common.components.noMore')"
-        :error-text="$t('common.components.moreErrorTip')"
-        @load="onLoad"
-        >
-            <div class="order">
-                <order-temp :opt="item" v-for="(item, index) in list" :key="index">
-
-                </order-temp>
-            </div>
-        </van-list>
+        <div class="order">
+            <van-list
+            v-model="loading"
+            :error.sync="error"
+            :finished="finished"
+            :loading-text="$t('common.components.loading')"
+            :finished-text="$t('common.components.noMore')"
+            :error-text="$t('common.components.moreErrorTip')"
+            @load="onLoad"
+            >
+                <div class="order" v-if="tabActive === 0">
+                    <order-temp  :opt="item" v-for="(item, index) in list" :key="index"></order-temp>
+                </div>
+                <div class="charge" v-else>
+                    <van-cell v-for="(item, index) in list" :key="index" center :title="item.rechargeContent" :value="`￥${item.rechargePrice}`" :label="item.timePay" />
+                </div>
+            </van-list>
+        </div>
+        
     </pagecontain>
 </template>
 
@@ -50,6 +58,8 @@ export default class BookMenu extends Mixins(PageMixins) {
         pageSize: 10
     }
     list: any[] = [];
+    tabActive: number = 0;
+
 
     get isEmpty() :boolean {
 		const list = this.list;
@@ -58,6 +68,15 @@ export default class BookMenu extends Mixins(PageMixins) {
 		}
 		return false;
 	}
+
+    onTabChange() {
+        this.list = [];
+        this.pagination = {
+            pageIndex: 1,
+            pageSize: 10
+        }
+        this.init();
+    }
 
 
     onLoad() :void{
@@ -74,7 +93,12 @@ export default class BookMenu extends Mixins(PageMixins) {
     async getListRequest(parmas: any) {
         try {
             this.loading = true;
-            const {resultList, pageIndex, pageSize, totalCount, totalPage} = await api.orderGetList.exec(parmas)
+            const {tabActive} = this;
+            let apiIns = api.orderGetList;
+            if (tabActive === 1) {
+                apiIns = api.rechargeRecordGetList;
+            }
+            const {resultList, pageIndex, pageSize, totalCount, totalPage} = await apiIns.exec(parmas)
             this.list = this.list.concat(resultList);
             this.loading = false;
             this.pagination = {

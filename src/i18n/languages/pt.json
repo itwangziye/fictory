@@ -8,6 +8,7 @@
             "collect": "Coleção",
             "mine": "minha"
         },
+        "coin": "Moeda do livro",
         "components": {
             "loading": "Carregando ···",
             "errorTip": "A solicitação de dados falhou, tente novamente",
@@ -16,7 +17,8 @@
             "noMore": "No More",
             "moreErrorTip": "A solicitação falhou, clique para recarregar",
             "cancel_text": "Cancelar",
-            "confirm_text": "Certo"
+            "confirm_text": "Certo",
+            "pay__title": "Por favor selecione o modo de pagamento"
         }
     },
     "page": {
@@ -32,7 +34,23 @@
             "login": "Por favor, inscreva-se",
             "record": "Registro de Compra",
             "user": "Informações pessoais",
-            "account_save": "Segurança da conta"
+            "charge": "Reservar recarga de dinheiro",
+            "account_save": "Segurança da conta",
+            "open_vip": "Abrir assinatura VIP",
+            "vip_dec": "Aproveite todo o conteúdo maravilhoso de toda a rede",
+            "open_vip_text1": "Ative agora",
+            "open_vip_text2": "Renovar agora",
+            "end": "fim"
+        },
+        "mine_recharge": {
+            "page__title": "recarrega",
+            "info__title": "meu saldo",
+            "vip__text": "VIP é válido até",
+            "content__title": "Reservar recarga de dinheiro",
+            "confirm__text": "confirmar compra",
+            "recharge__info": "Instruções de recarga",
+            "open__vip__text": "Abrir vip",
+            "select__charge__info": "Selecione um tipo de recarga"
         },
         "book": {
             "watch": "Assistir agora",
@@ -79,7 +97,9 @@
             "register_info": "Volte ao login"
         },
         "order": {
-            "title": "Histórico de compras"
+            "title": "Histórico de compras",
+            "tab__shop": "Registro de despesas",
+            "tab__charge": "Registro de recarga"
         },
         "shelf": {
             "tip": "Minha coleção",

@@ -8,6 +8,7 @@
             "collect": "收藏",
             "mine": "我的"
         },
+        "coin": "书币",
         "components": {
             "loading": "加载中···",
             "errorTip": "数据请求失败，请重试",
@@ -16,7 +17,8 @@
             "noMore": "没有更多",
             "moreErrorTip": "请求失败，点击重新加载",
             "cancel_text": "取消",
-            "confirm_text": "确定"
+            "confirm_text": "确定",
+            "pay__title": "请选择支付方式"
         }
     },
     "page": {
@@ -32,7 +34,23 @@
             "login": "请登录",
             "record": "购买记录",
             "user": "个人资料",
-            "account_save": "账户安全"
+            "charge": "书币充值",
+            "account_save": "账户安全",
+            "open_vip": "开通VIP会员",
+            "vip_dec": "畅享全网所有精彩内容",
+            "open_vip_text1": "立即开通",
+            "open_vip_text2": "立即续费",
+            "end": "截止"
+        },
+        "mine_recharge": {
+            "page__title": "充值",
+            "info__title": "我的余额",
+            "vip__text": "VIP有效期至",
+            "content__title": "书币充值",
+            "confirm__text": "确定购买",
+            "recharge__info": "充值说明",
+            "open__vip__text": "开通vip",
+            "select__charge__info": "请选择充值类型"
         },
         "book": {
             "watch": "立即观看",
@@ -79,7 +97,9 @@
             "register_info": "返回登录"
         },
         "order": {
-            "title": "购买记录"
+            "title": "购买记录",
+            "tab__shop": "消费记录",
+            "tab__charge": "充值记录"
         },
         "shelf": {
             "tip": "我的收藏",

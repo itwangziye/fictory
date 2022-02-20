@@ -8,6 +8,7 @@
             "collect": "收藏",
             "mine": "我的"
         },
+        "coin": "書幣",
         "components": {
             "loading": "加載中···",
             "errorTip": "數據請求失敗，請重試",
@@ -16,7 +17,8 @@
             "noMore": "沒有更多",
             "moreErrorTip": "請求失敗，點擊重新加載",
             "cancel_text": "取消",
-            "confirm_text": "確定"
+            "confirm_text": "確定",
+            "pay__title": "請選擇支付方式"
         }
     },
     "page": {
@@ -32,7 +34,20 @@
             "login": "請登錄",
             "record": "購買記錄",
             "user": "個人資料",
-            "account_save": "賬戶安全"
+            "charge": "書幣充值",
+            "account_save": "賬戶安全",
+            "open_vip": "開通VIP會員",
+            "vip_dec": "暢享全網所有精彩內容",
+            "open_vip_text1": "立即開通",
+            "open_vip_text2": "立即續費",
+            "end": "截止"
+        },
+        "mine_recharge": {
+            "info__title": "我的餘額",
+            "vip__text": "VIP有效期至",
+            "content__title": "書幣充值",
+            "confirm__text": "確定購買",
+            "recharge__info": "充值說明"
         },
         "book": {
             "watch": "立即觀看",
@@ -79,7 +94,9 @@
             "register_info": "返回登錄"
         },
         "order": {
-            "title": "購買記錄"
+            "title": "購買記錄",
+            "tab__shop": "消費記錄",
+            "tab__charge": "充值記錄"
         },
         "shelf": {
             "tip": "我的收藏",

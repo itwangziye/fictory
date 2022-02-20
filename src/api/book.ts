@@ -29,5 +29,15 @@ export default {
     bookCollectRemove: new MApi({
 		serviceUrl: '/bookCollect/remove',
         method: 'post'
-    })
+    }),
+    // 阅读记录
+    readRecordGetList: new MApi({
+		serviceUrl: '/readRecord/getList',
+        method: 'get'
+    }),
+    // 获取价格
+    bookGetPrice: new MApi({
+		serviceUrl: '/anon/book/getPrice',
+        method: 'get'
+    }),
 }

@@ -3,74 +3,89 @@
         "title": "Fiction Content",
         "tabbar": {
             "home": "Home",
-            "cartoon": "Comic",
-            "video": "Video",
-            "collect": "Collection",
+            "cartoon": "Cartoon",
+            "video": "video",
+            "collect": "collect",
             "mine": "mine"
         },
+        "coin": "Book Coin",
         "components": {
-            "loading": "Loading···",
+            "loading": "Loading...",
             "errorTip": "Data request failed, please try again",
             "retry": "Retry",
-            "empty": "No data temporarily",
+            "empty": "No data for now",
             "noMore": "No More",
             "moreErrorTip": "Request failed, click to reload",
             "cancel_text": "Cancel",
-            "confirm_text": "Confirm"
+            "confirm_text": "Confirm",
+            "pay__title": "Please select a payment method"
         }
     },
     "page": {
         "home": {
             "title": "Home",
             "search_input": "Book Title, Author Name",
-            "hot": "Hot Novel",
+            "hot": "Hot Novels",
             "free": "Free for a limited time",
-            "recommend": "Featured Recommendation",
+            "recommend": "Featured Recommendations",
             "tagFree": "Free"
         },
         "mine": {
-            "login": "Please log in",
+            "login": "Please login",
             "record": "Purchase Record",
-            "user": "Personal Information",
-            "account_save": "Account Security"
+            "user": "Profile",
+            "charge": "Book money recharge",
+            "account_save": "Account Safe",
+            "open_vip": "Open VIP membership",
+            "vip_dec": "Enjoy all the wonderful content of the whole network",
+            "open_vip_text1": "Open now",
+            "open_vip_text2": "Renew now",
+            "end": "End"
+        },
+        "mine_recharge": {
+            "info__title": "My balance",
+            "vip__text": "VIP is valid until",
+            "content__title": "Book money recharge",
+            "confirm__text": "Confirm purchase",
+            "recharge__info": "Recharge Instructions"
         },
         "book": {
-            "watch": "Watch Now",
-            "collect": "Collection",
+            "watch": "Watch now",
+            "collect": "collect",
             "un_collect": "Uncollect",
             "menu": "Directory",
-            "open": "Open All",
-            "buy": "Buy Now",
+            "open": "Open all",
+            "buy": "Buy now",
             "more": "More chapters"
         },
         "book_menu": {
-            "title": "Catalog"
+            "title": "Directory"
         },
         "book_cell": {
-            "pre": "Previous Chapter",
-            "next": "Next Chapter",
+            "pre": "Previous chapter",
+            "next": "Next chapter",
             "menu": "Menu",
             "large": "large",
             "mid": "middle",
             "small": "small",
-            "no_pre": "It is already the first chapter",
-            "no_next": "It is the last chapter"
+            "no_pre": "Already the first chapter",
+            "no_next": "Already the last chapter"
         },
         "book_order": {
             "title": "Buy",
             "tip": "Support author creation, continue reading after unlocking",
-            "buy_label": "Payment Details",
+            "buy_label": "Payment Content",
             "buy_value": "All directories",
-            "price_label": "Payment amount",
-            "buy_text": "Go to pay",
-            "buy_dec": "Virtual products cannot be returned after purchase, teenagers please pay with their parents"
+            "price_label": "Payment Amount",
+            "buy_text": "Go to Pay",
+            "buy_dec": "Virtual products are non-refundable after purchase, teenagers should pay with their parents"
         },
         "login": {
             "title": "User Login",
-            "account": "Please enter the account number",
-            "password": "Please enter a password",
+            "account": "Please enter an account number",
+            "password": "Please enter your password",
             "login": "Login",
-            "login_info": "User Registration"
+            "login_info": "User registration"
         },
         "register": {
             "title": "User Registration",
@@ -79,10 +94,12 @@
             "register_info": "Return to login"
         },
         "order": {
-            "title": "Purchase History"
+            "title": "Purchase History",
+            "tab__shop": "Consumption record",
+            "tab__charge": "Charge record"
         },
         "shelf": {
-            "tip": "My Collection",
+            "tip": "My Favorites",
             "manage": "Management",
             "finish": "Finish",
             "del": "Delete",

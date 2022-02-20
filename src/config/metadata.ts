@@ -8,7 +8,7 @@ class Metadata {
     init() {
         store.dispatch('metadata/menuGetLis');
         store.dispatch('metadata/langGetList');
-        store.dispatch('metadata/getExchangeRate');
+        // store.dispatch('metadata/getExchangeRate');
     }
 }
 

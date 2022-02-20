@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="goods__status-operate">
-                    <van-button @click="handlerCheckBill" class="button" round  type="info" >{{isSuccess ? '查看订单': '重新支付'}}</van-button>
+                    <!-- <van-button @click="handlerCheckBill" class="button" round  type="info" >{{isSuccess ? '查看订单': '重新支付'}}</van-button> -->
                     <van-button @click="onClickLeft" class="button" round  plain type="info" >{{isSuccess? '返回首页': '已完成支付'}}</van-button>
                 </div>                
             </div>          
@@ -85,7 +85,7 @@ export default class OrderFinish extends Mixins(PageMixins) {
     async getUserOrderDetailRequest(parmas: any, polling: boolean = false) {
         if(!polling) this.setPageStatus('loading');
         try {
-            const res = await orderApi.orderQueryState.exec(parmas);
+            const res = await orderApi.rechargeRecordQueryState.exec(parmas);
             this.setPageStatus();
             this.billData = res;
             if (this.isSuccess) {
@@ -117,6 +117,10 @@ export default class OrderFinish extends Mixins(PageMixins) {
 
     init() :void{
         const query = this.$route.query;
+        if (query && query.status === '1') {
+            this.billData = {orderState: 10}
+            return;
+        }
         if (query.orderId) {
             this.getUserOrderDetailRequest({orderId: query.orderId});
         }
