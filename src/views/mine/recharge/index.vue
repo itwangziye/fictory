@@ -21,7 +21,7 @@
              <div class="recharge__content-title">{{$t('page.mine_recharge.open__vip__text')}}</div>
              <ul class="vip__list">
                  <li @click="handleChargeItem(item)" :class="['vip__item click-able', {active: activeId === item.rechargeTemplateId}]" v-for="(item, index) in listMap.vip" :key="index">
-                     <div class="vip__item-title">{{item.rechargeTypeText}}</div>
+                     <div class="vip__item-title">{{item.templateName}}</div>
                      <div class="vip__item-text">
                          <span class="num">{{item.price}}</span>
                          <span>{{item.currencyTypeTag}}</span>
@@ -118,6 +118,7 @@ export default class Recharge extends Mixins(PageMixins) {
         data: []
     }
     payTypeId: string = '';
+    currencyType: number = 0;
 
     get listMap() :any {
         const {rechargeTemplate} = this;
@@ -156,7 +157,7 @@ export default class Recharge extends Mixins(PageMixins) {
         try {
             this.loading = true;
             const data = await orderApi.rechargeRecordAdd.exec(parmas);
-            const {payUrl} = data;
+            const {payUrl} = data.payParams;
             window.location.href = payUrl;
             this.loading = false;
         } catch (error) {
@@ -164,9 +165,10 @@ export default class Recharge extends Mixins(PageMixins) {
             console.log(error)
         }
     }
-    async payTypeGetListReq() {
+    async payTypeGetListReq(parmas: any) {
         try {
-            const res = await orderApi.payTypeGetList.exec({});
+            this.loading = true;
+            const res = await orderApi.payTypeGetList.exec(parmas);
             this.payTypeOption.data = res;
             this.payTypeId = res[0].payTypeId;
         } catch (error) {
@@ -175,7 +177,9 @@ export default class Recharge extends Mixins(PageMixins) {
     }
 
     handleChargeItem(item: any) {
-        this.activeId = item.rechargeTemplateId;
+        const {rechargeTemplateId, currencyType} = item;
+        this.activeId = rechargeTemplateId;
+        this.currencyType = currencyType;
     }
 
     // 选择支付方式
@@ -184,7 +188,7 @@ export default class Recharge extends Mixins(PageMixins) {
         this.createOrder();
     }
     
-    handerToBuy() :void {
+    async handerToBuy() {
         if (!this.isLogin) {
             const redirect = this.$route.fullPath;
             this.$router.push({name: 'Login', query: {redirect}});
@@ -194,6 +198,7 @@ export default class Recharge extends Mixins(PageMixins) {
             this.$toast(`${this.$t('page.mine_recharge.select__charge__info')}！`)
             return;
         }
+        await this.payTypeGetListReq({currencyType: this.currencyType});
         if (this.payTypeOption.data.length > 1) {
             this.payTypeOption.visible = true;
         } else {
@@ -228,7 +233,6 @@ export default class Recharge extends Mixins(PageMixins) {
 
     created() {
         this.init();
-        this.payTypeGetListReq();
     }
 }
 </script>
@@ -294,6 +298,7 @@ export default class Recharge extends Mixins(PageMixins) {
                 .corn__item-info {
                     padding-top: 20px;
                     color: @text-color4;
+                    word-break: break-all;
                 }
 
                 &.active {

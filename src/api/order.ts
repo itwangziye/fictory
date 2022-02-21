@@ -20,7 +20,7 @@ export default {
     payTypeGetList: new MApi({
 		serviceUrl: '/anon/payType/getList',
         method: 'get',
-        config: {not_token: 1, needCurrency: 1}
+        config: {not_token: 1}
     }),
     rechargeRecordAdd: new MApi({
 		serviceUrl: '/rechargeRecord/add',

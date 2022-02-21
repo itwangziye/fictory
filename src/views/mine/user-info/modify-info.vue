@@ -2,7 +2,7 @@
   <pagecontain>
       <template slot="header">
             <van-nav-bar
-            title="修改密码"
+            :title="$t('page.user_modify.title')"
             left-arrow
             @click-left="onClickLeft"
             />
@@ -20,25 +20,25 @@
                 v-model="form.oldPassword"
                 type="text"
                 name="text"
-                placeholder="请输入旧密码"
-                :rules="[{ required: true, message: '请输旧密码'}]"
+                :placeholder="$t('page.user_modify.password__old')"
+                :rules="[{ required: true, message: $t('page.user_modify.password__old')}]"
             />
             <van-field
                 v-model="form.newPassword"
                 type="password"
                 name="password"
-                placeholder="请输入新密码"
-                :rules="[{ required: true, message: '请输入新密码'}]"
+                :placeholder="$t('page.user_modify.password__new')"
+                :rules="[{ required: true, message: $t('page.user_modify.password__new')}]"
             />
             <van-field
                 v-model="confirmPassword"
                 type="password"
                 name="password"
-                placeholder="请确认新密码"
-                :rules="[{ required: true, message: '请确认新密码', validator: validatorPassword}]"
+                :placeholder="$t('page.user_modify.password__confirm')"
+                :rules="[{ required: true, message: $t('page.user_modify.password__confirm'), validator: validatorPassword}]"
             />
             <div class="loginForm-button">
-                <van-button :class="['button', {disabled: buttonDisabled}] " :disabled="buttonDisabled" loading-text="正在更改密码···" :loading="loading" round block type="warning" native-type="submit">确定修改</van-button>
+                <van-button :class="['button', {disabled: buttonDisabled}] " :disabled="buttonDisabled" :loading-text="$t('common.components.loading')" :loading="loading" round block type="warning" native-type="submit">{{$t('page.user_modify.confirm__text')}}</van-button>
             </div>
         </van-form>
   </pagecontain>
@@ -96,7 +96,7 @@ export default class ModifyInfo extends Mixins(PageMixins) {
             this.loading = true;
             await api.updateUserPassword.exec(parmas);
             this.loading = false;
-			this.$toast.success('修改成功！');
+			this.$toast.success(`${this.$t('page.user_modify.confirm__success')}！`);
             this.$router.back();
         } catch (error) {
             console.log(error);

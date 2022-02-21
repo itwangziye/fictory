@@ -2,7 +2,7 @@
     <pagecontain>
         <template slot="header">
             <van-nav-bar
-            title="个人资料"
+            :title="$t('page.user.title')"
             left-arrow
             @click-left="onClickLeft"
             />
@@ -43,14 +43,14 @@
                     </div>
                 </template>
                 <template #right-icon v-if="item.key === 'id' ">
-                    <span v-clipboard:copy="item.value"  v-clipboard:success="onCopy"  class="copy iconfont">复制</span>
+                    <span v-clipboard:copy="item.value"  v-clipboard:success="onCopy"  class="copy iconfont">{{$t('page.user.copy__text')}}</span>
                 </template>
             </van-cell>
         </div>
 
         <template slot="footer">
             <div class="user__foot">
-                <van-button class="button" type="warning"  loading-text="正在退出中···" :loading="loading" round block  @click="handlerLoginOut">退出</van-button>
+                <van-button class="button" type="warning"  loading-text="loading···" :loading="loading" round block  @click="handlerLoginOut">{{$t('page.user.login__out__text')}}</van-button>
             </div>
         </template>
     </pagecontain>
@@ -79,8 +79,8 @@ export default class UserInfo extends Mixins(PageMixins) {
     get cellOptions() :any[]{
         const userInfo = (this as any).userInfo;
         return [
-            {label: '头像', key: 'avater', value: userInfo.headImageUrl},
-            {label: '昵称', key: 'name', value: userInfo.userName},
+            {label: this.$t('page.user.avater'), key: 'avater', value: userInfo.headImageUrl},
+            {label: this.$t('page.user.name'), key: 'name', value: userInfo.userName},
             {label: 'ID', key: 'id', value: userInfo.userId},
         ]
     }
@@ -88,7 +88,9 @@ export default class UserInfo extends Mixins(PageMixins) {
     // 退出登录
     handlerLoginOut() :void {
         this.$dialog.confirm({
-            title: '确定退出登录？',
+            title: `${this.$t('page.user.copy__info')}？`,
+            confirmButtonText: `${this.$t('common.components.confirm_text')}`,
+            cancelButtonText: `${this.$t('common.components.cancel_text')}`
         })
         .then(async () => {
             this.loading = true;
@@ -102,7 +104,7 @@ export default class UserInfo extends Mixins(PageMixins) {
     }
 
     onCopy() :void{
-        this.$toast({message: '复制成功'})
+        this.$toast({message: `${this.$t('page.user.copy__info')}`})
     }
 
     // 点击图像
@@ -129,7 +131,7 @@ export default class UserInfo extends Mixins(PageMixins) {
 
 <style scoped lang="less">
     .user {
-        /deep/ .van-cell__title {
+        @{deep} .van-cell__title {
             flex: 0.5;
         }
         .custom {

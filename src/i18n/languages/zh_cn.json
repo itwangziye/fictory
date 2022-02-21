@@ -96,6 +96,19 @@
             "password__confirm": "请再次输入密码",
             "register_info": "返回登录"
         },
+        "user": {
+            "title": "个人资料",
+            "avater": "头像",
+            "name": "昵称",
+            "copy__text": "复制",
+            "copy__info": "复制成功",
+            "login__out__info": "确定退出登录",
+            "login__out__text": "退出"
+        },
+        "user_modify": {
+            "title": "修改密码",
+            "confirm__text": "修改密码"
+        },
         "order": {
             "title": "购买记录",
             "tab__shop": "消费记录",

@@ -8,8 +8,8 @@
             :title="$t('page.order.title')"
             ></book-header>
             <van-tabs @change="onTabChange" v-model="tabActive" color="rgba(245, 156, 1, 1">
-                <van-tab title="消费记录"></van-tab>
-                <van-tab title="充值记录"></van-tab>
+                <van-tab :title="$t('page.order.tab__shop')"></van-tab>
+                <van-tab :title="$t('page.order.tab__charge')"></van-tab>
             </van-tabs>
         </template>
         <div class="order">

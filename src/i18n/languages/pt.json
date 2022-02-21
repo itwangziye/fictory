@@ -96,6 +96,23 @@
             "password__confirm": "Por favor digite a senha novamente",
             "register_info": "Volte ao login"
         },
+        "user": {
+            "title": "informação pessoal",
+            "avater": "Avatar",
+            "name": "Apelido",
+            "copy__text": "cópia de",
+            "copy__info": "Copiar com sucesso",
+            "login__out__info": "OK para sair",
+            "login__out__text": "Sair"
+        },
+        "user_modify": {
+            "title": "mudar senha",
+            "confirm__text": "OK para modificar",
+            "password__old": "Por favor, digite a senha antiga",
+            "password__new": "Por favor, digite uma nova senha",
+            "password__confirm": "Por favor, confirme uma nova senha",
+            "confirm__success": "Modificado com sucesso"
+        },
         "order": {
             "title": "Histórico de compras",
             "tab__shop": "Registro de despesas",
