@@ -187,7 +187,7 @@ export default class Mine extends Mixins(PageMixins) {
 	&__session {
 		padding: 24px 24px 0;
 		&-item {
-			width: 100px;
+			width: 200px;
 			height: 100px;
 			display: flex;
 			flex-direction: column;
@@ -196,8 +196,8 @@ export default class Mine extends Mixins(PageMixins) {
 			font-size: @text-size5;
 			color: @text-color1;
 			.lable {
-			color: @text-color4;
-			padding-top: 20px;
+        color: @text-color4;
+        padding-top: 20px;
 			}
 		}
 	}

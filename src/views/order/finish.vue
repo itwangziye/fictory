@@ -5,7 +5,8 @@
     @on-retry="init"
     >
         <template v-slot:header>
-            <nav-bar title="订单支付"
+            <nav-bar 
+            :title="$t('page.order_finish.title')"
             :pageBack="onClickLeft"
             ></nav-bar>
         </template>
@@ -13,15 +14,15 @@
             <div class="goods__status">
                 <div class="goods__status-head">
                     <span :class="['icon', {error: !isSuccess}]"></span>
-                    <span class="text" v-if="isSuccess">支付成功</span>
+                    <span class="text" v-if="isSuccess">{{$t('page.order_finish.status__text')}}</span>
                     <div v-else class="info">
-                        <p>订单确认中······</p> 
-                        <p>支付结果可能会有延迟</p>
+                        <p>{{$t('page.order_finish.status__info1')}}······</p> 
+                        <p>{{$t('page.order_finish.status__info2')}}</p>
                     </div>
                 </div>
                 <div class="goods__status-operate">
                     <!-- <van-button @click="handlerCheckBill" class="button" round  type="info" >{{isSuccess ? '查看订单': '重新支付'}}</van-button> -->
-                    <van-button @click="onClickLeft" class="button" round  plain type="info" >{{isSuccess? '返回首页': '已完成支付'}}</van-button>
+                    <van-button @click="onClickLeft" class="button" round  plain type="info" >{{isSuccess? $t('page.order_finish.finish__back__text'): $t('page.order_finish.finish__button')}}</van-button>
                 </div>                
             </div>          
         </div>

@@ -36,7 +36,7 @@
                 <div class="order__content">
                     <div class="label">{{$t("page.book_order.price_label")}}：</div>
                     <div class="price">
-                        {{bookDetail.bookPrice}}书币
+                        {{bookDetail.bookPrice}}{{$t('common.coin')}}
                     </div>
                 </div>
             </div>
@@ -127,7 +127,7 @@ export default class BookOrder extends Mixins(PageMixins) {
             this.payLoading = true;
            const {data} = await apiOrder.orderAdd.exec(parmas);
             this.$toast('购买成功！')
-            this.$router.push({name: 'OrderFinish', query: {status: '1'}})
+            this.$router.back();
            this.payLoading = false;
         } catch (error) {
             console.log(error)

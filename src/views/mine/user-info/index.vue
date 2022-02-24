@@ -11,7 +11,6 @@
             <van-cell 
             v-for="(item, index) in cellOptions" 
             :key="index" 
-            is-link 
             :title="item.label"
             >
                 <template>
@@ -79,7 +78,7 @@ export default class UserInfo extends Mixins(PageMixins) {
     get cellOptions() :any[]{
         const userInfo = (this as any).userInfo;
         return [
-            {label: this.$t('page.user.avater'), key: 'avater', value: userInfo.headImageUrl},
+            // {label: this.$t('page.user.avater'), key: 'avater', value: userInfo.headImageUrl},
             {label: this.$t('page.user.name'), key: 'name', value: userInfo.userName},
             {label: 'ID', key: 'id', value: userInfo.userId},
         ]

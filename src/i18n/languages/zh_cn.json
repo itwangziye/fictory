@@ -88,7 +88,8 @@
             "account": "请输入账号",
             "password": "请输入密码",
             "login": "登录",
-            "login_info": "用户注册"
+            "login_info": "用户注册",
+            "login_success_info": "登录成功"
         },
         "register": {
             "title": "用户注册",
@@ -107,12 +108,24 @@
         },
         "user_modify": {
             "title": "修改密码",
-            "confirm__text": "修改密码"
+            "confirm__text": "确定修改",
+            "password__old": "请输入旧密码",
+            "password__new": "请输入新密码",
+            "password__confirm": "请确定新密码",
+            "confirm__success": "修改成功"
         },
         "order": {
             "title": "购买记录",
             "tab__shop": "消费记录",
             "tab__charge": "充值记录"
+        },
+        "order_finish": {
+            "title": "订单支付",
+            "status__text": "支付成功",
+            "status__info1": "订单确认中",
+            "status__info2": "支付结果可能会有延迟",
+            "finish__button": "已完成支付",
+            "finish__back__text": "返回首页"
         },
         "shelf": {
             "tip": "我的收藏",

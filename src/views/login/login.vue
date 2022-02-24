@@ -103,7 +103,7 @@ export default class Login extends Mixins(PageMixins, LoginMixins) {
             const res = await api.loginIn.exec(parmas);
             this.setLoginInfo(res);
             this.loading = false;
-			this.$toast.success('登录成功！');
+			this.$toast.success(`${this.$t('page.login.login_success_info')}！`);
         } catch (error) {
             console.log(error);
             this.loading = false;

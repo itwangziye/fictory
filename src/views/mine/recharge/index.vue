@@ -45,13 +45,13 @@
                 <van-button :class="['button']" :loading="loading" loading-text="loading.··" round block type="warning" @click="handerToBuy">{{$t('page.mine_recharge.confirm__text')}}</van-button>
              </div>
 
-            <div class="recharge__content-title">{{$t('page.mine_recharge.recharge__info')}}</div>
+            <!-- <div class="recharge__content-title">{{$t('page.mine_recharge.recharge__info')}}</div>
 
             <div class="recharge__content-ruler">
                 <div class="ruler__text">
                     {{rulerText}}
                 </div>
-            </div>
+            </div> -->
 
 
          </div>

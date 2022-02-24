@@ -8,6 +8,7 @@
             "collect": "يجمع",
             "mine": "الخاص بي"
         },
+        "coin": "عملة الكتاب",
         "components": {
             "loading": "تحميل···",
             "errorTip": "فشل طلب البيانات ، يرجى المحاولة مرة أخرى",
@@ -16,7 +17,8 @@
             "noMore": "لا أكثر",
             "moreErrorTip": "فشل الطلب ، انقر لإعادة التحميل",
             "cancel_text": "يلغي",
-            "confirm_text": "بالتأكيد"
+            "confirm_text": "بالتأكيد",
+            "pay__title": "الرجاء تحديد طريقة الدفع"
         }
     },
     "page": {
@@ -32,7 +34,23 @@
             "login": "الرجاء تسجيل الدخول",
             "record": "تاريخ شراء",
             "user": "معلومات شخصية",
-            "account_save": "أمن الحساب"
+            "charge": "书币充值",
+            "account_save": "أمن الحساب",
+            "open_vip": "افتح عضوية VIP",
+            "vip_dec": "استمتع بكل المحتوى الرائع للشبكة بأكملها",
+            "open_vip_text1": "نشط الآن",
+            "open_vip_text2": "جدد الآن",
+            "end": "موعد التسليم"
+        },
+        "mine_recharge": {
+            "page__title": "تعبئة رصيد",
+            "info__title": "رصيدي",
+            "vip__text": "VIP صالح حتى",
+            "content__title": "إعادة شحن الكتاب",
+            "confirm__text": "تأكيد الشراء",
+            "recharge__info": "تعليمات إعادة الشحن",
+            "open__vip__text": "افتح vip",
+            "select__charge__info": "الرجاء تحديد نوع إعادة الشحن"
         },
         "book": {
             "watch": "أمن الحساب",
@@ -70,7 +88,8 @@
             "account": "الرجاء إدخال اسم المستخدم",
             "password": "الرجاء إدخال كلمة المرور",
             "login": "يسجل دخول",
-            "login_info": "تسجيل المستخدم"
+            "login_info": "تسجيل المستخدم",
+            "login_success_info": "登录成功"
         },
         "register": {
             "title": "تسجيل المستخدم",
@@ -78,8 +97,27 @@
             "password__confirm": "الرجاء إدخال كلمة المرور مرة أخرى",
             "register_info": "العودة إلى تسجيل الدخول"
         },
+        "user": {
+            "title": "معلومات شخصية",
+            "avater": "الصورة الرمزية",
+            "name": "اسم الشهرة",
+            "copy__text": "ينسخ",
+            "copy__info": "نسخ بنجاح",
+            "login__out__info": "موافق لتسجيل الخروج",
+            "login__out__text": "استقال"
+        },
+        "user_modify": {
+            "title": "تغيير كلمة المرور",
+            "confirm__text": "موافق للتعديل",
+            "password__old": "الرجاء إدخال كلمة المرور القديمة",
+            "password__new": "الرجاء إدخال كلمة مرور جديدة",
+            "password__confirm": "الرجاء تأكيد كلمة المرور الجديدة",
+            "confirm__success": "تم التعديل بنجاح"
+        },
         "order": {
-            "title": "تاريخ شراء"
+            "title": "تاريخ شراء",
+            "tab__shop": "سجل المصاريف",
+            "tab__charge": "سجل الشحن"
         },
         "shelf": {
             "tip": "مجموعتي",

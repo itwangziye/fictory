@@ -43,11 +43,14 @@
             "end": "截止"
         },
         "mine_recharge": {
+            "page__title": "充值",
             "info__title": "我的餘額",
             "vip__text": "VIP有效期至",
             "content__title": "書幣充值",
             "confirm__text": "確定購買",
-            "recharge__info": "充值說明"
+            "recharge__info": "充值說明",
+            "open__vip__text": "開通vip",
+            "select__charge__info": "請選擇充值類型"
         },
         "book": {
             "watch": "立即觀看",
@@ -85,7 +88,8 @@
             "account": "請輸入賬號",
             "password": "請輸入密碼",
             "login": "登錄",
-            "login_info": "用戶註冊"
+            "login_info": "用戶註冊",
+            "login_success_info": "登錄成功"
         },
         "register": {
             "title": "用戶註冊",
@@ -93,10 +97,35 @@
             "password__confirm": "請再次輸入密碼",
             "register_info": "返回登錄"
         },
+        "user": {
+            "title": "個人資料",
+            "avater": "頭像",
+            "name": "暱稱",
+            "copy__text": "複製",
+            "copy__info": "複製成功",
+            "login__out__info": "確定退出登錄",
+            "login__out__text": "退出"
+        },
+        "user_modify": {
+            "title": "修改密碼",
+            "confirm__text": "確定修改",
+            "password__old": "請輸入舊密碼",
+            "password__new": "請輸入新密碼",
+            "password__confirm": "請確定新密碼",
+            "confirm__success": "修改成功"
+        },
         "order": {
             "title": "購買記錄",
             "tab__shop": "消費記錄",
             "tab__charge": "充值記錄"
+        },
+        "order_finish": {
+            "title": "訂單支付",
+            "status__text": "支付成功",
+            "status__info1": "訂單確認中",
+            "status__info2": "支付結果可能會有延遲",
+            "finish__button": "已完成支付",
+            "finish__back__text": "返回首頁"
         },
         "shelf": {
             "tip": "我的收藏",

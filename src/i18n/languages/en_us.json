@@ -43,11 +43,14 @@
             "end": "End"
         },
         "mine_recharge": {
+            "page__title": "Top-up",
             "info__title": "My balance",
             "vip__text": "VIP is valid until",
             "content__title": "Book money recharge",
             "confirm__text": "Confirm purchase",
-            "recharge__info": "Recharge Instructions"
+            "recharge__info": "Recharge Instructions",
+            "open__vip__text": "Open vip",
+            "select__charge__info": "Please select a charge type"
         },
         "book": {
             "watch": "Watch now",
@@ -85,7 +88,8 @@
             "account": "Please enter an account number",
             "password": "Please enter your password",
             "login": "Login",
-            "login_info": "User registration"
+            "login_info": "User registration",
+            "login_success_info": "Login successful"
         },
         "register": {
             "title": "User Registration",
@@ -93,10 +97,35 @@
             "password__confirm": "Please enter your password again",
             "register_info": "Return to login"
         },
+        "user": {
+            "title": "Profile",
+            "avater": "avatar",
+            "name": "Nickname",
+            "copy__text": "Copy",
+            "copy__info": "Copy succeeded",
+            "login__out__info": "OK to log out",
+            "login__out__text": "Logout"
+        },
+        "user_modify": {
+            "title": "Change password",
+            "confirm__text": "Confirm modification",
+            "password__old": "Please enter the old password",
+            "password__new": "Please enter a new password",
+            "password__confirm": "Please confirm the new password",
+            "confirm__success": "Modification succeeded"
+        },
         "order": {
             "title": "Purchase History",
             "tab__shop": "Consumption record",
             "tab__charge": "Charge record"
+        },
+        "order_finish": {
+            "title": "Order payment",
+            "status__text": "Payment successful",
+            "status__info1": "Order Confirmation",
+            "status__info2": "Payment results may be delayed",
+            "finish__button": "Payment completed",
+            "finish__back__text": "Back to Home"
         },
         "shelf": {
             "tip": "My Favorites",

@@ -88,7 +88,8 @@
             "account": "Insira o nome de usuário",
             "password": "Por favor insira a senha",
             "login": "Conecte-se",
-            "login_info": "Registro de usuário"
+            "login_info": "Registro de usuário",
+            "login_success_info": "login bem sucedido"
         },
         "register": {
             "title": "Registro de usuário",
@@ -117,6 +118,14 @@
             "title": "Histórico de compras",
             "tab__shop": "Registro de despesas",
             "tab__charge": "Registro de recarga"
+        },
+        "order_finish": {
+            "title": "Ordem",
+            "status__text": "pagamento bem sucedido",
+            "status__info1": "confirmação do pedido",
+            "status__info2": "Os resultados do pagamento podem atrasar",
+            "finish__button": "pagamento completo",
+            "finish__back__text": "Voltar para casa"
         },
         "shelf": {
             "tip": "Minha coleção",
