@@ -81,7 +81,8 @@
             "buy_value": "Todos os catálogos",
             "price_label": "Valor do pagamento",
             "buy_text": "Vá para pagar",
-            "buy_dec": "Os produtos virtuais não podem ser devolvidos após a compra, jovens, por favor, paguem com seus pais"
+            "buy_dec": "Os produtos virtuais não podem ser devolvidos após a compra, jovens, por favor, paguem com seus pais",
+            "pay_success_text": "compra bem sucedida"
         },
         "login": {
             "title": "Login de usuário",
@@ -117,7 +118,10 @@
         "order": {
             "title": "Histórico de compras",
             "tab__shop": "Registro de despesas",
-            "tab__charge": "Registro de recarga"
+            "tab__charge": "Registro de recarga",
+            "pay__content": "conteúdo de pagamento",
+            "order__no": "número do pedido",
+            "buy__time": "tempo de compra"
         },
         "order_finish": {
             "title": "Ordem",

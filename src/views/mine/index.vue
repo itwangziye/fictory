@@ -47,7 +47,6 @@
             @click="handlerRecharge"
             class="button"
             round
-            block
             size="small"
             >{{ isVip ? $t("page.mine.open_vip_text2") : $t("page.mine.open_vip_text1") }}</van-button
           >
@@ -213,16 +212,18 @@ export default class Mine extends Mixins(PageMixins) {
 			font-size: @text-size5;
 			color: @text-color3;
 			.tip {
-			font-size: @text-size3;
-			padding-top: 20px;
+        font-size: @text-size3;
+        padding-top: 20px;
 			}
 		}
 		&-rt {
-			.button {
-			background-color: #b77355;
-			color: @white;
-			font-size: @text-size5;
-			}
+      width: 300px;
+      text-align: right;
+      .button {
+        background-color: #b77355;
+        color: @white;
+        font-size: @text-size5;
+      }
 		}
 	}
 	&__cell {

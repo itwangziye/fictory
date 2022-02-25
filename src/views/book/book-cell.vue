@@ -51,7 +51,7 @@
         />
 
 
-        <div class="book__footer">
+        <div class="book__footer" v-if="bookCellDetail && bookCellDetail.totalChapterCount > 1">
             <van-button type="default" icon="arrow-left" @click="handlerChangeMenu('pre')">{{$t('page.book_cell.pre')}}</van-button>
             <van-button type="default" icon="bars" @click="handleMenu">{{$t('page.book_cell.menu')}}</van-button>
             <van-button type="default" @click="handlerChangeMenu('next')">
@@ -212,10 +212,8 @@ export default class BookCell extends Mixins(PageMixins) {
             color: @text-color1;
             &__item {
                 margin-left: 20px;
-                width: 40px;
-                height: 40px;
                 text-align: center;
-                line-height: 40px;
+                padding: 5px;
                 background-color: rgba(223, 223, 223, 1);
                 &.active {
                     background-color: rgba(246, 215, 217, 1);

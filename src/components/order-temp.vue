@@ -1,7 +1,7 @@
 <template>
     <div class="book click-list" @click="handlerBookDetail">
         <div class="book-lt">
-            <van-image lazy-load fit="cover" v-if="opt.goodsImageUrl" :src="opt.goodsImageUrl" class="img">
+            <van-image lazy-load fit="cover" :src="opt.goodsImageUrl" class="img">
                 <template v-slot:loading>
                     <van-loading type="spinner" size="20" />
                 </template>
@@ -9,20 +9,20 @@
         </div>
         <div class="book-rt">
             <div class="title">
-                <span>{{opt.goodsName}}</span> 
-                <span class="price">￥{{opt.orderPrice}}</span>
+                <span class="name">{{opt.goodsName}}</span> 
+                <span class="price">{{opt.bookCoins}}{{$t('common.coin')}}</span>
             </div>
             <div class="book-session">
                 <div class="author">
-                    <span class="lable">支付内容：</span>
+                    <span class="lable">{{$t('page.order.pay__content')}}：</span>
                     <span>{{opt.payContent}}</span>
                 </div>
                 <div>
-                    <span class="lable">订单编号：</span>
+                    <span class="lable">{{$t('page.order.order__no')}}：</span>
                     <span>{{opt.orderId}}</span>
                 </div>
                 <div>
-                    <span class="lable">购买时间：</span>
+                    <span class="lable">{{$t('page.order.buy__time')}}：</span>
                     <span>{{opt.timePay}}</span>
                 </div>
             </div>
@@ -41,8 +41,8 @@ export default class BookTemp extends Vue {
 
 
     handlerBookDetail() :void{
-        const {goodsId} = this.opt;
-        this.$router.push({name: 'Book', query: {bookId: goodsId}})
+        const {parentGoodsId} = this.opt;
+        this.$router.push({name: 'Book', query: {bookId: parentGoodsId}})
     }
 }
 </script>
@@ -80,8 +80,14 @@ export default class BookTemp extends Vue {
                 font-size: @text-size5;
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
+                .name {
+                    flex: 1;
+                }
                 .price {
                     color: @caveat-color;
+                    display: inline-block;
+                    width: 200px;
                 }
             }
         }

@@ -126,7 +126,7 @@ export default class BookOrder extends Mixins(PageMixins) {
         try {
             this.payLoading = true;
            const {data} = await apiOrder.orderAdd.exec(parmas);
-            this.$toast('购买成功！')
+            this.$toast(`${this.$t('page.book_order.pay_success_text')}`)
             this.$router.back();
            this.payLoading = false;
         } catch (error) {

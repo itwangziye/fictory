@@ -81,7 +81,8 @@
             "buy_value": "All directories",
             "price_label": "Payment Amount",
             "buy_text": "Go to Pay",
-            "buy_dec": "Virtual products are non-refundable after purchase, teenagers should pay with their parents"
+            "buy_dec": "Virtual products are non-refundable after purchase, teenagers should pay with their parents",
+            "pay_success_text": "Purchase Successful"
         },
         "login": {
             "title": "User Login",
@@ -117,7 +118,10 @@
         "order": {
             "title": "Purchase History",
             "tab__shop": "Consumption record",
-            "tab__charge": "Charge record"
+            "tab__charge": "Charge record",
+            "pay__content": "Payment Content",
+            "order__no": "Order number",
+            "buy__time": "Buy time"
         },
         "order_finish": {
             "title": "Order payment",

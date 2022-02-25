@@ -26,7 +26,7 @@
                     <order-temp  :opt="item" v-for="(item, index) in list" :key="index"></order-temp>
                 </div>
                 <div class="charge" v-else>
-                    <van-cell v-for="(item, index) in list" :key="index" center :title="item.rechargeContent" :value="`￥${item.rechargePrice}`" :label="item.timePay" />
+                    <van-cell v-for="(item, index) in list" :key="index" center :title="item.rechargeContent" :value="`${item.currencyTypeTag}${item.rechargePrice}`" :label="item.timePay" />
                 </div>
             </van-list>
         </div>

@@ -81,7 +81,8 @@
             "buy_value": "所有目录",
             "price_label": "支付金额",
             "buy_text": "前往支付",
-            "buy_dec": "虚拟产品购买后不可退换，青少年请在家长陪同下支付"
+            "buy_dec": "虚拟产品购买后不可退换，青少年请在家长陪同下支付",
+            "pay_success_text": "购买成功"
         },
         "login": {
             "title": "用户登录",
@@ -117,7 +118,10 @@
         "order": {
             "title": "购买记录",
             "tab__shop": "消费记录",
-            "tab__charge": "充值记录"
+            "tab__charge": "充值记录",
+            "pay__content": "支付内容",
+            "order__no": "订单编号",
+            "buy__time": "购买时间"
         },
         "order_finish": {
             "title": "订单支付",

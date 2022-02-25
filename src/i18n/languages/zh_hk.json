@@ -81,7 +81,8 @@
             "buy_value": "所有目錄",
             "price_label": "支付金額",
             "buy_text": "前往支付",
-            "buy_dec": "虛擬產品購買後不可退換，青少年請在家長陪同下支付"
+            "buy_dec": "虛擬產品購買後不可退換，青少年請在家長陪同下支付",
+            "pay_success_text": "購買成功"
         },
         "login": {
             "title": "用戶登錄",
@@ -117,7 +118,10 @@
         "order": {
             "title": "購買記錄",
             "tab__shop": "消費記錄",
-            "tab__charge": "充值記錄"
+            "tab__charge": "充值記錄",
+            "pay__content": "支付內容",
+            "order__no": "訂單編號",
+            "buy__time": "購買時間"
         },
         "order_finish": {
             "title": "訂單支付",
