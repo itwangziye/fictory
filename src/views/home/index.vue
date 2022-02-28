@@ -150,7 +150,7 @@ export default class Home extends Mixins(PageMixins) {
 <style scoped lang="less">
     .home {
         &__search {
-            /deep/.van-search__content{
+            @{deep}.van-search__content{
                 background-color: @primary-color;
                 opacity: 0.5;
             }

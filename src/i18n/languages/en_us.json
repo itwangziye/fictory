@@ -18,7 +18,8 @@
             "moreErrorTip": "Request failed, click to reload",
             "cancel_text": "Cancel",
             "confirm_text": "Confirm",
-            "pay__title": "Please select a payment method"
+            "pay__title": "Please select a payment method",
+            "success__info": "The operation was successful"
         }
     },
     "page": {

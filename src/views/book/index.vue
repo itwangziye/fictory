@@ -295,7 +295,7 @@ export default class Book extends Mixins(PageMixins) {
     }
 
     .book__menu {
-        /deep/ .van-cell {
+        @{deep} .van-cell {
             padding-left: 0;
             padding-right: 0;
         }

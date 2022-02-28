@@ -18,7 +18,8 @@
             "moreErrorTip": "請求失敗，點擊重新加載",
             "cancel_text": "取消",
             "confirm_text": "確定",
-            "pay__title": "請選擇支付方式"
+            "pay__title": "請選擇支付方式",
+            "success__info": "操作成功"
         }
     },
     "page": {

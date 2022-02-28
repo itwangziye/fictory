@@ -52,7 +52,7 @@ export default class GoodsTemp extends Vue {
         .img {
             width: 340px;
             height: 340px;
-            /deep/.van-image__img{
+            @{deep}.van-image__img{
                 border-radius: 16px 16px 0px 0px;
             }
         }

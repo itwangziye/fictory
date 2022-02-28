@@ -227,15 +227,15 @@ export default class GoodsSearch extends Mixins(PageMixins) {
 <style scoped lang="less">
     .search-input {
         padding: 0;
-        /deep/ .van-search__content {
+        @{deep} .van-search__content {
             background-color: @white;
         }
-        /deep/ .van-field__left-icon{
+        @{deep} .van-field__left-icon{
             margin-top: -2px;
         }
     }
     .navbar__search {
-        /deep/ .navbar__rt {
+        @{deep} .navbar__rt {
             width: 32px;
         }
     }

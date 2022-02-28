@@ -1,8 +1,5 @@
 import api from '@/api/common';
 import {Storage} from '@/utils/storage'
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
-import { Toast, Dialog } from 'vant';
-import utils from '@/utils/utils'
 
 const state = {
     tabbarOptions: null,

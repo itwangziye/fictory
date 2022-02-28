@@ -18,7 +18,8 @@
             "moreErrorTip": "A solicitação falhou, clique para recarregar",
             "cancel_text": "Cancelar",
             "confirm_text": "Certo",
-            "pay__title": "Por favor selecione o modo de pagamento"
+            "pay__title": "Por favor selecione o modo de pagamento",
+            "success__info": "Operação bem-sucedida"
         }
     },
     "page": {

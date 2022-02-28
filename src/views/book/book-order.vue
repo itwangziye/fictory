@@ -264,7 +264,7 @@ export default class BookOrder extends Mixins(PageMixins) {
                     max-height: 90px;
                     vertical-align: middle;
                 }
-                /deep/ .van-radio__icon{
+                @{deep} .van-radio__icon{
                     position: absolute;
                     width: 40px;
                     height: 40px;

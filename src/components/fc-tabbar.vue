@@ -11,10 +11,10 @@
                                                                        
 	@Component({
         computed: {
-        ...mapGetters({
-            'tabbarOptions': 'metadata/tabbarOptions',
-        })
-    }
+            ...mapGetters({
+                'tabbarOptions': 'metadata/tabbarOptions',
+            })
+        }
     })
 	export default class FcTabbar extends Vue {
         tabbarBaseOptions: any[] = [

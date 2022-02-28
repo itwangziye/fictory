@@ -180,25 +180,25 @@ export default class TopBar extends Mixins(PageMixins) {
     //     padding: 0 24px;
     //     &-input{
     //         padding: 0;
-    //         /deep/.van-search__content {
+    //         @{deep}.van-search__content {
     //             background-color: #F5F5F5;
     //             height: 72px;
     //             padding: 0 35%;
     //             align-items: center;
     //         }
-    //         /deep/.van-cell{
+    //         @{deep}.van-cell{
     //             padding: 0;
     //             height: 100%;
     //         }
-    //         /deep/.van-field__body, /deep/.van-field__control{
+    //         @{deep}.van-field__body, @{deep}.van-field__control{
     //             height: 100%;
     //             line-height: 100%;
     //         }
-    //         /deep/.van-field__left-icon{
+    //         @{deep}.van-field__left-icon{
     //             display: flex;
     //             align-items: center;
     //         }
-    //         /deep/.van-field__control::placeholder{
+    //         @{deep}.van-field__control::placeholder{
     //             color: @text-color4;
     //         }
     //     }

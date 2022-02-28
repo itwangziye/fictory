@@ -2,7 +2,8 @@ import {Storage} from '@/utils/storage';
 import api from '@/api/common';
 import { Toast } from 'vant';
 import apiUser from '@/api/user';
-import router from '@/router'
+import router from '@/router';
+import i18n from '@/i18n'
 
 const state = {
     token: null,
@@ -19,7 +20,7 @@ const actions = {
             // const toast = Toast.loading({forbidClick: true, message: '正在加载中···'});
             // await api.loginOut.exec({});
             // toast.clear();
-            Toast.success('操作成功！')
+            Toast.success(`${i18n.t('common.components.success__info')}！`)
             commit('LOGINOUT', payload);
         } catch (error) {
             console.log(error);
@@ -41,7 +42,7 @@ const actions = {
         try {
             await apiUser.updateUserInfo.exec(payload);
             commit('UPUSERINFO', payload);
-            Toast.success('操作成功！')
+            Toast.success(`${i18n.t('common.components.success__info')}！`)
         } catch (error) {
             console.log(error);
         }
