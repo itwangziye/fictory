@@ -97,7 +97,8 @@
             "title": "Registro de usuário",
             "register": "registro",
             "password__confirm": "Por favor digite a senha novamente",
-            "register_info": "Volte ao login"
+            "register_info": "Volte ao login",
+            "register__error": "As duas senhas não coincidem"
         },
         "user": {
             "title": "informação pessoal",
