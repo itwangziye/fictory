@@ -50,7 +50,10 @@
                             type="password"
                             name="password"
                             :placeholder="$t('page.register.password__confirm')"
-                            :rules="[{ required: true, message: $t('page.register.password__confirm')}]"
+                            :rules="[
+                                { required: true, message: $t('page.register.password__confirm')},
+                                { validator: validator, message: $t('page.register.register__error') }
+                            ]"
                         />
                         <div class="loginForm-button">
                             <div class="loginForm-tip">
@@ -96,6 +99,14 @@ export default class Login extends Mixins(PageMixins, LoginMixins) {
 		return false;
 	}
 
+    validator(val: string) :boolean{
+        const {password} = this.form;
+        if (password && password !== val) {
+            return false
+        }
+        return true;
+    }
+
     getRegisterParms() :any{
         const form = this.form;
         const fc_channelOpt = Storage.getLocalStorage("fc_channelOpt");
@@ -123,7 +134,7 @@ export default class Login extends Mixins(PageMixins, LoginMixins) {
             const res = await api.register.exec(parmas);
             this.loading = false;
             this.setLoginInfo(res);
-			this.$toast.success('注册成功！');
+			this.$toast.success(this.$t('common.components.success__info'));
         } catch (error) {
             console.log(error);
             this.loading = false;

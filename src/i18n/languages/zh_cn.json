@@ -76,7 +76,8 @@
             "title": "用户注册",
             "register": "注册",
             "password__confirm": "请再次输入密码",
-            "register_info": "返回登录"
+            "register_info": "返回登录",
+            "register__error": "两次密码不一致"
         },
         "order": {
             "title": "购买记录"

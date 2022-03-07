@@ -76,7 +76,8 @@
             "title": "用戶註冊",
             "register": "註冊",
             "password__confirm": "請再次輸入密碼",
-            "register_info": "返回登錄"
+            "register_info": "返回登錄",
+            "register__error": "兩次密碼不一致"
         },
         "order": {
             "title": "購買記錄"

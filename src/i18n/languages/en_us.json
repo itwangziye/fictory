@@ -76,7 +76,8 @@
             "title": "User Registration",
             "register": "Register",
             "password__confirm": "Please enter your password again",
-            "register_info": "Return to login"
+            "register_info": "Return to login",
+            "register__error": "The two passwords do not match"
         },
         "order": {
             "title": "Purchase History"
