@@ -178,7 +178,8 @@ export default class BookCell extends Mixins(PageMixins) {
            const data = await api.bookChapterGetDetail.exec(parmas) 
            this.bookCellDetail = data;
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            this.$router.back();
         }
     }
 
