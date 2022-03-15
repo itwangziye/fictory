@@ -38,6 +38,12 @@ class MApi{
 			const currencyType = Storage.getLocalStorage('fc_currency');
 			if (currencyType) targetData = {...targetData, currencyType};
 		}
+		const fc_channelOpt = Storage.getLocalStorage("fc_channelOpt");
+		if (fc_channelOpt) {
+		const fc_channelOpt = Storage.getLocalStorage("fc_channelOpt");
+			targetData = {...targetData, ...fc_channelOpt}
+		}
+
 		if (method === 'get') {
 			options.params = targetData;
 		} else {

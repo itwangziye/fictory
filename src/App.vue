@@ -47,7 +47,7 @@ export default class App extends Vue {
 		const {search} = window.location;
 		if (search) {
 			const query = qs.parse(search.replace('?', ''));
-				if (query) {
+			if (query) {
 				const {cid} = query;
 				if (cid) {
 					let channelOpt: any = {cid};

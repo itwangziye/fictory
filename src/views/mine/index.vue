@@ -94,7 +94,7 @@ export default class Mine extends Mixins(PageMixins) {
 
   get isVip() :boolean{
 	  const {rechargeDetail} = this;
-	  if (rechargeDetail && rechargeDetail.accountType !== 1) {
+	  if (rechargeDetail && rechargeDetail.accountType === 3) {
 		  return true;
 	  }
 	  return false;
