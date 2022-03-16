@@ -123,9 +123,11 @@ export default class BookCell extends Mixins(PageMixins) {
     
     init() {
         const query = this.$route.query;
-        if (query && query.bookId) {
-            const {chapterIndex, bookId} = this.$route.query;
+        const {bookId, chapterIndex, bookChapterId} = query;
+        if (query && bookId && chapterIndex) {
             this.bookChapterGetDetailReq({chapterIndex, bookId})
+        } else if (bookId && bookChapterId) {
+            this.bookChapterGetDetailReq({bookChapterId, bookId})
         }
     }
 
@@ -150,8 +152,7 @@ export default class BookCell extends Mixins(PageMixins) {
 
     handlerChangeMenu(type: string) {
         const query: any = this.$route.query;
-        let {chapterIndex, bookId} = query;
-        const {totalChapterCount} = this.bookCellDetail;
+        let {totalChapterCount, chapterIndex, bookId} = this.bookCellDetail;
         if (chapterIndex >= totalChapterCount && type === 'next') {
             this.$toast(this.$t('page.book_cell.no_next'));
             return;

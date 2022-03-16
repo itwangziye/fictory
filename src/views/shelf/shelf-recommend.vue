@@ -73,8 +73,8 @@ export default class ShelfRecommend extends Vue {
     }
 
     handlerBookDetail(item: any) :void{
-        const {bookId} = item;
-        this.$router.push({name: 'Book', query: {bookId}})
+        const {bookId, bookChapterId} = item;
+        this.$router.push({name: 'BookCell', query: {bookId, bookChapterId}})
     }
 
     handleChange() :void{
