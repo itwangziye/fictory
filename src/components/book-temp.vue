@@ -54,6 +54,7 @@ export default class BookTemp extends Vue {
         display: flex;
         padding: 12px;
         background-color: @white;
+        width: 100%;
         &-lt {
             .img {
                 width: 210px;

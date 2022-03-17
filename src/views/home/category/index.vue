@@ -78,7 +78,7 @@ export default class HomeCategory extends Mixins(PageMixins) {
         classIndex: 0,
         classData: [],
         stateIndex: 0,
-        stateData: [{name: '全部', id: -1}, {name: '连载', id: 1}, {name: '完结', id: 0}]
+        stateData: [{name: '全部', id: -1}, {name: '连载', id: 10}, {name: '完结', id: 20}]
     }
 
     get isEmpty() :boolean {
@@ -98,11 +98,16 @@ export default class HomeCategory extends Mixins(PageMixins) {
 
     getSessionClassParmas() :any{
         const {classIndex, classData, stateIndex, stateData} = this.categoryOption;
+        debugger
         const {bookTypeId} = classData[classIndex];
         const {id} = stateData[stateIndex];
         const target: any = {};
-        if (classIndex) target.smallTypeId = bookTypeId;
-        if (stateIndex) target.isContinue = id;
+        if (classIndex) {
+            target.smallTypeId = bookTypeId;
+        }
+        if (stateIndex) {
+            target.bookState = id;
+        }
         this.pagination = {
             pageIndex: 1,
             pageSize: 10
