@@ -72,7 +72,8 @@ export default class BookMenu extends Mixins(PageMixins) {
         const query: any = this.$route.query;
         const {bookId} = query;
         if (!isUnLock && !isFree) {
-            this.$router.push({name: 'BookOrder', query: {bookId, bookChapterId}})
+            const redirect = this.$route.fullPath;
+            this.$router.push({name: 'BookOrder', query: {bookId, bookChapterId, redirect}})
         } else {
             this.$router.push({name: 'BookCell', query: {bookId, chapterIndex}})
         }

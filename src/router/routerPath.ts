@@ -20,7 +20,7 @@ const routes: Array<RouteConfig> = [
 		path: '/shelf',
 		name: 'Shelf',
 		component: () => import('@/views/shelf/index.vue'),
-		meta: {keepAlive: true}
+		// meta: {keepAlive: true}
 	},
 	{
 		path: '/mine',

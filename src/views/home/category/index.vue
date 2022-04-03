@@ -98,7 +98,6 @@ export default class HomeCategory extends Mixins(PageMixins) {
 
     getSessionClassParmas() :any{
         const {classIndex, classData, stateIndex, stateData} = this.categoryOption;
-        debugger
         const {bookTypeId} = classData[classIndex];
         const {id} = stateData[stateIndex];
         const target: any = {};

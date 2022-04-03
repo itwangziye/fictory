@@ -34,9 +34,12 @@ export default class BookHistory extends Vue {
 
 
     handlerBookDetail() :void{
-        const {bookId} = this.opt;
-        console.log(bookId)
-        this.$router.push({name: 'Book', query: {bookId}})
+        const {bookId, bookChapterId} = this.opt;
+        if (bookChapterId) {
+            this.$router.push({name: 'BookCell', query: {bookId, bookChapterId}})
+        } else {
+            this.$router.push({name: 'Book', query: {bookId}})
+        }
     }
 }
 </script>

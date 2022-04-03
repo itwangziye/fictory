@@ -328,5 +328,78 @@ export default class Recharge extends Mixins(PageMixins) {
         
     }
 
+    .pay__mode{
+            box-sizing: border-box;
+            background: @bg-color;
+            min-height: 46%;
+            &-warp {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+            &-title{
+                width: 100%;
+                height: 100px;
+                background: @white;
+                line-height: 100px;
+                text-align: center;
+                font-size: @text-size7;
+                font-weight: 500;
+            }
+            // &-close{
+            //     position: absolute;
+            //     right: 32px;
+            //     top: 32px;
+            //     width: 38px;
+            //     height: 38px;
+            //     background-image: url('../../../assets/coupons/close.png');
+            //     background-size: 100%;
+            // }
+            &-main{
+                margin: 20px 24px 0 24px;
+                background: @white;
+                border-radius: 16px;
+                overflow: scroll;
+                flex: 1;
+            }
+            &-item{
+                position: relative;
+                // padding: 33px 24px;
+                padding-left: 34px;
+                height: 130px;
+                border-bottom: 1px solid #EEE;
+                font-size: @text-size6;
+                display: flex;
+                align-items: center;
+                .img{
+                    margin-right: 20px;
+                    width: 160px;
+                    max-height: 90px;
+                    vertical-align: middle;
+                }
+                /deep/ .van-radio__icon{
+                    position: absolute;
+                    width: 40px;
+                    height: 40px;
+                    top: 50%;
+                    right: 20px;
+                    transform: translate(-50%, -50%);
+                }
+            }
+
+            &-list {
+                display: flex;
+                align-items: center;
+                .title {
+                    font-size: @text-size6;
+                    color: @text-color1;
+                }
+                .dec {
+                    font-size: @text-size4;
+                    color: @text-color3;
+                }
+            }
+        }
+
 }
 </style>
