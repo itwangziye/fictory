@@ -36,7 +36,7 @@
           <div>
             {{
               isVip
-                ? `${rechargeDetail.accountTypeText} ${rechargeDetail.timeVip}到期`
+                ? `${rechargeDetail.accountTypeText} ${rechargeDetail.timeVip}${$t("page.mine.end")}`
                 : $t("page.mine.open_vip")
             }}
           </div>

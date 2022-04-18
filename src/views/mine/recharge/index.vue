@@ -2,6 +2,7 @@
   <pagecontain
   :loading="pageLoading"
   :error="pageError"
+  @on-retry="init"
   >
     <template slot="header">
         <van-nav-bar
@@ -42,7 +43,7 @@
              </ul>
 
             <div class="recharge__button">
-                <van-button :class="['button']" :loading="loading" loading-text="loading.··" round block type="warning" @click="handerToBuy">{{$t('page.mine_recharge.confirm__text')}}</van-button>
+                <van-button :class="['button']" :loading="loading" loading-text="loading···" round block type="warning" @click="handerToBuy">{{$t('page.mine_recharge.confirm__text')}}</van-button>
              </div>
 
             <!-- <div class="recharge__content-title">{{$t('page.mine_recharge.recharge__info')}}</div>
@@ -65,9 +66,9 @@
             <div class="pay__mode-warp">
                 <div class="pay__mode-title">{{$t('common.components.pay__title')}}</div>
                 <div class="pay__mode-close" @click="payTypeOption.visible = false"></div>
-                <ul class="pay__mode-main">
-                    <van-radio-group v-model="payTypeId" @change="onPayTypePickConfirm">
-                        <li class="pay__mode-item" v-for="(item) in payTypeOption.data" :key="item.payTypeId">
+                <div class="pay__mode-main">
+                    <van-radio-group v-model="payTypeId" >
+                        <div class="pay__mode-item click-list" @click="onPayTypePickConfirm(item.payTypeId)" v-for="(item) in payTypeOption.data" :key="item.payTypeId">
                             <van-radio 
                             :name="item.payTypeId" 
                             checked-color="#3276ff"
@@ -80,14 +81,13 @@
                                     </van-image>
                                     <div>
                                         <span class="title">{{item.payTypeName}}</span> 
-                                        <div class="dec">{{item.payTypeText}}</div>
+                                        <!-- <div class="dec">{{item.payTypeText}}</div> -->
                                     </div>
                                 </div>
-                                
                             </van-radio>
-                        </li>
+                        </div>
                     </van-radio-group>
-                </ul>
+                </div>
             </div>
         </van-popup>
     </div>
@@ -171,7 +171,10 @@ export default class Recharge extends Mixins(PageMixins) {
             const res = await orderApi.payTypeGetList.exec(parmas);
             this.payTypeOption.data = res;
             this.payTypeId = res[0].payTypeId;
+            return true;
         } catch (error) {
+            this.loading = false;
+            return false;
             console.log(error)
         }
     }
@@ -183,7 +186,8 @@ export default class Recharge extends Mixins(PageMixins) {
     }
 
     // 选择支付方式
-    onPayTypePickConfirm(id: String) :void {
+    onPayTypePickConfirm(id: string) :void {
+        this.payTypeId = id;
         this.payTypeOption.visible = false;
         this.createOrder();
     }
@@ -198,12 +202,14 @@ export default class Recharge extends Mixins(PageMixins) {
             this.$toast(`${this.$t('page.mine_recharge.select__charge__info')}！`)
             return;
         }
-        await this.payTypeGetListReq({currencyType: this.currencyType});
-        if (this.payTypeOption.data.length > 1) {
-            this.payTypeOption.visible = true;
-        } else {
-            this.createOrder();
-        }
+        const flag = await this.payTypeGetListReq({currencyType: this.currencyType});
+        if (flag) {
+            if (this.payTypeOption.data.length > 1) {
+                this.payTypeOption.visible = true;
+            } else {
+                this.createOrder();
+            }
+        }        
     }
 
     createOrder() {
@@ -331,6 +337,79 @@ export default class Recharge extends Mixins(PageMixins) {
             }
         }
         
+    }
+
+    .pay__mode{
+        box-sizing: border-box;
+        background: @bg-color;
+        min-height: 46%;
+        &-warp {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        &-title{
+            width: 100%;
+            height: 100px;
+            background: @white;
+            line-height: 100px;
+            text-align: center;
+            font-size: @text-size7;
+            font-weight: 500;
+        }
+        // &-close{
+        //     position: absolute;
+        //     right: 32px;
+        //     top: 32px;
+        //     width: 38px;
+        //     height: 38px;
+        //     background-image: url('../../../assets/coupons/close.png');
+        //     background-size: 100%;
+        // }
+        &-main{
+            margin: 20px 24px 0 24px;
+            background: @white;
+            border-radius: 16px;
+            overflow: scroll;
+            flex: 1;
+        }
+        &-item{
+            position: relative;
+            // padding: 33px 24px;
+            padding-left: 34px;
+            height: 130px;
+            border-bottom: 1px solid #EEE;
+            font-size: @text-size6;
+            display: flex;
+            align-items: center;
+            .img{
+                margin-right: 20px;
+                width: 160px;
+                max-height: 90px;
+                vertical-align: middle;
+            }
+            @{deep} .van-radio__icon{
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                top: 50%;
+                right: 20px;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        &-list {
+            display: flex;
+            align-items: center;
+            .title {
+                font-size: @text-size6;
+                color: @text-color1;
+            }
+            .dec {
+                font-size: @text-size4;
+                color: @text-color3;
+            }
+        }
     }
 
 }
