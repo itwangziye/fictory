@@ -62,10 +62,11 @@
             v-model="payTypeOption.visible" 
             position="bottom"
             class="pay__mode"
+            :close-on-click-overlay="false"
         >
             <div class="pay__mode-warp">
                 <div class="pay__mode-title">{{$t('common.components.pay__title')}}</div>
-                <div class="pay__mode-close" @click="payTypeOption.visible = false"></div>
+                <div class="pay__mode-close" @click="handleClose"></div>
                 <div class="pay__mode-main">
                     <van-radio-group v-model="payTypeId" >
                         <div class="pay__mode-item click-list" @click="onPayTypePickConfirm(item.payTypeId)" v-for="(item) in payTypeOption.data" :key="item.payTypeId">
@@ -87,6 +88,12 @@
                             </van-radio>
                         </div>
                     </van-radio-group>
+                </div>
+
+                <div class="pay__mode__footer">
+                    <div class="pay__mode__footer-oprate click-able" @click="onPayTypePickConfirm">
+                        确定
+                    </div> 
                 </div>
             </div>
         </van-popup>
@@ -185,9 +192,14 @@ export default class Recharge extends Mixins(PageMixins) {
         this.currencyType = currencyType;
     }
 
+    handleClose() :void{
+        this.loading = false;
+        this.payTypeOption.visible = false
+    }
+
     // 选择支付方式
-    onPayTypePickConfirm(id: string) :void {
-        this.payTypeId = id;
+    onPayTypePickConfirm(id?: string) :void {
+        if(id) this.payTypeId = id;
         this.payTypeOption.visible = false;
         this.createOrder();
     }
@@ -347,6 +359,7 @@ export default class Recharge extends Mixins(PageMixins) {
             display: flex;
             flex-direction: column;
             height: 100%;
+            height: 1000px;
         }
         &-title{
             width: 100%;
@@ -357,15 +370,15 @@ export default class Recharge extends Mixins(PageMixins) {
             font-size: @text-size7;
             font-weight: 500;
         }
-        // &-close{
-        //     position: absolute;
-        //     right: 32px;
-        //     top: 32px;
-        //     width: 38px;
-        //     height: 38px;
-        //     background-image: url('../../../assets/coupons/close.png');
-        //     background-size: 100%;
-        // }
+        &-close{
+            position: absolute;
+            right: 32px;
+            top: 32px;
+            width: 38px;
+            height: 38px;
+            background-image: url('../../../assets/coupons/close.png');
+            background-size: 100%;
+        }
         &-main{
             margin: 20px 24px 0 24px;
             background: @white;
@@ -408,6 +421,18 @@ export default class Recharge extends Mixins(PageMixins) {
             .dec {
                 font-size: @text-size4;
                 color: @text-color3;
+            }
+        }
+
+        &__footer {
+            padding-top: 24px;
+            &-oprate {
+                height: 98px;
+                line-height: 98px;
+                text-align: center;
+                color: @text-color2;
+                font-size: @text-size5;
+                background-color: @white;
             }
         }
     }
